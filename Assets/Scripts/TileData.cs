@@ -32,7 +32,6 @@ public class TileData  {
                 if (col[i].row[j])
                 {
                     temp.Add(new Vector2(i, j));
-                    Debug.Log(i + " " + j);
                 }
             }
         }

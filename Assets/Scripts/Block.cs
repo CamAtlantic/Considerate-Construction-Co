@@ -14,16 +14,10 @@ public class Block : MonoBehaviour {
     int value = 0;
     public bool falling = false;
     
-    public Vector2 gridPos;
-
-    Block leftNeighbor;
-    Block rightNeighbor;
-    Block upNeighbor;
-    Block downNeighbor;
-
+    public Vector2 gridPositionOfOrigin;
+    
     List<Block> neighbors = new List<Block>();
 
-    
    
     // Use this for initialization
     void Start () {
@@ -35,26 +29,77 @@ public class Block : MonoBehaviour {
 	
 	}
 
-    //this needs real work
-    void CheckBelowSelf()
+    public void Drop()
     {
+        falling = true;
+    }
+
+    public bool CheckBelowSelf(out GhostInfo newGhostInfo)
+    {
+        newGhostInfo.didCollide = false;
+        newGhostInfo.checkingTileCoord = Vector2.zero;
+        newGhostInfo.hitTileCoord = Vector2.zero;
+
         foreach (Vector2 tileCoord in shape.AllTileCoords)
         {
-            //not happy about using the transform position here but
-            Vector2 totalCoord = tileCoord + new Vector2(transform.position.x, transform.position.y);
-
-            for (int i = SiteManagerRef.gridSizeY; i >= 0; i--)
+            Vector2 currentGridCoord = tileCoord + gridPositionOfOrigin;
+            for (int i = SiteManagerRef.gridSizeY -1; i >=0 ; i--)
             {
-                if (SiteManagerRef.grid[(int)totalCoord.x, i] == null)
+                if (SiteManagerRef.grid[(int)currentGridCoord.x, i] == null)
+                    //there is nothing in the checked space
                     continue;
                 else
                 {
-                    //return grid[col, i].transform.position.y + 1;
+                    //there is something in this space
+                    if (SiteManagerRef.grid[(int)currentGridCoord.x, i] == this)
+                    {
+                        print("collided with self I think");
+                    }
+                    else
+                    {
+                        newGhostInfo.didCollide = true;
+                        newGhostInfo.checkingTileCoord = tileCoord;
+                        newGhostInfo.hitTileCoord = currentGridCoord;
+                        return true;
+                    }
+                    
                 }
             }
-        }
 
-        //return 0f;
+        }
+        return false;
+    }
+
+    public bool CheckCollisionOnGrid(out TileCollision newCollisionInfo)
+    {
+        newCollisionInfo.didCollide = false;
+        newCollisionInfo.checkingTileCoord = Vector2.zero;
+        newCollisionInfo.hitTileCoord = Vector2.zero;
+
+        foreach (Vector2 tileCoord in shape.AllTileCoords)
+        {
+            Vector2 currentTotalCoord = tileCoord + gridPositionOfOrigin;
+            for (int i = 0; i < SiteManagerRef.gridSizeY; i++)
+            {
+                if (SiteManagerRef.grid[(int)currentTotalCoord.x, i] == null)
+                    //there is nothing in the checked space
+                    continue;
+                else
+                {
+                    //there is something in this space
+                    if (SiteManagerRef.grid[(int)currentTotalCoord.x, i] == this)
+                    {
+                        print("collided with self I think");
+                    }
+                    newCollisionInfo.didCollide = true;
+                    newCollisionInfo.checkingTileCoord = tileCoord;
+                    newCollisionInfo.hitTileCoord = currentTotalCoord;
+                    return true;
+                }
+            }
+         
+        }
+        return false;
     }
     public void UpdateNeighbors()
     {
@@ -66,7 +111,7 @@ public class Block : MonoBehaviour {
 
         foreach(Vector2 dir in dirs)
         {
-            Vector2 neighborCoord = dir + gridPos;
+            Vector2 neighborCoord = dir + gridPositionOfOrigin;
             if(neighborCoord.x < 0 || neighborCoord.x > SiteManagerRef.grid.GetLength(0) - 1 ||
                 neighborCoord.y < 0 || neighborCoord.y > SiteManagerRef.grid.GetLength(1) - 1)
                 continue;
@@ -78,19 +123,56 @@ public class Block : MonoBehaviour {
                 maybeNeighbor.neighbors.Add(this);
             }
         }
-
-        //print(neighbors.Count);
+        
     }
 
-    public void SetGridPos(int x, int y)
+    public void MoveBlock(Vector2 moveDir)
     {
-        gridPos = new Vector2(x, y);
 
+        SetGridPos(gridPositionOfOrigin + moveDir);
+    }
+
+    public void SetGridPos(Vector2 newPos)
+    {
+        gridPositionOfOrigin = newPos;
+
+        transform.localPosition = gridPositionOfOrigin;
         foreach (Vector2 tileCoord in shape.AllTileCoords)
         {
-            Vector2 totalCoord = tileCoord + gridPos;
+            Vector2 totalCoord = tileCoord + gridPositionOfOrigin;
             SiteManagerRef.grid[(int)totalCoord.x, (int)totalCoord.y] = this;
         }
     }
 
+}
+public struct GhostInfo
+{
+    /// <summary>
+    /// true if collision exists.
+    /// </summary>
+    public bool didCollide;
+    /// <summary>
+    /// The grid Coord of the tile that checked.
+    /// </summary>
+    public Vector2 checkingTileCoord;
+    /// <summary>
+    /// The grid Coord of the tile that was hit.
+    /// </summary>
+    public Vector2 hitTileCoord;
+}
+
+public struct TileCollision
+{
+    /// <summary>
+    /// true if collision exists.
+    /// </summary>
+    public bool didCollide;
+    /// <summary>
+    /// The grid Coord of the tile that checked.
+    /// </summary>
+    public Vector2 checkingTileCoord;
+    /// <summary>
+    /// The grid Coord of the tile that was hit.
+    /// </summary>
+    public Vector2 hitTileCoord;
 }

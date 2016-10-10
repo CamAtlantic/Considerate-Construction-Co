@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class SiteManager : MonoBehaviour {
     //This script controls spawning new blocks.
-
+    //TODO: no fucking world space coordinates
     public Block[,] grid;
 
     public int gridSizeX = 5;
@@ -36,15 +36,16 @@ public class SiteManager : MonoBehaviour {
         {
             if(Input.GetKeyDown(KeyCode.A) && heldBlock.transform.position.x > 0)
             {
-                heldBlock.transform.position += Vector3.left;
+                heldBlock.MoveBlock(Vector2.left);
             }
+            //TODO: check that right bounds of block are not off grid
             if (Input.GetKeyDown(KeyCode.D) && heldBlock.transform.position.x < 4)
             {
-                heldBlock.transform.position += Vector3.right;
+                heldBlock.MoveBlock(Vector2.right);
             }
             if(Input.GetKeyDown(KeyCode.Space))
             {
-                DropHeldBlock();
+                heldBlock.Drop();
             }
 
             //TODO: Bad OOP
@@ -58,7 +59,7 @@ public class SiteManager : MonoBehaviour {
                     heldBlock.falling = false;
                     heldBlock.transform.position = new Vector3(heldBlock.transform.position.x, bottom, heldBlock.transform.position.z);
 
-                    heldBlock.SetGridPos((int)heldBlock.transform.position.x, (int)heldBlock.transform.position.y);
+                    heldBlock.SetGridPos(new Vector2(heldBlock.transform.position.x,heldBlock.transform.position.y));
                     heldBlock.UpdateNeighbors();
 
                     heldBlock = null;
@@ -66,36 +67,21 @@ public class SiteManager : MonoBehaviour {
             }
         }
 	}
-    //TODO: both of these maybe should be on Block script
-    void DropHeldBlock()
-    {
-        heldBlock.falling = true;
-//        bottom = CheckColumnHeight((int)heldBlock.transform.position.x, (int)heldBlock.transform.position.y);
-    }
-/*
-    float CheckColumnHeight(int col, int startHeight)
-    {
-        for (int i = startHeight; i >= 0; i--)
-        {
-            if (grid[col, i] == null)
-                continue;
-            else
-            {
-                return grid[col, i].transform.position.y + 1;
-            }
-        }
-        return 0f;
-    }
-    */
+    
     //TODO: some of this feels like bad OOP
     void SpawnNewBlock()
     {
         //TODO: some way of choosing different blocks
         GameObject newBlock = Instantiate(blockList[0]);
+
+        //TODO: better block constructor
         newBlock.transform.parent = transform;
-        //TODO: blocks spawn higher when, for example, there is already a block on 8th row
-        newBlock.transform.position = new Vector3(2, 8f, 0);
         heldBlock = newBlock.GetComponent<Block>();
         heldBlock.SiteManagerRef = this;
+
+        heldBlock.gridPositionOfOrigin = new Vector2(0, gridSizeY - 1);
+        heldBlock.MoveBlock(Vector2.zero);
+
+        
     }
 }
