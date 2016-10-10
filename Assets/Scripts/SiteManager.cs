@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Lean.Touch;
 
 public class SiteManager : MonoBehaviour {
     //This script controls spawning new blocks.
+
+	public static string SwipedDirection;
 
     public Block[,] grid;
 
@@ -21,10 +24,13 @@ public class SiteManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         grid = new Block[gridSizeX,gridSizeY];
+
+		SwipedDirection = "null";
     }
     
     // Update is called once per frame
     void Update () {
+		
         if (!heldBlock)
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -34,18 +40,22 @@ public class SiteManager : MonoBehaviour {
         }
         else
         {
-            if(Input.GetKeyDown(KeyCode.A) && heldBlock.transform.position.x > 0)
-            {
-                heldBlock.transform.position += Vector3.left;
-            }
-            if (Input.GetKeyDown(KeyCode.D) && heldBlock.transform.position.x < 4)
-            {
-                heldBlock.transform.position += Vector3.right;
-            }
-            if(Input.GetKeyDown(KeyCode.Space))
-            {
-                DropHeldBlock();
-            }
+			//jai's new swipe-
+			if (SwipedDirection == "left" && heldBlock.transform.position.x > 0) {
+				heldBlock.transform.position += Vector3.left;
+				SwipedDirection = "null";
+			}
+
+			if (SwipedDirection == "right" && heldBlock.transform.position.x < 4) {
+				heldBlock.transform.position += Vector3.right;
+				SwipedDirection = "null";
+			}
+
+			if (SwipedDirection == "down") {
+				DropHeldBlock();
+				SwipedDirection = "null";
+			}
+			//jai's new swipe
 
             //TODO: Bad OOP
             if (heldBlock.falling)
@@ -98,4 +108,17 @@ public class SiteManager : MonoBehaviour {
         heldBlock = newBlock.GetComponent<Block>();
         heldBlock.SiteManagerRef = this;
     }
+
+	public static void SwipeLeft() {
+		SwipedDirection = "left";
+	}
+	public static void SwipeRight() {
+		SwipedDirection = "right";
+	}
+	public static void SwipeUp() {
+		SwipedDirection = "up";
+	}
+	public static void SwipeDown() {
+		SwipedDirection = "down";
+	}
 }
