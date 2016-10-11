@@ -6,9 +6,9 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Base
-  m_Shader: {fileID: 4800000, guid: ed36ddcc2c1df1149a282da9dcc8ec32, type: 3}
-  m_ShaderKeywords: _EMISSION _GLOSSYREFLECTIONS_OFF _SPECULARHIGHLIGHTS_OFF
+  m_Name: BG_3_Dusk
+  m_Shader: {fileID: 4800000, guid: c8985434790944fa18c050512fb6a183, type: 3}
+  m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -71,8 +71,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - first:
-        name: PixelSnap
-      second: 0
+        name: _Alpha
+      second: 1
     - first:
         name: _BumpScale
       second: 1
@@ -86,14 +86,17 @@ Material:
         name: _DstBlend
       second: 0
     - first:
+        name: _Emit
+      second: 0.5
+    - first:
         name: _GlossMapScale
       second: 1
     - first:
         name: _Glossiness
-      second: 0
+      second: 0.5
     - first:
         name: _GlossyReflections
-      second: 0
+      second: 1
     - first:
         name: _Metallic
       second: 0
@@ -111,7 +114,7 @@ Material:
       second: 0
     - first:
         name: _SpecularHighlights
-      second: 0
+      second: 1
     - first:
         name: _SrcBlend
       second: 1
@@ -119,12 +122,39 @@ Material:
         name: _UVSec
       second: 0
     - first:
+        name: _VertMotion
+      second: 0
+    - first:
+        name: _VertOffset
+      second: 0
+    - first:
+        name: _VertWobble
+      second: 0
+    - first:
+        name: _VertWobbleSpeed
+      second: 0
+    - first:
+        name: _YOffset
+      second: 0.11
+    - first:
+        name: _YScale
+      second: 114.2
+    - first:
         name: _ZWrite
       second: 1
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.453, g: 0.369648, b: 0.40298876, a: 1}
+      second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _ColorOne
+      second: {r: 0.9558824, g: 0.84284395, b: 0.21085638, a: 1}
+    - first:
+        name: _ColorTwo
+      second: {r: 0.83823526, g: 0.43237975, b: 0.36364618, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _ShadeColor
+      second: {r: 1, g: 1, b: 1, a: 1}
