@@ -2811,8 +2811,13 @@ Prefab:
         type: 2}
       propertyPath: blockList.Array.data[0]
       value: 
-      objectReference: {fileID: 1000010226924824, guid: cf0e994869d88364fae8e3a183bee4e7,
+      objectReference: {fileID: 1243904139758838, guid: 4b182f16ad4b3b74291c50b8b746200e,
         type: 2}
+    - target: {fileID: 114000010925157906, guid: 3d59254db818b9840898059005e07c35,
+        type: 2}
+      propertyPath: gridSizeY
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3d59254db818b9840898059005e07c35, type: 2}
   m_IsPrefabParent: 0

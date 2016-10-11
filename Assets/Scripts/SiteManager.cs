@@ -8,14 +8,22 @@ public class SiteManager : MonoBehaviour {
     public Block[,] grid;
 
     public int gridSizeX = 5;
-    public int gridSizeY = 20;
+    /// <summary>
+    /// The size of the array. Larger than the maxHeight to avoid Out of Range fuckery.
+    /// </summary>
+    public int gridSizeY = 30;
 
-    Block heldBlock;
+    /// <summary>
+    /// The actual size of the array being used.
+    /// </summary>
+    public int maxHeight = 20;
+[HideInInspector]
+    public Block heldBlock;
+    //GhostInfo ghostOfHeldBlock;
 
     public int topRowOnScreen = 8;
 
     public GameObject[] blockList;
-    public float fallSpeed = 2;
     public float bottom;
 
     // Use this for initialization
@@ -34,36 +42,18 @@ public class SiteManager : MonoBehaviour {
         }
         else
         {
-            if(Input.GetKeyDown(KeyCode.A) && heldBlock.transform.position.x > 0)
+            if (Input.GetKeyDown(KeyCode.A))
             {
                 heldBlock.MoveBlock(Vector2.left);
             }
-            //TODO: check that right bounds of block are not off grid
-            if (Input.GetKeyDown(KeyCode.D) && heldBlock.transform.position.x < 4)
+            if (Input.GetKeyDown(KeyCode.D))
             {
                 heldBlock.MoveBlock(Vector2.right);
             }
-            if(Input.GetKeyDown(KeyCode.Space))
+
+            if (Input.GetKeyDown(KeyCode.Space) && heldBlock.CheckGhostPos())
             {
                 heldBlock.Drop();
-            }
-
-            //TODO: Bad OOP
-            if (heldBlock.falling)
-            {
-                heldBlock.transform.position += (Vector3.down * fallSpeed);
-
-
-                if (heldBlock.transform.position.y < bottom)
-                {
-                    heldBlock.falling = false;
-                    heldBlock.transform.position = new Vector3(heldBlock.transform.position.x, bottom, heldBlock.transform.position.z);
-
-                    heldBlock.SetGridPos(new Vector2(heldBlock.transform.position.x,heldBlock.transform.position.y));
-                    heldBlock.UpdateNeighbors();
-
-                    heldBlock = null;
-                }    
             }
         }
 	}
@@ -79,9 +69,8 @@ public class SiteManager : MonoBehaviour {
         heldBlock = newBlock.GetComponent<Block>();
         heldBlock.SiteManagerRef = this;
 
-        heldBlock.gridPositionOfOrigin = new Vector2(0, gridSizeY - 1);
-        heldBlock.MoveBlock(Vector2.zero);
-
+        Vector2 newBlockPos = new Vector2(2, maxHeight - 1);
+        heldBlock.SetGridPos(newBlockPos,false);
         
     }
 }

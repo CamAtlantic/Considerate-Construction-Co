@@ -4,9 +4,7 @@ using System.Collections.Generic;
 
 [System.Serializable]
 public class TileData  {
-
-//    public Vector2 gridPos;
-
+    
     [System.Serializable]
     public struct column
     {
@@ -14,6 +12,9 @@ public class TileData  {
     }
     public column[] col = new column[3];
 
+    /// <summary>
+    /// A vector2 list of all the coordinates of tiles in the shape, relative to the origin.
+    /// </summary>
     public List<Vector2> AllTileCoords
     {
         get

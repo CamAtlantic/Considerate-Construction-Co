@@ -4,103 +4,151 @@ using System.Collections.Generic;
 
 public class Block : MonoBehaviour {
     //This is the basic script that buildings and toppers derive from.
+    //TODO: I have a worldspace/localspace issue.
     [HideInInspector]
     public SiteManager SiteManagerRef;
     public TileData shape;
 
+    [HideInInspector]
     public int xLength = 0;
+    [HideInInspector]
     public int yLength = 0;
 
     int value = 0;
+    [HideInInspector]
     public bool falling = false;
     
+  
     public Vector2 gridPositionOfOrigin;
-    
-    List<Block> neighbors = new List<Block>();
 
-   
+    [HideInInspector]
+    public Vector2 ghostPos = new Vector2();
+
+    List<Block> neighbors = new List<Block>();
+    public float fallSpeed = 2;
+
     // Use this for initialization
     void Start () {
-        
+        //TODO: consider using a vector2 somehow
+        //TODO: find a way of generalizing this foreach, i'm using it very frequently
+        //TODO: serialize this or put it in shape?
+        foreach (Vector2 tile in shape.AllTileCoords)
+        {
+            if(tile.x > xLength)
+            {
+                xLength = (int)tile.x;
+            }
+            if (tile.y> yLength)
+            {
+                yLength = (int)tile.y;
+            }
+        }
     }
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        
+        if (falling)
+        {
+            transform.position += (Vector3.down * fallSpeed);
+
+            if (transform.position.y < ghostPos.y)
+            {
+                Land();
+            }
+        }
+    }
+
+    public void MoveBlock(Vector2 moveDir)
+    {
+        Vector2 proposedDestination = gridPositionOfOrigin + moveDir;
+        
+        if (proposedDestination.x >= 0 && proposedDestination.x + xLength < 5)
+        {
+            gridPositionOfOrigin = proposedDestination;
+            transform.position = gridPositionOfOrigin;
+        }
+    }
 
     public void Drop()
     {
         falling = true;
     }
 
-    public bool CheckBelowSelf(out GhostInfo newGhostInfo)
+    public void Land()
     {
-        newGhostInfo.didCollide = false;
-        newGhostInfo.checkingTileCoord = Vector2.zero;
-        newGhostInfo.hitTileCoord = Vector2.zero;
+        falling = false;
+        SiteManagerRef.heldBlock = null;
 
-        foreach (Vector2 tileCoord in shape.AllTileCoords)
-        {
-            Vector2 currentGridCoord = tileCoord + gridPositionOfOrigin;
-            for (int i = SiteManagerRef.gridSizeY -1; i >=0 ; i--)
-            {
-                if (SiteManagerRef.grid[(int)currentGridCoord.x, i] == null)
-                    //there is nothing in the checked space
-                    continue;
-                else
-                {
-                    //there is something in this space
-                    if (SiteManagerRef.grid[(int)currentGridCoord.x, i] == this)
-                    {
-                        print("collided with self I think");
-                    }
-                    else
-                    {
-                        newGhostInfo.didCollide = true;
-                        newGhostInfo.checkingTileCoord = tileCoord;
-                        newGhostInfo.hitTileCoord = currentGridCoord;
-                        return true;
-                    }
-                    
-                }
-            }
-
-        }
-        return false;
+        SetGridPos(ghostPos,true);
+        UpdateNeighbors();
     }
 
-    public bool CheckCollisionOnGrid(out TileCollision newCollisionInfo)
+    public void CheckBelowSelf(out GhostInfo newGhostInfo)
     {
-        newCollisionInfo.didCollide = false;
-        newCollisionInfo.checkingTileCoord = Vector2.zero;
-        newCollisionInfo.hitTileCoord = Vector2.zero;
+        newGhostInfo.ghostOriginCoord = gridPositionOfOrigin;
+        int ghostHeight = 0;
 
         foreach (Vector2 tileCoord in shape.AllTileCoords)
         {
-            Vector2 currentTotalCoord = tileCoord + gridPositionOfOrigin;
-            for (int i = 0; i < SiteManagerRef.gridSizeY; i++)
+            Vector2 tileGridCoord = tileCoord + gridPositionOfOrigin;
+            int newGhostHeight = 0;
+
+            //go down this tile's column
+            for (int i = SiteManagerRef.maxHeight -1; i >=0 ; i--)
             {
-                if (SiteManagerRef.grid[(int)currentTotalCoord.x, i] == null)
-                    //there is nothing in the checked space
-                    continue;
-                else
+                if (SiteManagerRef.grid[(int)tileGridCoord.x, i] != null)
                 {
                     //there is something in this space
-                    if (SiteManagerRef.grid[(int)currentTotalCoord.x, i] == this)
+                    if (SiteManagerRef.grid[(int)tileGridCoord.x, i] != this)
                     {
-                        print("collided with self I think");
+                        //need to set height as 1 above this, if it's larger than ghostheight
+                        if (i + 1 > newGhostHeight)
+                            newGhostHeight = i + 1;
                     }
-                    newCollisionInfo.didCollide = true;
-                    newCollisionInfo.checkingTileCoord = tileCoord;
-                    newCollisionInfo.hitTileCoord = currentTotalCoord;
+                }
+            }
+            if (newGhostHeight > ghostHeight)
+                ghostHeight = newGhostHeight;
+        }
+            newGhostInfo.ghostOriginCoord.y = ghostHeight;
+    }
+
+    /// <summary>
+    /// Returns true if position is valid.
+    /// </summary>
+    /// <returns></returns>
+    public bool CheckGhostPos()
+    {
+        Vector2 potentialGhostPos = new Vector2(gridPositionOfOrigin.x, 0);
+
+        for (int i = SiteManagerRef.maxHeight - 1; i >= 0; i--)
+        {
+            potentialGhostPos.y = i;
+            foreach (Vector2 tile in shape.AllTileCoords)
+            {
+                Vector2 tileGridPos = tile + potentialGhostPos;
+                if (SiteManagerRef.grid[(int)tileGridPos.x, (int)tileGridPos.y] &&
+                    SiteManagerRef.grid[(int)tileGridPos.x, (int)tileGridPos.y]!= this)
+                {
+                    print("Found a tile: " + potentialGhostPos);
+                    potentialGhostPos.y += 1;
+                    ghostPos = potentialGhostPos;
+
+                    if (tileGridPos.y > SiteManagerRef.maxHeight)
+                    {
+                        print("Over Max Height");
+                        return false;
+                    }
                     return true;
                 }
             }
-         
         }
-        return false;
+        print("bottom level");
+        ghostPos = potentialGhostPos;
+        return true;
     }
+    
     public void UpdateNeighbors()
     {
         Vector2[] dirs = {
@@ -123,56 +171,30 @@ public class Block : MonoBehaviour {
                 maybeNeighbor.neighbors.Add(this);
             }
         }
-        
     }
 
-    public void MoveBlock(Vector2 moveDir)
-    {
-
-        SetGridPos(gridPositionOfOrigin + moveDir);
-    }
-
-    public void SetGridPos(Vector2 newPos)
+    public void SetGridPos(Vector2 newPos, bool onGrid)
     {
         gridPositionOfOrigin = newPos;
 
-        transform.localPosition = gridPositionOfOrigin;
-        foreach (Vector2 tileCoord in shape.AllTileCoords)
+        transform.position = gridPositionOfOrigin;
+
+        if (onGrid)
         {
-            Vector2 totalCoord = tileCoord + gridPositionOfOrigin;
-            SiteManagerRef.grid[(int)totalCoord.x, (int)totalCoord.y] = this;
+            foreach (Vector2 tileCoord in shape.AllTileCoords)
+            {
+                Vector2 newCoord = tileCoord + gridPositionOfOrigin;
+                SiteManagerRef.grid[(int)newCoord.x, (int)newCoord.y] = this;
+            }
         }
     }
 
 }
+
 public struct GhostInfo
 {
     /// <summary>
-    /// true if collision exists.
+    /// The Grid Coord that will be used if the ghost is dropped.
     /// </summary>
-    public bool didCollide;
-    /// <summary>
-    /// The grid Coord of the tile that checked.
-    /// </summary>
-    public Vector2 checkingTileCoord;
-    /// <summary>
-    /// The grid Coord of the tile that was hit.
-    /// </summary>
-    public Vector2 hitTileCoord;
-}
-
-public struct TileCollision
-{
-    /// <summary>
-    /// true if collision exists.
-    /// </summary>
-    public bool didCollide;
-    /// <summary>
-    /// The grid Coord of the tile that checked.
-    /// </summary>
-    public Vector2 checkingTileCoord;
-    /// <summary>
-    /// The grid Coord of the tile that was hit.
-    /// </summary>
-    public Vector2 hitTileCoord;
+    public Vector2 ghostOriginCoord;
 }
