@@ -47,20 +47,28 @@ public class SiteManager : MonoBehaviour {
         }
         else
         {
-            //Does this work with keyboard controls?
-            if (SwipedDirection == "left" && heldBlock.transform.position.x > 0) {
+
+            if (SwipedDirection == "left" ||
+                Input.GetKeyDown(KeyCode.A) ||
+                Input.GetKeyDown(KeyCode.LeftArrow)) {
                 heldBlock.MoveBlock(Vector2.left);
                 SwipedDirection = "null";
 			}
 
-			if (SwipedDirection == "right" && heldBlock.transform.position.x < 4) {
+			if (SwipedDirection == "right" ||
+                Input.GetKeyDown(KeyCode.D) ||
+                Input.GetKeyDown(KeyCode.RightArrow)) {
                 heldBlock.MoveBlock(Vector2.right);
                 SwipedDirection = "null";
 			}
 
-			if (SwipedDirection == "down" && heldBlock.CheckGhostPos()) {
-                heldBlock.Drop();
-                SwipedDirection = "null";
+			if (SwipedDirection == "down" ||
+                Input.GetKeyDown(KeyCode.Space)){
+                if (heldBlock.CheckGhostPos())
+                {
+                    heldBlock.Drop();
+                    SwipedDirection = "null";
+                }
 			}
         }
     }
