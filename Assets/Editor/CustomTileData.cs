@@ -6,7 +6,7 @@ using System.Collections;
 public class CustomTileData : PropertyDrawer
 {
     float heightBelowLabel = 18;
-    float elementSpace = 30;
+    float elementSpace = 65;
     float inspectorHeight = 100;
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
@@ -32,7 +32,7 @@ public class CustomTileData : PropertyDrawer
             {
                 EditorGUI.PropertyField(newPosition, row.GetArrayElementAtIndex(j), GUIContent.none);
 
-                newPosition.y += elementSpace;
+                newPosition.y += elementSpace/2;
             }
             newPosition.y = position.y + heightBelowLabel;
             newPosition.x += newPosition.width;

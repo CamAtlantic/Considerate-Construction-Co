@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 
 [System.Serializable]
+public enum Tile { Empty, Solid, NoDown,NoUp}
+
+[System.Serializable]
 public class TileData  {
     
     [System.Serializable]
     public struct column
     {
-        public bool[] row;
+        public Tile[] row;
     }
     public column[] col = new column[3];
 
@@ -30,7 +33,7 @@ public class TileData  {
         {
             for (int j = 0; j < col[0].row.Length; j++)
             {
-                if (col[i].row[j])
+                if (col[i].row[j] != Tile.Empty)
                 {
                     temp.Add(new Vector2(i, j));
                 }

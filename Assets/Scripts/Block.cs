@@ -9,25 +9,26 @@ public class Block : MonoBehaviour {
     public SiteManager SiteManagerRef;
     public TileData shape;
 
+    List<Block> neighbors = new List<Block>();
+
     [HideInInspector]
     public int xLength = 0;
     [HideInInspector]
     public int yLength = 0;
 
-    int value = 0;
-    [HideInInspector]
-    public bool falling = false;
-    
-    public Vector2 gridPositionOfOrigin;
-
     public GameObject image;
-
     GameObject ghost;
+
+    public Vector2 gridPositionOfOrigin;
 
     [HideInInspector]
     public Vector2 ghostOrigin = new Vector2();
 
-    List<Block> neighbors = new List<Block>();
+
+    int value = 0;
+    [HideInInspector]
+    public bool falling = false;
+
     public float fallSpeed = 2;
 
     // Use this for initialization
@@ -120,23 +121,43 @@ public class Block : MonoBehaviour {
         for (int i = SiteManagerRef.maxHeight - 1; i >= 0; i--)
         {
             potentialGhostPos.y = i;
+
+            //go through all tiles if origin at this height
             foreach (Vector2 tile in shape.AllTileCoords)
             {
+                //Tile currentTile = shape.col[(int)tile.x].row[(int)tile.y];
+                //what if the tile is noDown?
+
                 Vector2 tileGridPos = tile + potentialGhostPos;
 
-                if (SiteManagerRef.grid[(int)tileGridPos.x, (int)tileGridPos.y] &&
-                    SiteManagerRef.grid[(int)tileGridPos.x, (int)tileGridPos.y]!= this)
+                //if there is something in the space
+                 //&& SiteManagerRef.grid[(int)tileGridPos.x, (int)tileGridPos.y] != this
+                if (SiteManagerRef.grid[(int)tileGridPos.x, (int)tileGridPos.y])
                 {
-                    print("Found a tile: " + potentialGhostPos);
+                    Block foundBlock = SiteManagerRef.grid[(int)tileGridPos.x, (int)tileGridPos.y];
+                    Vector2 foundTileCoord = tileGridPos - foundBlock.gridPositionOfOrigin;
+                    Tile foundTile = foundBlock.shape.col[(int)foundTileCoord.x].row[(int)foundTileCoord.y];
+                    
+                    //what kind of tile did you find?
+                    //what index do I want?
+                    switch (foundBlock.shape.col[0].row[0])
+                    {
+
+                    }
+
+                    //if Solid do x
                     potentialGhostPos.y += 1;
                     ghostOrigin = potentialGhostPos;
                     ghost.transform.position = ghostOrigin;
                     if (tileGridPos.y > SiteManagerRef.maxHeight)
                     {
-                        print("Over Max Height");
                         return false;
                     }
                     return true;
+
+                    //if NoUp do y
+
+
                 }
             }
         }
@@ -172,7 +193,6 @@ public class Block : MonoBehaviour {
     public void SetGridPos(Vector2 newPos, bool onGrid)
     {
         gridPositionOfOrigin = newPos;
-
         transform.position = gridPositionOfOrigin;
 
         if (onGrid)
