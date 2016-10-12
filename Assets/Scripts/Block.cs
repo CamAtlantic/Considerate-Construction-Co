@@ -18,17 +18,27 @@ public class Block : MonoBehaviour {
     [HideInInspector]
     public bool falling = false;
     
-  
     public Vector2 gridPositionOfOrigin;
 
+    public GameObject image;
+
+    GameObject ghost;
+
     [HideInInspector]
-    public Vector2 ghostPos = new Vector2();
+    public Vector2 ghostOrigin = new Vector2();
 
     List<Block> neighbors = new List<Block>();
     public float fallSpeed = 2;
 
     // Use this for initialization
     void Start () {
+        if (!image)
+            Debug.LogError(gameObject.name + " has a null Image field! Fix the prefab.");
+        else
+        {
+            SpawnGhost();
+            CheckGhostPos();
+        }
         //TODO: consider using a vector2 somehow
         //TODO: find a way of generalizing this foreach, i'm using it very frequently
         //TODO: serialize this or put it in shape?
@@ -44,7 +54,20 @@ public class Block : MonoBehaviour {
             }
         }
     }
-	
+
+	public void SpawnGhost()
+    {
+        ghost = Instantiate(image);
+        //TODO: depth sort the ghost so it's behind the block.
+        //might not work with Jai's images
+        foreach (Renderer render in ghost.GetComponentsInChildren<Renderer>())
+        {
+            float h, s, v;
+            Color.RGBToHSV(render.material.color, out h, out s, out v);
+            h += 0.5f;
+            render.material.color = Color.HSVToRGB(h, s, v);
+        }
+    }
 	// Update is called once per frame
 	void Update () {
         
@@ -52,7 +75,7 @@ public class Block : MonoBehaviour {
         {
             transform.position += (Vector3.down * fallSpeed);
 
-            if (transform.position.y < ghostPos.y)
+            if (transform.position.y < ghostOrigin.y)
             {
                 Land();
             }
@@ -68,6 +91,7 @@ public class Block : MonoBehaviour {
             gridPositionOfOrigin = proposedDestination;
             transform.position = gridPositionOfOrigin;
         }
+        CheckGhostPos();
     }
 
     public void Drop()
@@ -80,40 +104,11 @@ public class Block : MonoBehaviour {
         falling = false;
         SiteManagerRef.heldBlock = null;
 
-        SetGridPos(ghostPos,true);
+        SetGridPos(ghostOrigin,true);
         UpdateNeighbors();
+        Destroy(ghost);
     }
-
-    public void CheckBelowSelf(out GhostInfo newGhostInfo)
-    {
-        newGhostInfo.ghostOriginCoord = gridPositionOfOrigin;
-        int ghostHeight = 0;
-
-        foreach (Vector2 tileCoord in shape.AllTileCoords)
-        {
-            Vector2 tileGridCoord = tileCoord + gridPositionOfOrigin;
-            int newGhostHeight = 0;
-
-            //go down this tile's column
-            for (int i = SiteManagerRef.maxHeight -1; i >=0 ; i--)
-            {
-                if (SiteManagerRef.grid[(int)tileGridCoord.x, i] != null)
-                {
-                    //there is something in this space
-                    if (SiteManagerRef.grid[(int)tileGridCoord.x, i] != this)
-                    {
-                        //need to set height as 1 above this, if it's larger than ghostheight
-                        if (i + 1 > newGhostHeight)
-                            newGhostHeight = i + 1;
-                    }
-                }
-            }
-            if (newGhostHeight > ghostHeight)
-                ghostHeight = newGhostHeight;
-        }
-            newGhostInfo.ghostOriginCoord.y = ghostHeight;
-    }
-
+    
     /// <summary>
     /// Returns true if position is valid.
     /// </summary>
@@ -128,13 +123,14 @@ public class Block : MonoBehaviour {
             foreach (Vector2 tile in shape.AllTileCoords)
             {
                 Vector2 tileGridPos = tile + potentialGhostPos;
+
                 if (SiteManagerRef.grid[(int)tileGridPos.x, (int)tileGridPos.y] &&
                     SiteManagerRef.grid[(int)tileGridPos.x, (int)tileGridPos.y]!= this)
                 {
                     print("Found a tile: " + potentialGhostPos);
                     potentialGhostPos.y += 1;
-                    ghostPos = potentialGhostPos;
-
+                    ghostOrigin = potentialGhostPos;
+                    ghost.transform.position = ghostOrigin;
                     if (tileGridPos.y > SiteManagerRef.maxHeight)
                     {
                         print("Over Max Height");
@@ -144,8 +140,8 @@ public class Block : MonoBehaviour {
                 }
             }
         }
-        print("bottom level");
-        ghostPos = potentialGhostPos;
+        ghostOrigin = potentialGhostPos;
+        ghost.transform.position = ghostOrigin;
         return true;
     }
     

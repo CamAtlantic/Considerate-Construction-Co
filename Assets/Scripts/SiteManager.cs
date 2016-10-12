@@ -77,7 +77,8 @@ public class SiteManager : MonoBehaviour {
     void SpawnNewBlock()
     {
         //TODO: some way of choosing different blocks
-        GameObject newBlock = Instantiate(blockList[0]);
+        int newBlockIndex = Random.Range(0, blockList.Length);
+        GameObject newBlock = Instantiate(blockList[newBlockIndex]);
 
         //TODO: better block constructor
         newBlock.transform.parent = transform;
@@ -86,9 +87,10 @@ public class SiteManager : MonoBehaviour {
 
         Vector2 newBlockPos = new Vector2(2, maxHeight - 1);
         heldBlock.SetGridPos(newBlockPos,false);
+        
     }
-
-	public static void SwipeLeft() {
+    #region swipes
+    public static void SwipeLeft() {
 		SwipedDirection = "left";
 	}
 	public static void SwipeRight() {
@@ -100,4 +102,5 @@ public class SiteManager : MonoBehaviour {
 	public static void SwipeDown() {
 		SwipedDirection = "down";
 	}
+    #endregion
 }
