@@ -138,9 +138,14 @@ MonoBehaviour:
   maxHeight: 20
   topRowOnScreen: 0
   blockList:
-  - {fileID: 1261855397181848, guid: 22be25e9f3ef219439441562d6ba4f59, type: 2}
-  - {fileID: 1811558727257692, guid: d63ef2a3b4a2be348a791ff624094e2f, type: 2}
+  - {fileID: 1000012176336380, guid: 08b2aac03d31ec247927df67c5d6d9f3, type: 2}
   - {fileID: 1000010226924824, guid: cf0e994869d88364fae8e3a183bee4e7, type: 2}
+  - {fileID: 1403356549811164, guid: 71d0f2b24f660944a8f09d6d00e5cd9d, type: 2}
+  - {fileID: 1362693646465322, guid: 214b233da9c34704a82ac5905e7866eb, type: 2}
+  - {fileID: 1995067229788138, guid: 69b5dc2830f365245a4cc3bcfbc55444, type: 2}
+  - {fileID: 1054591872031836, guid: 8177f0fbdc171fa41973e712388fc38b, type: 2}
+  - {fileID: 1811558727257692, guid: d63ef2a3b4a2be348a791ff624094e2f, type: 2}
+  - {fileID: 1261855397181848, guid: 22be25e9f3ef219439441562d6ba4f59, type: 2}
   heldBlock: {fileID: 0}
   ghostColor: {r: 0.841, g: 0.96661, b: 1, a: 1}
-  invalidMoveColor: {r: 1, g: 0.666, b: 0.666, a: 1}
+  invalidMoveColor: {r: 1, g: 0.44099998, b: 0.44099998, a: 1}

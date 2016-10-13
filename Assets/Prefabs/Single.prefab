@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4000014255989932}
   - component: {fileID: 114000010198024146}
   m_Layer: 0
-  m_Name: SingleBlock
+  m_Name: Single
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

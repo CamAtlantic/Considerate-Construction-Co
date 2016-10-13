@@ -7,6 +7,6 @@ public class ScreenshotScript {
 
     static void Screenshot()
     {
-        Application.CaptureScreenshot(System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss")+ ".png");
+        Application.CaptureScreenshot("Screenshots/" + System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss")+ ".png");
     }
 }
