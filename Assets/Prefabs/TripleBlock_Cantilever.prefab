@@ -251,7 +251,7 @@ MonoBehaviour:
   SiteManagerRef: {fileID: 0}
   shape:
     col:
-    - row: 010000000100000000000000
+    - row: 020000000100000000000000
     - row: 010000000000000000000000
     - row: 000000000000000000000000
   xLength: 0

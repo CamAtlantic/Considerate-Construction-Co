@@ -138,8 +138,9 @@ MonoBehaviour:
   maxHeight: 20
   topRowOnScreen: 0
   blockList:
-  - {fileID: 1000012176336380, guid: 08b2aac03d31ec247927df67c5d6d9f3, type: 2}
+  - {fileID: 1261855397181848, guid: 22be25e9f3ef219439441562d6ba4f59, type: 2}
+  - {fileID: 1811558727257692, guid: d63ef2a3b4a2be348a791ff624094e2f, type: 2}
   - {fileID: 1000010226924824, guid: cf0e994869d88364fae8e3a183bee4e7, type: 2}
-  - {fileID: 1515004966135688, guid: 44d835791d193564bb5bb5bfcff0f47c, type: 2}
-  - {fileID: 1243904139758838, guid: 4b182f16ad4b3b74291c50b8b746200e, type: 2}
   heldBlock: {fileID: 0}
+  ghostColor: {r: 0.841, g: 0.96661, b: 1, a: 1}
+  invalidMoveColor: {r: 1, g: 0.666, b: 0.666, a: 1}

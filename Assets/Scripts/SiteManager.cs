@@ -14,10 +14,12 @@ public class SiteManager : MonoBehaviour {
     /// <summary>
     /// The size of the array. Larger than the maxHeight to avoid Out of Range fuckery.
     /// </summary>
+    [HideInInspector]
     public int gridSizeY = 30;
     /// <summary>
     /// The actual size of the array being used.
     /// </summary>
+    [HideInInspector]
     public int maxHeight = 20;
 
     public int topRowOnScreen = 8;
@@ -26,6 +28,10 @@ public class SiteManager : MonoBehaviour {
 
     [HideInInspector]
     public Block heldBlock;
+
+    //I feel like these should be on another, global script. Maybe SiteManager? or Jai's color manager thing.
+    public Color ghostColor;
+    public Color invalidMoveColor;
 
     // Use this for initialization
     void Start () {

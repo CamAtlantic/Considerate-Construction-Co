@@ -221,13 +221,13 @@ MonoBehaviour:
   SiteManagerRef: {fileID: 0}
   shape:
     col:
-    - row: 010000
-    - row: 010000
-    - row: 000000
+    - row: 010000000000000000000000
+    - row: 010000000000000000000000
+    - row: 000000000000000000000000
   xLength: 0
   yLength: 0
-  falling: 0
-  gridPositionOfOrigin: {x: 0, y: 0}
   image: {fileID: 1322531731560044}
+  gridPositionOfOrigin: {x: 0, y: 0}
   ghostOrigin: {x: 0, y: 0}
+  falling: 0
   fallSpeed: 2

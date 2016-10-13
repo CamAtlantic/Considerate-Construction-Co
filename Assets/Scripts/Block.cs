@@ -24,7 +24,6 @@ public class Block : MonoBehaviour {
     [HideInInspector]
     public Vector2 ghostOrigin = new Vector2();
 
-
     int value = 0;
     [HideInInspector]
     public bool falling = false;
@@ -61,12 +60,14 @@ public class Block : MonoBehaviour {
         ghost = Instantiate(image);
         //TODO: depth sort the ghost so it's behind the block.
         //might not work with Jai's images
+        SetGhostColor(SiteManagerRef.ghostColor);
+    }
+
+    void SetGhostColor(Color color)
+    {
         foreach (Renderer render in ghost.GetComponentsInChildren<Renderer>())
         {
-            float h, s, v;
-            Color.RGBToHSV(render.material.color, out h, out s, out v);
-            h += 0.5f;
-            render.material.color = Color.HSVToRGB(h, s, v);
+            render.material.color = color;
         }
     }
 	// Update is called once per frame
@@ -122,50 +123,71 @@ public class Block : MonoBehaviour {
         {
             potentialGhostPos.y = i;
 
-            //go through all tiles if origin at this height
-            foreach (Vector2 tile in shape.AllTileCoords)
+            //go through all tiles if origin is at this height
+            foreach (Vector2 tileCoords in shape.AllTileCoords)
             {
-                //Tile currentTile = shape.col[(int)tile.x].row[(int)tile.y];
-                //what if the tile is noDown?
+                Tile currentTile = shape.col[(int)tileCoords.x].row[(int)tileCoords.y];
+                Vector2 tileGridPos = tileCoords + potentialGhostPos;
 
-                Vector2 tileGridPos = tile + potentialGhostPos;
-
-                //if there is something in the space
-                 //&& SiteManagerRef.grid[(int)tileGridPos.x, (int)tileGridPos.y] != this
+                //if there is something overlapping the space
                 if (SiteManagerRef.grid[(int)tileGridPos.x, (int)tileGridPos.y])
                 {
-                    Block foundBlock = SiteManagerRef.grid[(int)tileGridPos.x, (int)tileGridPos.y];
-                    Vector2 foundTileCoord = tileGridPos - foundBlock.gridPositionOfOrigin;
-                    Tile foundTile = foundBlock.shape.col[(int)foundTileCoord.x].row[(int)foundTileCoord.y];
-                    
-                    //what kind of tile did you find?
-                    //what index do I want?
-                    switch (foundBlock.shape.col[0].row[0])
-                    {
-
-                    }
-
-                    //if Solid do x
+                    //ghost should move up, then check down.
                     potentialGhostPos.y += 1;
                     ghostOrigin = potentialGhostPos;
                     ghost.transform.position = ghostOrigin;
-                    if (tileGridPos.y > SiteManagerRef.maxHeight)
-                    {
-                        return false;
-                    }
-                    return true;
 
-                    //if NoUp do y
-
-
+                    return CheckMoveValidity();
                 }
             }
         }
+        //If the checker reaches the floor
+        SetGhostColor(SiteManagerRef.ghostColor);
         ghostOrigin = potentialGhostPos;
         ghost.transform.position = ghostOrigin;
         return true;
     }
-    
+
+    bool CheckMoveValidity()
+    {
+        foreach (Vector2 tileCoords in shape.AllTileCoords)
+        {
+            Vector2 tileGridPos = tileCoords + ghostOrigin + Vector2.down;
+            //if any part of the shape is above the max height
+            if (tileGridPos.y > SiteManagerRef.maxHeight)
+            {
+                return false;
+            }
+
+            //check the bottom row
+            if (tileCoords.y == 0)
+            {
+                Tile currentTile = shape.col[(int)tileCoords.x].row[(int)tileCoords.y];
+                //do nothing cause NoDown
+                if (currentTile != Tile.NoDown)
+                {
+                    Block foundBlock = SiteManagerRef.grid[(int)tileGridPos.x, (int)tileGridPos.y];
+                    //if a block is found
+                    if (foundBlock != null)
+                    {
+                        Vector2 foundTileCoord = tileGridPos - foundBlock.gridPositionOfOrigin;
+                        Tile foundTile = foundBlock.shape.col[(int)foundTileCoord.x].row[(int)foundTileCoord.y];
+
+                        //if one block is above a solid, move is valid
+                        if (foundTile == Tile.Solid)
+                        {
+                            SetGhostColor(SiteManagerRef.ghostColor);
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        //if you've been through all tiles and not found a solid
+        SetGhostColor(SiteManagerRef.invalidMoveColor);
+        return false;
+    }
+
     public void UpdateNeighbors()
     {
         Vector2[] dirs = {
