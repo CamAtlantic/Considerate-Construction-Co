@@ -17,7 +17,8 @@ public class Block : MonoBehaviour {
     public int yLength = 0;
 
     public GameObject image;
-    GameObject ghost;
+    [HideInInspector]
+    public GameObject ghost;
 
     public Vector2 gridPositionOfOrigin;
 
@@ -105,8 +106,12 @@ public class Block : MonoBehaviour {
     {
         falling = false;
         SiteManagerRef.heldBlock = null;
-
         SetGridPos(ghostOrigin,true);
+        if (gridPositionOfOrigin.y + yLength > SiteManagerRef.topBlockHeight)
+        {
+            SiteManagerRef.topBlockHeight = (int)(gridPositionOfOrigin.y + yLength);
+            print(SiteManagerRef.topBlockHeight);
+        }
         UpdateNeighbors();
         Destroy(ghost);
     }

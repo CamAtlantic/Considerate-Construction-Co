@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 7
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0.9490196, g: 0.7254902, b: 0.7529412, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.02
@@ -42,7 +42,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 7
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -1548,7 +1548,6 @@ GameObject:
   - component: {fileID: 358487175}
   - component: {fileID: 358487174}
   - component: {fileID: 358487173}
-  - component: {fileID: 358487172}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: Untagged
@@ -1556,35 +1555,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &358487172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 358487171}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd70d448b18cfbc46af26466f752332c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  visualizeFocus: 0
-  focalLength: 37
-  focalSize: 0.703
-  aperture: 0.935
-  focalTransform: {fileID: 0}
-  maxBlurSize: 2
-  highResolution: 0
-  blurType: 0
-  blurSampleCount: 2
-  nearBlur: 0
-  foregroundOverlap: 0.1
-  dofHdrShader: {fileID: 4800000, guid: acd613035ff3e455e8abf23fdc8c8c24, type: 3}
-  dx11BokehShader: {fileID: 4800000, guid: d8e82664aa8686642a424c88ab10164a, type: 3}
-  dx11BokehThreshold: 0.5
-  dx11SpawnHeuristic: 0.0875
-  dx11BokehTexture: {fileID: 2800000, guid: a4cdca73d61814d33ac1587f6c163bca, type: 3}
-  dx11BokehScale: 1.2
-  dx11BokehIntensity: 2.5
 --- !u!114 &358487173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1597,14 +1567,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9726e0363dbfcee448bf6afdfabc2c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useCustomDepthTexture: 0
+  useCustomDepthTexture: 1
   distanceFog: 1
   useRadialDistance: 1
   heightFog: 1
   height: 0
   heightDensity: 0.5
   startDistance: 0
-  fogMode: 2
+  fogMode: 1
   fogDensity: 1
   fogStart: 50
   fogEnd: 100

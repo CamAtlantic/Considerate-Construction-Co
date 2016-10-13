@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using Lean.Touch;
 
 public class SiteManager : MonoBehaviour {
     //This script controls spawning new blocks.
@@ -22,7 +21,7 @@ public class SiteManager : MonoBehaviour {
     [HideInInspector]
     public int maxHeight = 20;
 
-    public int topRowOnScreen = 8;
+    public int topBlockHeight = 0;
 
     public GameObject[] blockList;
 
@@ -53,7 +52,6 @@ public class SiteManager : MonoBehaviour {
         }
         else
         {
-
             if (SwipedDirection == "left" ||
                 Input.GetKeyDown(KeyCode.A) ||
                 Input.GetKeyDown(KeyCode.LeftArrow)) {
@@ -76,6 +74,14 @@ public class SiteManager : MonoBehaviour {
                     SwipedDirection = "null";
                 }
 			}
+
+            if(Input.GetKeyDown(KeyCode.X))
+            {
+                Destroy(heldBlock.ghost);
+                Destroy(heldBlock.gameObject);
+                heldBlock = null;
+                SpawnNewBlock();
+            }
         }
     }
     
