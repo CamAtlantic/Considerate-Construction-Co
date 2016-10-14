@@ -15,15 +15,15 @@ public class IntroScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Intro_Loading.SetActive (true);
-		Intro_Credits.SetActive (false);
-		StartButton.SetActive (false);
+		//Intro_Loading.SetActive (true);
+		//Intro_Credits.SetActive (false);
+		//StartButton.SetActive (false);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		counter += Time.deltaTime;
+		/*counter += Time.deltaTime;
 		if (counter > count_mark_1) 
 		{
 			Intro_Loading.SetActive (false);
@@ -32,7 +32,7 @@ public class IntroScript : MonoBehaviour {
 		if (counter > count_mark_2) 
 		{
 			StartButton.SetActive (true);
-		}
+		}*/
 	}
 
 	public void StartTutorial ()
