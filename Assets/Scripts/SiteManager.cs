@@ -2,8 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 
+public enum LevelMode { Fixed,Random,MagicBag};
+
 public class SiteManager : MonoBehaviour {
-    //This script controls spawning new blocks.
+    //This script controls spawning and moving blocks.
     //TODO: standardize worldSpace vs local.
 	public static string SwipedDirection;
     
@@ -22,6 +24,8 @@ public class SiteManager : MonoBehaviour {
     public int maxHeight = 20;
 
     public int topBlockHeight = 0;
+
+    public LevelMode modeSelect;
 
     public GameObject[] blockList;
 
@@ -84,12 +88,26 @@ public class SiteManager : MonoBehaviour {
             }
         }
     }
-    
+
+    int fixedModeIndex = 0;
     //TODO: some of this feels like bad OOP
     void SpawnNewBlock()
     {
         //TODO: some way of choosing different blocks
-        int newBlockIndex = Random.Range(0, blockList.Length);
+        int newBlockIndex = 0;
+
+        if (modeSelect == LevelMode.Random)
+            newBlockIndex = Random.Range(0, blockList.Length);
+        else if (modeSelect == LevelMode.Fixed)
+        {
+            newBlockIndex = fixedModeIndex;
+            fixedModeIndex++;
+            if(fixedModeIndex == blockList.Length)
+            {
+                //here is where the level can end or we can reset or something
+                fixedModeIndex = 0;
+            }
+        }
         GameObject newBlock = Instantiate(blockList[newBlockIndex]);
 
         //TODO: better block constructor

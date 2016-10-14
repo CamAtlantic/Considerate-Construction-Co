@@ -110,7 +110,6 @@ public class Block : MonoBehaviour {
         if (gridPositionOfOrigin.y + yLength > SiteManagerRef.topBlockHeight)
         {
             SiteManagerRef.topBlockHeight = (int)(gridPositionOfOrigin.y + yLength);
-            print(SiteManagerRef.topBlockHeight);
         }
         UpdateNeighbors();
         Destroy(ghost);
