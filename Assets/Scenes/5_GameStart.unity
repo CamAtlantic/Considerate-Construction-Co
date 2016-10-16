@@ -3630,7 +3630,7 @@ Prefab:
         type: 2}
       propertyPath: blockList.Array.data[0]
       value: 
-      objectReference: {fileID: 1000012176336380, guid: 08b2aac03d31ec247927df67c5d6d9f3,
+      objectReference: {fileID: 1700916580742118, guid: aa8e42ef35ea2443d805e15f336dc209,
         type: 2}
     - target: {fileID: 114000010925157906, guid: 3d59254db818b9840898059005e07c35,
         type: 2}
@@ -3670,6 +3670,12 @@ Prefab:
       propertyPath: blockList.Array.data[6]
       value: 
       objectReference: {fileID: 1706287722262902, guid: 6d25e056824a0440d8024c20c4bf2ba5,
+        type: 2}
+    - target: {fileID: 114000010925157906, guid: 3d59254db818b9840898059005e07c35,
+        type: 2}
+      propertyPath: blockList.Array.data[1]
+      value: 
+      objectReference: {fileID: 1634631806330128, guid: 34819d92adf8c4130aa73e1a619b7196,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3d59254db818b9840898059005e07c35, type: 2}
@@ -8460,7 +8466,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1726647860
 Transform:
   m_ObjectHideFlags: 0
