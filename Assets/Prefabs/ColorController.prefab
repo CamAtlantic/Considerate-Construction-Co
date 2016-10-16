@@ -9,30 +9,30 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1772368791699694}
+  m_RootGameObject: {fileID: 1967961069486676}
   m_IsPrefabParent: 1
---- !u!1 &1772368791699694
+--- !u!1 &1967961069486676
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4837708711252028}
-  - component: {fileID: 114411514302857904}
+  - component: {fileID: 4891400709500160}
+  - component: {fileID: 114210892348333870}
   m_Layer: 0
-  m_Name: MovingBuildings
+  m_Name: ColorController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4837708711252028
+--- !u!4 &4891400709500160
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1772368791699694}
+  m_GameObject: {fileID: 1967961069486676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -40,15 +40,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114411514302857904
+--- !u!114 &114210892348333870
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1772368791699694}
+  m_GameObject: {fileID: 1967961069486676}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 346ecf73073cd41109b4d99890394cd1, type: 3}
+  m_Script: {fileID: 11500000, guid: 7029303951c3644cc8ee1525e94fadf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Obj_real: {fileID: 0}
+  Clr1_windows: {r: 1, g: 0.42647058, b: 0.42647058, a: 0}
+  Clr2: {r: 0.41911763, g: 0.9759634, b: 1, a: 0}
+  Clr3: {r: 1, g: 0.9827587, b: 0.375, a: 0}
+  Clr4: {r: 0.47794116, g: 1, b: 0.6543611, a: 0}
+  Clr5: {r: 0.4044118, g: 0.40851942, b: 1, a: 0}
+  Clr6: {r: 1, g: 0.50735295, b: 0.88448274, a: 0}
+  Clr7: {r: 1, g: 0.70537525, b: 0.3897059, a: 0}
+  Clr8: {r: 0.7819472, g: 0.36764705, b: 1, a: 0}
+  Clr9: {r: 0.3965517, g: 1, b: 0.375, a: 0}
+  Clr10: {r: 0.8235294, g: 0.24826989, b: 0.24826989, a: 0}
