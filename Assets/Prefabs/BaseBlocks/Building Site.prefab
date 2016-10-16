@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridSizeX: 5
+<<<<<<< HEAD:Assets/Prefabs/Building Site.prefab
   gridSizeY: 30
   maxHeight: 20
   topRowOnScreen: 0
@@ -149,3 +150,11 @@ MonoBehaviour:
   heldBlock: {fileID: 0}
   ghostColor: {r: 0.841, g: 0.96661, b: 1, a: 1}
   invalidMoveColor: {r: 1, g: 0.44099998, b: 0.44099998, a: 1}
+=======
+  gridSizeY: 20
+  maxHeight: 20
+  topRowOnScreen: 0
+  blockList:
+  - {fileID: 1000011866934648, guid: 6831fc4fcdadf50498ce5d80cdb4184f, type: 2}
+  heldBlock: {fileID: 0}
+>>>>>>> ServerSide/IntroScenes:Assets/Prefabs/BaseBlocks/Building Site.prefab
