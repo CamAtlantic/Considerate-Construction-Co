@@ -3659,6 +3659,18 @@ Prefab:
       value: 
       objectReference: {fileID: 1175828536619218, guid: b89e502cfd2134c08803ac3011807eec,
         type: 2}
+    - target: {fileID: 114000010925157906, guid: 3d59254db818b9840898059005e07c35,
+        type: 2}
+      propertyPath: blockList.Array.data[7]
+      value: 
+      objectReference: {fileID: 1141468625312388, guid: ba2a134d6a8de44c3a1c50383b51af14,
+        type: 2}
+    - target: {fileID: 114000010925157906, guid: 3d59254db818b9840898059005e07c35,
+        type: 2}
+      propertyPath: blockList.Array.data[6]
+      value: 
+      objectReference: {fileID: 1706287722262902, guid: 6d25e056824a0440d8024c20c4bf2ba5,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3d59254db818b9840898059005e07c35, type: 2}
   m_IsPrefabParent: 0
@@ -9338,6 +9350,56 @@ Prefab:
     - target: {fileID: 4891400709500160, guid: 28d9b8fa2f25548869c8a0f12dcf01d7, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114210892348333870, guid: 28d9b8fa2f25548869c8a0f12dcf01d7,
+        type: 2}
+      propertyPath: Clr1_windows.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114210892348333870, guid: 28d9b8fa2f25548869c8a0f12dcf01d7,
+        type: 2}
+      propertyPath: Clr2.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114210892348333870, guid: 28d9b8fa2f25548869c8a0f12dcf01d7,
+        type: 2}
+      propertyPath: Clr3.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114210892348333870, guid: 28d9b8fa2f25548869c8a0f12dcf01d7,
+        type: 2}
+      propertyPath: Clr5.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114210892348333870, guid: 28d9b8fa2f25548869c8a0f12dcf01d7,
+        type: 2}
+      propertyPath: Clr4.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114210892348333870, guid: 28d9b8fa2f25548869c8a0f12dcf01d7,
+        type: 2}
+      propertyPath: Clr6.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114210892348333870, guid: 28d9b8fa2f25548869c8a0f12dcf01d7,
+        type: 2}
+      propertyPath: Clr7.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114210892348333870, guid: 28d9b8fa2f25548869c8a0f12dcf01d7,
+        type: 2}
+      propertyPath: Clr8.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114210892348333870, guid: 28d9b8fa2f25548869c8a0f12dcf01d7,
+        type: 2}
+      propertyPath: Clr9.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114210892348333870, guid: 28d9b8fa2f25548869c8a0f12dcf01d7,
+        type: 2}
+      propertyPath: Clr10.a
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 28d9b8fa2f25548869c8a0f12dcf01d7, type: 2}
