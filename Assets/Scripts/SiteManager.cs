@@ -24,6 +24,7 @@ public class SiteManager : MonoBehaviour {
     public int maxHeight = 20;
 
     public int topBlockHeight = 0;
+	public static int topBlockHeight_static = 0;
 
     public LevelMode modeSelect;
 
@@ -46,6 +47,8 @@ public class SiteManager : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 		
+		topBlockHeight_static = topBlockHeight;
+
         if (!heldBlock)
         {
             //TODO: not spawn blocks on pressing space
