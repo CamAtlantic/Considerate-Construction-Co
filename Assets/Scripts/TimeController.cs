@@ -48,26 +48,26 @@ public class TimeController : MonoBehaviour {
 				
 			//first third - angle is creater than -60
 			if (180 * ((DayDuration_counting - currentTime) / DayDuration_s) < (180 / 3) * 1) {
-				Debug.Log ("Dawn");
+				//Debug.Log ("Dawn");
 				TimeState = "Dawn";
 				CurrentEnviroment = 1;
 				temp = new Vector3 (0, 0, -(180 * ((DayDuration_counting - currentTime) / DayDuration_s)));
 			}
 			//second third - angle is creater than -120
 			else if (180 * ((DayDuration_counting - currentTime) / DayDuration_s) < (180 / 3) * 2) {
-				Debug.Log ("Noon");
+				//Debug.Log ("Noon");
 				TimeState = "Noon";
 				CurrentEnviroment = 2;
 				temp = new Vector3 (0, 0, -(180 * ((DayDuration_counting - currentTime) / DayDuration_s)));
 			}
 			//third third - angle is creater than -180
 			else if (180 * ((DayDuration_counting - currentTime) / DayDuration_s) < (180 / 3) * 3) {
-				Debug.Log ("Dusk");
+				//Debug.Log ("Dusk");
 				TimeState = "Dusk";
 				CurrentEnviroment = 3;
 				temp = new Vector3 (0, 0, -(180 * ((DayDuration_counting - currentTime) / DayDuration_s)));
 			} else {
-				Debug.Log ("Twilight");
+				//Debug.Log ("Twilight");
 				TimeState = "Twilight";
 				CurrentEnviroment = 0;
 				temp = new Vector3 (0, 0, -(180));

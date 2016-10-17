@@ -7,6 +7,11 @@ public class Messages : MonoBehaviour {
 	public GameObject Message_1;
 	public TimeController _TimeController;
 
+    void Awake()
+    {
+        _TimeController = FindObjectOfType<TimeController>();
+    }
+
 	// Use this for initialization
 	void Start () {
 		
@@ -19,6 +24,7 @@ public class Messages : MonoBehaviour {
 		
 	}
 
+    //TODO: This can be simplified into one function.
 	public void Message_1_on () 
 	{
 		if (Message_1.activeSelf == false) {

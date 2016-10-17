@@ -5,9 +5,9 @@ using UnityEngine;
 public class CameraController : MonoBehaviour {
 
 	public GameObject MainCamera;
-	public GameObject Location_left;
-	public GameObject Location_right;
-	public GameObject Location_depth;
+	//public GameObject Location_left;
+	//public GameObject Location_right;
+	//public GameObject Location_depth;
 	public float DistanceBetweenPlots;
 	//leftright 1 = left; 2 = right
 	private int CameraLocation_leftright;
@@ -24,7 +24,7 @@ public class CameraController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		MainCamera.transform.position = Vector3.Lerp (MainCamera.transform.position, new Vector3 (MainCamera.transform.position.x, SiteManager.topBlockHeight_static - 0.5f, MainCamera.transform.position.z), 0.1f);
-
+        /*
 		if (CameraLocation_leftright == 1) {
 			MainCamera.transform.position = Vector3.Lerp (MainCamera.transform.position, new Vector3 (Location_left.transform.position.x, MainCamera.transform.position.y, MainCamera.transform.position.z ), 0.1f);
 		}
@@ -33,7 +33,7 @@ public class CameraController : MonoBehaviour {
 		}
 
 		MainCamera.transform.position = Vector3.Lerp (MainCamera.transform.position, new Vector3 (MainCamera.transform.position.x,MainCamera.transform.position.y,Location_depth.transform.position.z), 0.1f);
-
+        */
 	}
 		
 	public void ChangeCamPosition_leftright ()
@@ -45,7 +45,7 @@ public class CameraController : MonoBehaviour {
 			CameraLocation_leftright = 1;
 		}
 	}
-
+    /*
 	public void ChangeCamPosition_forward ()
 	{
 		Location_depth.transform.position = MainCamera.transform.position + Vector3.back * DistanceBetweenPlots;
@@ -55,4 +55,5 @@ public class CameraController : MonoBehaviour {
 	{
 		Location_depth.transform.position = MainCamera.transform.position + Vector3.forward * DistanceBetweenPlots;
 	}
+    */
 }
