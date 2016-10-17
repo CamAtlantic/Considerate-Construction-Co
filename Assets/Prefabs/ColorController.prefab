@@ -33,8 +33,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1967961069486676}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 81.30236, y: 29.707703, z: -65.92117}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -51,13 +51,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7029303951c3644cc8ee1525e94fadf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clr1_windows: {r: 1, g: 0.42647058, b: 0.42647058, a: 0}
-  Clr2: {r: 0.41911763, g: 0.9759634, b: 1, a: 0}
-  Clr3: {r: 1, g: 0.9827587, b: 0.375, a: 0}
-  Clr4: {r: 0.47794116, g: 1, b: 0.6543611, a: 0}
-  Clr5: {r: 0.4044118, g: 0.40851942, b: 1, a: 0}
-  Clr6: {r: 1, g: 0.50735295, b: 0.88448274, a: 0}
-  Clr7: {r: 1, g: 0.70537525, b: 0.3897059, a: 0}
-  Clr8: {r: 0.7819472, g: 0.36764705, b: 1, a: 0}
-  Clr9: {r: 0.3965517, g: 1, b: 0.375, a: 0}
-  Clr10: {r: 0.8235294, g: 0.24826989, b: 0.24826989, a: 0}
+  Clr1_windows: {r: 1, g: 0.42647058, b: 0.42647058, a: 1}
+  Clr2: {r: 0.41911763, g: 0.9759634, b: 1, a: 1}
+  Clr3: {r: 1, g: 0.9827587, b: 0.375, a: 1}
+  Clr4: {r: 0.47794116, g: 1, b: 0.6543611, a: 1}
+  Clr5: {r: 0.4044118, g: 0.40851942, b: 1, a: 1}
+  Clr6: {r: 1, g: 0.50735295, b: 0.88448274, a: 1}
+  Clr7: {r: 1, g: 0.70537525, b: 0.3897059, a: 1}
+  Clr8: {r: 0.7819472, g: 0.36764705, b: 1, a: 1}
+  Clr9: {r: 0.3965517, g: 1, b: 0.375, a: 1}
+  Clr10: {r: 0.8235294, g: 0.24826989, b: 0.24826989, a: 1}
