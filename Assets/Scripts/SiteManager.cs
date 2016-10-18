@@ -6,10 +6,9 @@ public enum LevelMode { Fixed,Random,MagicBag};
 
 public class SiteManager : MonoBehaviour {
     //This script controls spawning and moving blocks.
-    //TODO: standardize worldSpace vs local.
 	public static string SwipedDirection;
     
-    public Block[,] grid;
+    //public Block[,] grid;
 
     public int gridSizeX = 5;
     /// <summary>
@@ -26,20 +25,27 @@ public class SiteManager : MonoBehaviour {
     public int topBlockHeight = 0;
 	public static int topBlockHeight_static = 0;
 
+    //TODO: These might go well on SiteData
     public LevelMode modeSelect;
-
     public GameObject[] blockList;
 
     [HideInInspector]
     public Block heldBlock;
 
-    //I feel like these should be on another, global script. Maybe SiteManager? or Jai's color manager thing.
+    //TODO: move to color manager
     public Color ghostColor;
     public Color invalidMoveColor;
 
+    SiteData currentSite;
+
+    void Awake()
+    {
+        currentSite = GetComponent<SiteData>();
+    }
+
     // Use this for initialization
     void Start () {
-        grid = new Block[gridSizeX,gridSizeY];
+        currentSite.grid = new Block[gridSizeX,gridSizeY];
 
 		SwipedDirection = "null";
     }
@@ -51,11 +57,10 @@ public class SiteManager : MonoBehaviour {
 
         if (!heldBlock)
         {
-            //TODO: not spawn blocks on pressing space
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
+            //TODO: possibly a delay on spawning a new block?
+            
                 SpawnNewBlock();
-            }
+            
         }
         else
         {
@@ -117,6 +122,7 @@ public class SiteManager : MonoBehaviour {
         newBlock.transform.parent = transform;
         heldBlock = newBlock.GetComponent<Block>();
         heldBlock.SiteManagerRef = this;
+        heldBlock.siteDataRef = currentSite;
 
         Vector2 newBlockPos = new Vector2(2, maxHeight - 1);
         heldBlock.SetGridPos(newBlockPos,false);

@@ -4,9 +4,10 @@ using System.Collections.Generic;
 
 public class Block : MonoBehaviour {
     //This is the basic script that buildings and toppers derive from.
-    //TODO: I have a worldspace/localspace issue.
     [HideInInspector]
     public SiteManager SiteManagerRef;
+    [HideInInspector]
+    public SiteData siteDataRef;
     public TileData shape;
 
     List<Block> neighbors = new List<Block>();
@@ -60,7 +61,7 @@ public class Block : MonoBehaviour {
     {
         ghost = Instantiate(image);
         //TODO: depth sort the ghost so it's behind the block.
-        //might not work with Jai's images
+        //TODO: fix so that ghosts are silhouettes
         SetGhostColor(SiteManagerRef.ghostColor);
     }
 
@@ -76,9 +77,9 @@ public class Block : MonoBehaviour {
         
         if (falling)
         {
-            transform.position += (Vector3.down * fallSpeed);
+            transform.localPosition += (Vector3.down * fallSpeed);
 
-            if (transform.position.y < ghostOrigin.y)
+            if (transform.localPosition.y < ghostOrigin.y)
             {
                 Land();
             }
@@ -89,10 +90,11 @@ public class Block : MonoBehaviour {
     {
         Vector2 proposedDestination = gridPositionOfOrigin + moveDir;
         
-        if (proposedDestination.x >= 0 && proposedDestination.x + xLength < 5)
+        //TODO: might need to use only one grid and split it weirdly. Here is where to make it move to shadow
+        if (proposedDestination.x >= 0 && proposedDestination.x + xLength < siteDataRef.grid.GetLength(0))
         {
             gridPositionOfOrigin = proposedDestination;
-            transform.position = gridPositionOfOrigin;
+            transform.localPosition = gridPositionOfOrigin;
         }
         CheckGhostPos();
     }
@@ -107,9 +109,9 @@ public class Block : MonoBehaviour {
         falling = false;
         SiteManagerRef.heldBlock = null;
         SetGridPos(ghostOrigin,true);
-        if (gridPositionOfOrigin.y + yLength > SiteManagerRef.topBlockHeight)
+        if (gridPositionOfOrigin.y + yLength +1 > SiteManagerRef.topBlockHeight)
         {
-            SiteManagerRef.topBlockHeight = (int)(gridPositionOfOrigin.y + yLength);
+            SiteManagerRef.topBlockHeight = (int)(gridPositionOfOrigin.y + yLength +1 );
         }
         UpdateNeighbors();
         Destroy(ghost);
@@ -132,14 +134,14 @@ public class Block : MonoBehaviour {
             {
                 Tile currentTile = shape.col[(int)tileCoords.x].row[(int)tileCoords.y];
                 Vector2 tileGridPos = tileCoords + potentialGhostPos;
-
+                
                 //if there is something overlapping the space
-                if (SiteManagerRef.grid[(int)tileGridPos.x, (int)tileGridPos.y])
+                if (siteDataRef.grid[(int)tileGridPos.x, (int)tileGridPos.y])
                 {
                     //ghost should move up, then check down.
                     potentialGhostPos.y += 1;
                     ghostOrigin = potentialGhostPos;
-                    ghost.transform.position = ghostOrigin;
+                    ghost.transform.localPosition = ghostOrigin;
 
                     return CheckMoveValidity();
                 }
@@ -148,7 +150,7 @@ public class Block : MonoBehaviour {
         //If the checker reaches the floor
         SetGhostColor(SiteManagerRef.ghostColor);
         ghostOrigin = potentialGhostPos;
-        ghost.transform.position = ghostOrigin;
+        ghost.transform.localPosition = ghostOrigin;
         return true;
     }
 
@@ -170,7 +172,7 @@ public class Block : MonoBehaviour {
                 //do nothing cause NoDown
                 if (currentTile != Tile.NoDown)
                 {
-                    Block foundBlock = SiteManagerRef.grid[(int)tileGridPos.x, (int)tileGridPos.y];
+                    Block foundBlock = siteDataRef.grid[(int)tileGridPos.x, (int)tileGridPos.y];
                     //if a block is found
                     if (foundBlock != null)
                     {
@@ -203,11 +205,11 @@ public class Block : MonoBehaviour {
         foreach(Vector2 dir in dirs)
         {
             Vector2 neighborCoord = dir + gridPositionOfOrigin;
-            if(neighborCoord.x < 0 || neighborCoord.x > SiteManagerRef.grid.GetLength(0) - 1 ||
-                neighborCoord.y < 0 || neighborCoord.y > SiteManagerRef.grid.GetLength(1) - 1)
+            if(neighborCoord.x < 0 || neighborCoord.x > siteDataRef.grid.GetLength(0) - 1 ||
+                neighborCoord.y < 0 || neighborCoord.y > siteDataRef.grid.GetLength(1) - 1)
                 continue;
 
-            Block maybeNeighbor = SiteManagerRef.grid[(int)neighborCoord.x, (int)neighborCoord.y];
+            Block maybeNeighbor = siteDataRef.grid[(int)neighborCoord.x, (int)neighborCoord.y];
             if (maybeNeighbor != null)
             {
                 neighbors.Add(maybeNeighbor);
@@ -219,24 +221,16 @@ public class Block : MonoBehaviour {
     public void SetGridPos(Vector2 newPos, bool onGrid)
     {
         gridPositionOfOrigin = newPos;
-        transform.position = gridPositionOfOrigin;
+        transform.localPosition = gridPositionOfOrigin;
 
         if (onGrid)
         {
             foreach (Vector2 tileCoord in shape.AllTileCoords)
             {
                 Vector2 newCoord = tileCoord + gridPositionOfOrigin;
-                SiteManagerRef.grid[(int)newCoord.x, (int)newCoord.y] = this;
+                siteDataRef.grid[(int)newCoord.x, (int)newCoord.y] = this;
             }
         }
     }
 
-}
-
-public struct GhostInfo
-{
-    /// <summary>
-    /// The Grid Coord that will be used if the ghost is dropped.
-    /// </summary>
-    public Vector2 ghostOriginCoord;
 }
