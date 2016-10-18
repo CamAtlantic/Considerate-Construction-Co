@@ -8,9 +8,8 @@ public class SiteManager : MonoBehaviour {
     //This script controls spawning and moving blocks.
 	public static string SwipedDirection;
     
-    //public Block[,] grid;
-
-    public int gridSizeX = 5;
+    [HideInInspector]
+    public int gridSizeX = 10;
     /// <summary>
     /// The size of the array. Larger than the maxHeight to avoid Out of Range fuckery.
     /// </summary>
@@ -36,6 +35,7 @@ public class SiteManager : MonoBehaviour {
     public Color ghostColor;
     public Color invalidMoveColor;
 
+    public bool inShadow = false;
     SiteData currentSite;
 
     void Awake()
@@ -127,6 +127,26 @@ public class SiteManager : MonoBehaviour {
         Vector2 newBlockPos = new Vector2(2, maxHeight - 1);
         heldBlock.SetGridPos(newBlockPos,false);
         
+    }
+
+    public void ToggleShadow()
+    {
+        if(!inShadow)
+        {
+            inShadow = true;
+            if(heldBlock)
+            {
+                heldBlock.MoveBlock(new Vector2(5,0));
+            }
+        }
+        else
+        {
+            inShadow = false;
+            if (heldBlock)
+            {
+                heldBlock.MoveBlock(new Vector2(-5, 0));
+            }
+        }
     }
     #region swipes
     public static void SwipeLeft() {

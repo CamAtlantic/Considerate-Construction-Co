@@ -32,6 +32,32 @@ public class Block : MonoBehaviour {
 
     public float fallSpeed = 2;
 
+    int leftEdge
+    {
+        get
+        {
+            if (SiteManagerRef.inShadow)
+                return 5;
+            else
+                return 0;
+        }
+    }
+    int rightEdge
+    {
+        get
+        {
+            if (SiteManagerRef.inShadow)
+                return 9;
+            else
+                return 4;
+        }
+    }
+
+    void Awake()
+    {
+
+    }
+
     // Use this for initialization
     void Start () {
         if (!image)
@@ -91,7 +117,7 @@ public class Block : MonoBehaviour {
         Vector2 proposedDestination = gridPositionOfOrigin + moveDir;
         
         //TODO: might need to use only one grid and split it weirdly. Here is where to make it move to shadow
-        if (proposedDestination.x >= 0 && proposedDestination.x + xLength < siteDataRef.grid.GetLength(0))
+        if (proposedDestination.x >= leftEdge && proposedDestination.x + xLength <= rightEdge)
         {
             gridPositionOfOrigin = proposedDestination;
             transform.localPosition = gridPositionOfOrigin;
@@ -134,7 +160,7 @@ public class Block : MonoBehaviour {
             {
                 Tile currentTile = shape.col[(int)tileCoords.x].row[(int)tileCoords.y];
                 Vector2 tileGridPos = tileCoords + potentialGhostPos;
-                
+                print(tileGridPos);
                 //if there is something overlapping the space
                 if (siteDataRef.grid[(int)tileGridPos.x, (int)tileGridPos.y])
                 {

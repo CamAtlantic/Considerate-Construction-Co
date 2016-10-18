@@ -5,7 +5,6 @@ using UnityEngine;
 public class SiteData : MonoBehaviour {
 
     public Block[,] grid;
-    public Block[,] shadowGrid;
 
     // Use this for initialization
     void Start () {
