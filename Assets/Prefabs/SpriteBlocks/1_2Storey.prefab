@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212137567593886904}
   - component: {fileID: 114288190679150704}
   m_Layer: 0
-  m_Name: base_steps_1
+  m_Name: Backing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 212282979427825362}
   - component: {fileID: 114777241375270938}
   m_Layer: 0
-  m_Name: header_1
+  m_Name: Backing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 212044141296253720}
   - component: {fileID: 114801356847133728}
   m_Layer: 0
-  m_Name: column_side_1
+  m_Name: Column
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 212605566121504764}
   - component: {fileID: 114131524644013454}
   m_Layer: 0
-  m_Name: roof_1
+  m_Name: Roofing_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 212820017979646972}
   - component: {fileID: 114477276157906430}
   m_Layer: 0
-  m_Name: header_1
+  m_Name: Backing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 212522777844106934}
   - component: {fileID: 114657312240681576}
   m_Layer: 0
-  m_Name: sq_wind_ (2)
+  m_Name: Window_glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 212487135011355434}
   - component: {fileID: 114677787140872910}
   m_Layer: 0
-  m_Name: header_2
+  m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 212646519334961806}
   - component: {fileID: 114808755061104454}
   m_Layer: 0
-  m_Name: roof_3
+  m_Name: Accent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 212577872225014716}
   - component: {fileID: 114881228379546756}
   m_Layer: 0
-  m_Name: sq_wind_
+  m_Name: Window_frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 212254353213031318}
   - component: {fileID: 114901276219871734}
   m_Layer: 0
-  m_Name: header_2
+  m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -252,7 +252,7 @@ GameObject:
   - component: {fileID: 212596656890822346}
   - component: {fileID: 114024802830896204}
   m_Layer: 0
-  m_Name: base_steps_1
+  m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 212636417349068932}
   - component: {fileID: 114522406810540078}
   m_Layer: 0
-  m_Name: column_side_2
+  m_Name: Column_accent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 212405955656923958}
   - component: {fileID: 114350947610797186}
   m_Layer: 0
-  m_Name: tall_wind_1
+  m_Name: window_frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 212654016395252570}
   - component: {fileID: 114216970457758468}
   m_Layer: 0
-  m_Name: tall_wind_2
+  m_Name: window_glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -335,7 +335,7 @@ GameObject:
   - component: {fileID: 212130773905365324}
   - component: {fileID: 114227109240059568}
   m_Layer: 0
-  m_Name: column_side_2
+  m_Name: Column_accent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -352,7 +352,7 @@ GameObject:
   - component: {fileID: 212664475395397204}
   - component: {fileID: 114106331692045460}
   m_Layer: 0
-  m_Name: base_fence_1
+  m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -384,7 +384,7 @@ GameObject:
   - component: {fileID: 212805901673307708}
   - component: {fileID: 114756717229596840}
   m_Layer: 0
-  m_Name: tall_wind_1
+  m_Name: window_frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -401,7 +401,7 @@ GameObject:
   - component: {fileID: 212300620804996282}
   - component: {fileID: 114627772436415270}
   m_Layer: 0
-  m_Name: tall_wind_3
+  m_Name: window_backing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -418,7 +418,7 @@ GameObject:
   - component: {fileID: 212347071380604342}
   - component: {fileID: 114243627373378554}
   m_Layer: 0
-  m_Name: tall_wind_3
+  m_Name: window_backing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -465,7 +465,7 @@ GameObject:
   - component: {fileID: 212712258835139000}
   - component: {fileID: 114897220257914420}
   m_Layer: 0
-  m_Name: column_side_2
+  m_Name: Accent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -482,7 +482,7 @@ GameObject:
   - component: {fileID: 212811373628991440}
   - component: {fileID: 114112557237704258}
   m_Layer: 0
-  m_Name: tall_wind_4
+  m_Name: window_column
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -499,7 +499,7 @@ GameObject:
   - component: {fileID: 212684396638147272}
   - component: {fileID: 114996893255164492}
   m_Layer: 0
-  m_Name: header_1
+  m_Name: Backing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -531,7 +531,7 @@ GameObject:
   - component: {fileID: 212315980119554946}
   - component: {fileID: 114523591796331836}
   m_Layer: 0
-  m_Name: base_steps_1
+  m_Name: Backing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -548,7 +548,7 @@ GameObject:
   - component: {fileID: 212222745693048590}
   - component: {fileID: 114064651282053550}
   m_Layer: 0
-  m_Name: sq_wind_
+  m_Name: Window_glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -565,7 +565,7 @@ GameObject:
   - component: {fileID: 212084209768364654}
   - component: {fileID: 114563376786237794}
   m_Layer: 0
-  m_Name: column_side_1
+  m_Name: Column
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -582,7 +582,7 @@ GameObject:
   - component: {fileID: 212341703564430640}
   - component: {fileID: 114746821149247660}
   m_Layer: 0
-  m_Name: header_2
+  m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -599,7 +599,7 @@ GameObject:
   - component: {fileID: 212380487159375506}
   - component: {fileID: 114800185606464004}
   m_Layer: 0
-  m_Name: tall_wind_4
+  m_Name: window_column
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -616,7 +616,7 @@ GameObject:
   - component: {fileID: 212153799019728992}
   - component: {fileID: 114335692974520128}
   m_Layer: 0
-  m_Name: header_1
+  m_Name: Backing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -633,7 +633,7 @@ GameObject:
   - component: {fileID: 212525283721762938}
   - component: {fileID: 114120817979537988}
   m_Layer: 0
-  m_Name: sq_wind_ (1)
+  m_Name: Window_frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -650,7 +650,7 @@ GameObject:
   - component: {fileID: 212027092625304480}
   - component: {fileID: 114570984925780966}
   m_Layer: 0
-  m_Name: tall_wind_2
+  m_Name: window_glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -682,7 +682,7 @@ GameObject:
   - component: {fileID: 212139289763502598}
   - component: {fileID: 114439265715631358}
   m_Layer: 0
-  m_Name: column_side_1
+  m_Name: Column_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -729,7 +729,7 @@ GameObject:
   - component: {fileID: 212550756233538214}
   - component: {fileID: 114482101683559424}
   m_Layer: 0
-  m_Name: header_2
+  m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -761,7 +761,7 @@ GameObject:
   - component: {fileID: 212260366174093456}
   - component: {fileID: 114991819693635654}
   m_Layer: 0
-  m_Name: column_side_1
+  m_Name: Column_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -778,7 +778,7 @@ GameObject:
   - component: {fileID: 212276084986398238}
   - component: {fileID: 114590783225228154}
   m_Layer: 0
-  m_Name: roof_2
+  m_Name: Roofing_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -811,7 +811,7 @@ GameObject:
   - component: {fileID: 212723027434734934}
   - component: {fileID: 114626155066408556}
   m_Layer: 0
-  m_Name: column_side_2
+  m_Name: Accent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1125,7 +1125,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1966148775900114}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3.13, y: 2.2, z: 99.61222}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4781835385692882}
@@ -1514,7 +1514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 3
-  MyColorCode: 6
+  MyColorCode: 1
 --- !u!114 &114064651282053550
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1565,7 +1565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 3
-  MyColorCode: 6
+  MyColorCode: 1
 --- !u!114 &114112557237704258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1578,7 +1578,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 2
-  MyColorCode: 3
+  MyColorCode: 5
 --- !u!114 &114120817979537988
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1591,7 +1591,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 2
-  MyColorCode: 2
+  MyColorCode: 10
 --- !u!114 &114131524644013454
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1604,7 +1604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 4
-  MyColorCode: 1
+  MyColorCode: 7
 --- !u!114 &114216970457758468
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1630,7 +1630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 0
-  MyColorCode: 0
+  MyColorCode: 2
 --- !u!114 &114243627373378554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1643,7 +1643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 2
-  MyColorCode: 5
+  MyColorCode: 10
 --- !u!114 &114288190679150704
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1656,7 +1656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 0
-  MyColorCode: 7
+  MyColorCode: 10
 --- !u!114 &114335692974520128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1669,7 +1669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 0
-  MyColorCode: 6
+  MyColorCode: 10
 --- !u!114 &114350947610797186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1682,7 +1682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 2
-  MyColorCode: 3
+  MyColorCode: 10
 --- !u!114 &114439265715631358
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1695,7 +1695,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 0
-  MyColorCode: 2
+  MyColorCode: 1
 --- !u!114 &114477276157906430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1708,7 +1708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 0
-  MyColorCode: 6
+  MyColorCode: 10
 --- !u!114 &114482101683559424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1721,7 +1721,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 0
-  MyColorCode: 3
+  MyColorCode: 1
 --- !u!114 &114522406810540078
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1734,7 +1734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 0
-  MyColorCode: 3
+  MyColorCode: 2
 --- !u!114 &114523591796331836
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1747,7 +1747,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 0
-  MyColorCode: 7
+  MyColorCode: 10
 --- !u!114 &114563376786237794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1760,7 +1760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 5
-  MyColorCode: 6
+  MyColorCode: 1
 --- !u!114 &114570984925780966
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1786,7 +1786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 4
-  MyColorCode: 5
+  MyColorCode: 8
 --- !u!114 &114626155066408556
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1799,7 +1799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 5
-  MyColorCode: 0
+  MyColorCode: 2
 --- !u!114 &114627772436415270
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1812,7 +1812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 2
-  MyColorCode: 5
+  MyColorCode: 10
 --- !u!114 &114657312240681576
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1838,7 +1838,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 0
-  MyColorCode: 3
+  MyColorCode: 1
 --- !u!114 &114746821149247660
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1851,7 +1851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 0
-  MyColorCode: 3
+  MyColorCode: 1
 --- !u!114 &114756717229596840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1864,7 +1864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 2
-  MyColorCode: 3
+  MyColorCode: 10
 --- !u!114 &114777241375270938
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1877,7 +1877,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 0
-  MyColorCode: 6
+  MyColorCode: 10
 --- !u!114 &114800185606464004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1890,7 +1890,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 2
-  MyColorCode: 3
+  MyColorCode: 5
 --- !u!114 &114801356847133728
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1903,7 +1903,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 5
-  MyColorCode: 6
+  MyColorCode: 1
 --- !u!114 &114808755061104454
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1916,7 +1916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 4
-  MyColorCode: 3
+  MyColorCode: 2
 --- !u!114 &114881228379546756
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1929,7 +1929,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 2
-  MyColorCode: 2
+  MyColorCode: 10
 --- !u!114 &114897220257914420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1942,7 +1942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 5
-  MyColorCode: 3
+  MyColorCode: 2
 --- !u!114 &114901276219871734
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1955,7 +1955,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 0
-  MyColorCode: 3
+  MyColorCode: 1
 --- !u!114 &114991819693635654
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1968,7 +1968,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 0
-  MyColorCode: 2
+  MyColorCode: 1
 --- !u!114 &114996893255164492
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1981,7 +1981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 0
-  MyColorCode: 6
+  MyColorCode: 10
 --- !u!212 &212027092625304480
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -2014,7 +2014,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c4a2c8c43ae4c494b8cc1076fd3e9ccb, type: 3}
-  m_Color: {r: 0.6911765, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.89705884, g: 0.7882472, b: 0.5936419, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212044141296253720
@@ -2049,7 +2049,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b36fbf5753a2f40d7a5c7a15d5cf1dc9, type: 3}
-  m_Color: {r: 0.6985294, g: 0.28762975, b: 0.33013645, a: 1}
+  m_Color: {r: 0.39463666, g: 0.28222317, b: 0.42647058, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212084209768364654
@@ -2084,7 +2084,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b36fbf5753a2f40d7a5c7a15d5cf1dc9, type: 3}
-  m_Color: {r: 0.6985294, g: 0.28762975, b: 0.33013645, a: 1}
+  m_Color: {r: 0.39463666, g: 0.28222317, b: 0.42647058, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212130773905365324
@@ -2119,7 +2119,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3d416f511494c47909bd073c15edb838, type: 3}
-  m_Color: {r: 0.9959894, g: 1, b: 0.6911765, a: 1}
+  m_Color: {r: 1, g: 0.77839756, b: 0.30147058, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212137567593886904
@@ -2154,7 +2154,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f345858b130844af9995d5bb198d4b9d, type: 3}
-  m_Color: {r: 0.5480645, g: 0.6838235, b: 0.56023604, a: 1}
+  m_Color: {r: 0.22670329, g: 0.22166955, b: 0.36764705, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212139289763502598
@@ -2189,7 +2189,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b36fbf5753a2f40d7a5c7a15d5cf1dc9, type: 3}
-  m_Color: {r: 1, g: 0.4784314, b: 0.4784314, a: 1}
+  m_Color: {r: 0.39463666, g: 0.28222317, b: 0.42647058, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212153799019728992
@@ -2224,7 +2224,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 75bdedaee862745f7ac4a9030cd139c7, type: 3}
-  m_Color: {r: 0.6985294, g: 0.28762975, b: 0.33013645, a: 1}
+  m_Color: {r: 0.22670329, g: 0.22166955, b: 0.36764705, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212222745693048590
@@ -2259,7 +2259,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3ab41d68a80a040e68fc421ced7e57d2, type: 3}
-  m_Color: {r: 0.6911765, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.89705884, g: 0.7882472, b: 0.5936419, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212254353213031318
@@ -2294,7 +2294,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d6eac0c285e314511b169284b3ba00ed, type: 3}
-  m_Color: {r: 0.9959894, g: 1, b: 0.6911765, a: 1}
+  m_Color: {r: 0.39463666, g: 0.28222317, b: 0.42647058, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212260366174093456
@@ -2329,7 +2329,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b36fbf5753a2f40d7a5c7a15d5cf1dc9, type: 3}
-  m_Color: {r: 1, g: 0.4784314, b: 0.4784314, a: 1}
+  m_Color: {r: 0.39463666, g: 0.28222317, b: 0.42647058, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212276084986398238
@@ -2364,7 +2364,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e85a7d28840b24901b4b247b2918e958, type: 3}
-  m_Color: {r: 1, g: 0.639858, b: 0.50735295, a: 1}
+  m_Color: {r: 0.9264706, g: 0.66215396, b: 0.26567903, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212282979427825362
@@ -2399,7 +2399,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 75bdedaee862745f7ac4a9030cd139c7, type: 3}
-  m_Color: {r: 0.6985294, g: 0.28762975, b: 0.33013645, a: 1}
+  m_Color: {r: 0.22670329, g: 0.22166955, b: 0.36764705, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212300620804996282
@@ -2434,7 +2434,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5df781b4f3335433db7a38f4d644a024, type: 3}
-  m_Color: {r: 1, g: 0.639858, b: 0.50735295, a: 1}
+  m_Color: {r: 0.22670329, g: 0.22166955, b: 0.36764705, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212315980119554946
@@ -2469,7 +2469,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f345858b130844af9995d5bb198d4b9d, type: 3}
-  m_Color: {r: 0.5480645, g: 0.6838235, b: 0.56023604, a: 1}
+  m_Color: {r: 0.22670329, g: 0.22166955, b: 0.36764705, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212341703564430640
@@ -2504,7 +2504,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d6eac0c285e314511b169284b3ba00ed, type: 3}
-  m_Color: {r: 0.9959894, g: 1, b: 0.6911765, a: 1}
+  m_Color: {r: 0.39463666, g: 0.28222317, b: 0.42647058, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212347071380604342
@@ -2539,7 +2539,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5df781b4f3335433db7a38f4d644a024, type: 3}
-  m_Color: {r: 1, g: 0.639858, b: 0.50735295, a: 1}
+  m_Color: {r: 0.22670329, g: 0.22166955, b: 0.36764705, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212380487159375506
@@ -2574,7 +2574,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cf1cb38856cf94261abca29f3fa2c51e, type: 3}
-  m_Color: {r: 0.9959894, g: 1, b: 0.6911765, a: 1}
+  m_Color: {r: 0.62128025, g: 0.57807094, b: 0.7941176, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212405955656923958
@@ -2609,7 +2609,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 98caa9abed5af4fbf9bcb6e060d2e064, type: 3}
-  m_Color: {r: 0.9959894, g: 1, b: 0.6911765, a: 1}
+  m_Color: {r: 0.22670329, g: 0.22166955, b: 0.36764705, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212487135011355434
@@ -2644,7 +2644,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d6eac0c285e314511b169284b3ba00ed, type: 3}
-  m_Color: {r: 0.9959894, g: 1, b: 0.6911765, a: 1}
+  m_Color: {r: 0.39463666, g: 0.28222317, b: 0.42647058, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212522777844106934
@@ -2679,7 +2679,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3ab41d68a80a040e68fc421ced7e57d2, type: 3}
-  m_Color: {r: 0.6911765, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.89705884, g: 0.7882472, b: 0.5936419, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212525283721762938
@@ -2714,7 +2714,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f3b578c3d0744440582b3f5f35f4ee84, type: 3}
-  m_Color: {r: 1, g: 0.4784314, b: 0.4784314, a: 1}
+  m_Color: {r: 0.22670329, g: 0.22166955, b: 0.36764705, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212550756233538214
@@ -2749,7 +2749,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d6eac0c285e314511b169284b3ba00ed, type: 3}
-  m_Color: {r: 0.9959894, g: 1, b: 0.6911765, a: 1}
+  m_Color: {r: 0.39463666, g: 0.28222317, b: 0.42647058, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212577872225014716
@@ -2784,7 +2784,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f3b578c3d0744440582b3f5f35f4ee84, type: 3}
-  m_Color: {r: 1, g: 0.4784314, b: 0.4784314, a: 1}
+  m_Color: {r: 0.22670329, g: 0.22166955, b: 0.36764705, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212596656890822346
@@ -2819,7 +2819,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e55545a9198644486a988c263d442fc3, type: 3}
-  m_Color: {r: 0.6985294, g: 0.28762975, b: 0.33013645, a: 1}
+  m_Color: {r: 0.39463666, g: 0.28222317, b: 0.42647058, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212605566121504764
@@ -2854,7 +2854,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ca7151f9aab3c4abaaf6f6fa9226a464, type: 3}
-  m_Color: {r: 0.9117647, g: 0.38213664, b: 0.38213664, a: 1}
+  m_Color: {r: 0.85294116, g: 0.20069203, b: 0.37612468, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212636417349068932
@@ -2889,7 +2889,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3d416f511494c47909bd073c15edb838, type: 3}
-  m_Color: {r: 0.9959894, g: 1, b: 0.6911765, a: 1}
+  m_Color: {r: 1, g: 0.77839756, b: 0.30147058, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212646519334961806
@@ -2924,7 +2924,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c5db750092961480694c0351a8e7a98b, type: 3}
-  m_Color: {r: 0.9959894, g: 1, b: 0.6911765, a: 1}
+  m_Color: {r: 1, g: 0.77839756, b: 0.30147058, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212654016395252570
@@ -2959,7 +2959,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c4a2c8c43ae4c494b8cc1076fd3e9ccb, type: 3}
-  m_Color: {r: 0.6911765, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.89705884, g: 0.7882472, b: 0.5936419, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212664475395397204
@@ -2994,7 +2994,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0a35a5497aefa4676b3e54f0d7f782b5, type: 3}
-  m_Color: {r: 0.6985294, g: 0.28762975, b: 0.33013645, a: 1}
+  m_Color: {r: 0.39463666, g: 0.28222317, b: 0.42647058, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212684396638147272
@@ -3029,7 +3029,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 75bdedaee862745f7ac4a9030cd139c7, type: 3}
-  m_Color: {r: 0.6985294, g: 0.28762975, b: 0.33013645, a: 1}
+  m_Color: {r: 0.22670329, g: 0.22166955, b: 0.36764705, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212712258835139000
@@ -3064,7 +3064,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3d416f511494c47909bd073c15edb838, type: 3}
-  m_Color: {r: 0.9959894, g: 1, b: 0.6911765, a: 1}
+  m_Color: {r: 1, g: 0.77839756, b: 0.30147058, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212723027434734934
@@ -3099,7 +3099,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3d416f511494c47909bd073c15edb838, type: 3}
-  m_Color: {r: 0.9959894, g: 1, b: 0.6911765, a: 1}
+  m_Color: {r: 1, g: 0.77839756, b: 0.30147058, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212805901673307708
@@ -3134,7 +3134,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 98caa9abed5af4fbf9bcb6e060d2e064, type: 3}
-  m_Color: {r: 0.9959894, g: 1, b: 0.6911765, a: 1}
+  m_Color: {r: 0.22670329, g: 0.22166955, b: 0.36764705, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212811373628991440
@@ -3169,7 +3169,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cf1cb38856cf94261abca29f3fa2c51e, type: 3}
-  m_Color: {r: 0.9959894, g: 1, b: 0.6911765, a: 1}
+  m_Color: {r: 0.62128025, g: 0.57807094, b: 0.7941176, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212820017979646972
@@ -3204,6 +3204,6 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 75bdedaee862745f7ac4a9030cd139c7, type: 3}
-  m_Color: {r: 0.6985294, g: 0.28762975, b: 0.33013645, a: 1}
+  m_Color: {r: 0.22670329, g: 0.22166955, b: 0.36764705, a: 1}
   m_FlipX: 0
   m_FlipY: 0
