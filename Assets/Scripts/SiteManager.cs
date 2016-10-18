@@ -7,9 +7,9 @@ public enum LevelMode { Fixed,Random,MagicBag};
 public class SiteManager : MonoBehaviour {
     //This script controls spawning and moving blocks.
 	public static string SwipedDirection;
-    
-    [HideInInspector]
-    public int gridSizeX = 10;
+
+    private int gridSizeX = 10;
+
     /// <summary>
     /// The size of the array. Larger than the maxHeight to avoid Out of Range fuckery.
     /// </summary>
@@ -36,16 +36,21 @@ public class SiteManager : MonoBehaviour {
     public Color invalidMoveColor;
 
     public bool inShadow = false;
-    SiteData currentSite;
+    public SiteData currentSite;
+
+    CameraController camControllerRef;
 
     void Awake()
     {
         currentSite = GetComponent<SiteData>();
+        camControllerRef = FindObjectOfType<CameraController>();
+
+        currentSite.grid = new Block[gridSizeX, gridSizeY];
     }
 
     // Use this for initialization
     void Start () {
-        currentSite.grid = new Block[gridSizeX,gridSizeY];
+        
 
 		SwipedDirection = "null";
     }
@@ -60,7 +65,8 @@ public class SiteManager : MonoBehaviour {
             //TODO: possibly a delay on spawning a new block?
             
                 SpawnNewBlock();
-            
+            inShadow = false;
+            camControllerRef.ChangeCamPosition_leftright(1);
         }
         else
         {
@@ -116,21 +122,20 @@ public class SiteManager : MonoBehaviour {
                 fixedModeIndex = 0;
             }
         }
-        GameObject newBlock = Instantiate(blockList[newBlockIndex]);
+        GameObject newBlock = Instantiate(blockList[newBlockIndex],transform);
 
-        //TODO: better block constructor
-        newBlock.transform.parent = transform;
+        
         heldBlock = newBlock.GetComponent<Block>();
-        heldBlock.SiteManagerRef = this;
-        heldBlock.siteDataRef = currentSite;
-
+        
         Vector2 newBlockPos = new Vector2(2, maxHeight - 1);
         heldBlock.SetGridPos(newBlockPos,false);
+        
         
     }
 
     public void ToggleShadow()
     {
+        camControllerRef.ChangeCamPosition_leftright();
         if(!inShadow)
         {
             inShadow = true;

@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000010016926918}
   - component: {fileID: 114000010925157906}
+  - component: {fileID: 114671144629508774}
   m_Layer: 0
   m_Name: Building Site
   m_TagString: Untagged
@@ -83,8 +84,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014000251306}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10, y: -1.5, z: 0}
-  m_LocalScale: {x: 5.25, y: 3, z: 2.5}
+  m_LocalPosition: {x: 7, y: -5, z: 0}
+  m_LocalScale: {x: 5.25, y: 10, z: 2.5}
   m_Children: []
   m_Father: {fileID: 4000010016926918}
   m_RootOrder: 1
@@ -96,8 +97,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1216453659036182}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: -1.5, z: 0}
-  m_LocalScale: {x: 5.25, y: 3, z: 2.5}
+  m_LocalPosition: {x: 2, y: -5, z: 0}
+  m_LocalScale: {x: 5.25, y: 10, z: 2.5}
   m_Children: []
   m_Father: {fileID: 4000010016926918}
   m_RootOrder: 0
@@ -189,7 +190,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ea666e7f4e57247b736154ae2aae85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSizeX: 5
   gridSizeY: 30
   maxHeight: 20
   topBlockHeight: 0
@@ -206,3 +206,16 @@ MonoBehaviour:
   heldBlock: {fileID: 0}
   ghostColor: {r: 0.841, g: 0.96661, b: 1, a: 1}
   invalidMoveColor: {r: 1, g: 0.44099998, b: 0.44099998, a: 1}
+  inShadow: 0
+  currentSite: {fileID: 0}
+--- !u!114 &114671144629508774
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013087376882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9640993fda9bdc948828198ddc3b2bd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

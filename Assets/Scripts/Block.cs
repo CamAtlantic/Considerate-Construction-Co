@@ -5,11 +5,11 @@ using System.Collections.Generic;
 public class Block : MonoBehaviour {
     //This is the basic script that buildings and toppers derive from.
     [HideInInspector]
-    public SiteManager SiteManagerRef;
+    public SiteManager siteManagerRef;
     [HideInInspector]
     public SiteData siteDataRef;
     public TileData shape;
-
+    CameraController camControllerRef;
     List<Block> neighbors = new List<Block>();
 
     [HideInInspector]
@@ -36,7 +36,7 @@ public class Block : MonoBehaviour {
     {
         get
         {
-            if (SiteManagerRef.inShadow)
+            if (siteManagerRef.inShadow)
                 return 5;
             else
                 return 0;
@@ -46,7 +46,7 @@ public class Block : MonoBehaviour {
     {
         get
         {
-            if (SiteManagerRef.inShadow)
+            if (siteManagerRef.inShadow)
                 return 9;
             else
                 return 4;
@@ -55,8 +55,11 @@ public class Block : MonoBehaviour {
 
     void Awake()
     {
-
+        camControllerRef = FindObjectOfType<CameraController>();
+        siteManagerRef = transform.parent.GetComponent<SiteManager>();
+        siteDataRef = siteManagerRef.currentSite;
     }
+
 
     // Use this for initialization
     void Start () {
@@ -88,7 +91,7 @@ public class Block : MonoBehaviour {
         ghost = Instantiate(image);
         //TODO: depth sort the ghost so it's behind the block.
         //TODO: fix so that ghosts are silhouettes
-        SetGhostColor(SiteManagerRef.ghostColor);
+        SetGhostColor(siteManagerRef.ghostColor);
     }
 
     void SetGhostColor(Color color)
@@ -133,11 +136,12 @@ public class Block : MonoBehaviour {
     public void Land()
     {
         falling = false;
-        SiteManagerRef.heldBlock = null;
+        siteManagerRef.heldBlock = null;
+
         SetGridPos(ghostOrigin,true);
-        if (gridPositionOfOrigin.y + yLength +1 > SiteManagerRef.topBlockHeight)
+        if (gridPositionOfOrigin.y + yLength +1 > siteManagerRef.topBlockHeight)
         {
-            SiteManagerRef.topBlockHeight = (int)(gridPositionOfOrigin.y + yLength +1 );
+            siteManagerRef.topBlockHeight = (int)(gridPositionOfOrigin.y + yLength +1 );
         }
         UpdateNeighbors();
         Destroy(ghost);
@@ -151,16 +155,17 @@ public class Block : MonoBehaviour {
     {
         Vector2 potentialGhostPos = new Vector2(gridPositionOfOrigin.x, 0);
 
-        for (int i = SiteManagerRef.maxHeight - 1; i >= 0; i--)
+        for (int i = siteManagerRef.maxHeight - 1; i >= 0; i--)
         {
             potentialGhostPos.y = i;
 
             //go through all tiles if origin is at this height
             foreach (Vector2 tileCoords in shape.AllTileCoords)
             {
+                //print(leftEdge);
                 Tile currentTile = shape.col[(int)tileCoords.x].row[(int)tileCoords.y];
                 Vector2 tileGridPos = tileCoords + potentialGhostPos;
-                print(tileGridPos);
+
                 //if there is something overlapping the space
                 if (siteDataRef.grid[(int)tileGridPos.x, (int)tileGridPos.y])
                 {
@@ -174,7 +179,7 @@ public class Block : MonoBehaviour {
             }
         }
         //If the checker reaches the floor
-        SetGhostColor(SiteManagerRef.ghostColor);
+        SetGhostColor(siteManagerRef.ghostColor);
         ghostOrigin = potentialGhostPos;
         ghost.transform.localPosition = ghostOrigin;
         return true;
@@ -186,7 +191,7 @@ public class Block : MonoBehaviour {
         {
             Vector2 tileGridPos = tileCoords + ghostOrigin + Vector2.down;
             //if any part of the shape is above the max height
-            if (tileGridPos.y > SiteManagerRef.maxHeight)
+            if (tileGridPos.y > siteManagerRef.maxHeight)
             {
                 return false;
             }
@@ -208,7 +213,7 @@ public class Block : MonoBehaviour {
                         //if one block is above a solid, move is valid
                         if (foundTile == Tile.Solid)
                         {
-                            SetGhostColor(SiteManagerRef.ghostColor);
+                            SetGhostColor(siteManagerRef.ghostColor);
                             return true;
                         }
                     }
@@ -216,7 +221,7 @@ public class Block : MonoBehaviour {
             }
         }
         //if you've been through all tiles and not found a solid
-        SetGhostColor(SiteManagerRef.invalidMoveColor);
+        SetGhostColor(siteManagerRef.invalidMoveColor);
         return false;
     }
 

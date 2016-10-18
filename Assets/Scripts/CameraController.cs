@@ -16,8 +16,8 @@ public class CameraController : MonoBehaviour {
 	//updown -1 = backward; 0 = standard; 1 = forward
 	private int CameraLocation_updown;
 
-    public int leftXPos = 2;
-    public int rightXPos = 10;
+    private int leftXPos = 2;
+    private int rightXPos = 7;
     public float lerpSpeed = 0.1f;
 
 	// Use this for initialization
@@ -48,7 +48,7 @@ public class CameraController : MonoBehaviour {
 	
 	public void ChangeCamPosition_leftright ()
 	{
-        print(CameraLocation_leftright);
+//        print(CameraLocation_leftright);
 
         if (CameraLocation_leftright == 1) {
 			CameraLocation_leftright = 2;
@@ -57,6 +57,10 @@ public class CameraController : MonoBehaviour {
 			CameraLocation_leftright = 1;
 		}
 	}
+    public void ChangeCamPosition_leftright(int leftRight)
+    {
+        CameraLocation_leftright = leftRight;
+    }
     /*
 	public void ChangeCamPosition_forward ()
 	{

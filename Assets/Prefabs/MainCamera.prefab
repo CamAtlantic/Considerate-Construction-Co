@@ -340,8 +340,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraOffset: -0.5
-  leftXPos: 2
-  rightXPos: 10
   lerpSpeed: 0.1
 --- !u!114 &114510726658876246
 MonoBehaviour:
