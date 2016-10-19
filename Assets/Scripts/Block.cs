@@ -213,6 +213,7 @@ public class Block : MonoBehaviour {
             if (tileCoords.y == 0)
             {
                 Tile currentTile = shape.col[(int)tileCoords.x].row[(int)tileCoords.y];
+                
                 //do nothing cause NoDown
                 if (currentTile != Tile.NoDown)
                 {
@@ -224,7 +225,7 @@ public class Block : MonoBehaviour {
                         Tile foundTile = foundBlock.shape.col[(int)foundTileCoord.x].row[(int)foundTileCoord.y];
 
                         //if one block is above a solid, move is valid
-                        if (foundTile == Tile.Solid)
+                        if (foundTile == Tile.Solid || foundTile == Tile.NoDown)
                         {
                             SetGhostColor(siteManagerRef.ghostColor);
                             return true;
