@@ -192,7 +192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridSizeY: 30
   maxHeight: 20
-  topBlockHeight: 0
+  currentSite: {fileID: 0}
   modeSelect: 0
   blockList:
   - {fileID: 1700916580742118, guid: aa8e42ef35ea2443d805e15f336dc209, type: 2}
@@ -203,11 +203,12 @@ MonoBehaviour:
   - {fileID: 1175828536619218, guid: b89e502cfd2134c08803ac3011807eec, type: 2}
   - {fileID: 1706287722262902, guid: 6d25e056824a0440d8024c20c4bf2ba5, type: 2}
   - {fileID: 1141468625312388, guid: ba2a134d6a8de44c3a1c50383b51af14, type: 2}
+  normalTopBlock: 0
+  shadowTopBlock: 0
   heldBlock: {fileID: 0}
   ghostColor: {r: 0.841, g: 0.96661, b: 1, a: 1}
   invalidMoveColor: {r: 1, g: 0.44099998, b: 0.44099998, a: 1}
   inShadow: 0
-  currentSite: {fileID: 0}
 --- !u!114 &114671144629508774
 MonoBehaviour:
   m_ObjectHideFlags: 1

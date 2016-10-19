@@ -135,16 +135,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114750600803475314, guid: 9c6104261fd539c4eae469d9fbf2324f,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 817944036}
     - target: {fileID: 223646946500413476, guid: 9c6104261fd539c4eae469d9fbf2324f,
         type: 2}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 358487177}
+    - target: {fileID: 114750600803475314, guid: 9c6104261fd539c4eae469d9fbf2324f,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 817944036}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9c6104261fd539c4eae469d9fbf2324f, type: 2}
   m_IsPrefabParent: 0

@@ -53,7 +53,6 @@ public class SiteManager : MonoBehaviour {
     
     // Update is called once per frame
     void Update () {
-
         if (!heldBlock)
         {
             //TODO: possibly a delay or small animation on spawning a new block?
@@ -119,7 +118,7 @@ public class SiteManager : MonoBehaviour {
         GameObject newBlock = Instantiate(blockList[newBlockIndex],transform);
         heldBlock = newBlock.GetComponent<Block>();
         
-        Vector2 newBlockPos = new Vector2(2, maxHeight - 1);
+        Vector2 newBlockPos = new Vector2(2, normalTopBlock + 10);
         heldBlock.SetGridPos(newBlockPos,false);   
     }
 

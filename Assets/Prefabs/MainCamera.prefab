@@ -341,6 +341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraOffset: -0.5
   lerpSpeed: 0.1
+  mode: 1
 --- !u!114 &114510726658876246
 MonoBehaviour:
   m_ObjectHideFlags: 1

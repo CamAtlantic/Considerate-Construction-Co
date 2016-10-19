@@ -86,7 +86,22 @@ public class Block : MonoBehaviour {
         }
     }
 
-	public void SpawnGhost()
+    // Update is called once per frame
+    void Update()
+    {
+
+        if (falling)
+        {
+            transform.localPosition += (Vector3.down * fallSpeed);
+
+            if (transform.localPosition.y < ghostOrigin.y)
+            {
+                Land();
+            }
+        }
+    }
+
+    public void SpawnGhost()
     {
         ghost = Instantiate(image);
         //TODO: depth sort the ghost so it's behind the block.
@@ -101,25 +116,11 @@ public class Block : MonoBehaviour {
             render.material.color = color;
         }
     }
-	// Update is called once per frame
-	void Update () {
-        
-        if (falling)
-        {
-            transform.localPosition += (Vector3.down * fallSpeed);
-
-            if (transform.localPosition.y < ghostOrigin.y)
-            {
-                Land();
-            }
-        }
-    }
 
     public void MoveBlock(Vector2 moveDir)
     {
         Vector2 proposedDestination = gridPositionOfOrigin + moveDir;
         
-        //TODO: might need to use only one grid and split it weirdly. Here is where to make it move to shadow
         if (proposedDestination.x >= leftEdge && proposedDestination.x + xLength <= rightEdge)
         {
             gridPositionOfOrigin = proposedDestination;
@@ -153,17 +154,12 @@ public class Block : MonoBehaviour {
             {
                 siteManagerRef.normalTopBlock = CheckTowerHeight();
             }
-           
         }
+
         UpdateNeighbors();
         Destroy(ghost);
     }
     
-    int CheckTowerHeight()
-    {
-        return (int)(gridPositionOfOrigin.y + yLength + 1);
-    }
-
     /// <summary>
     /// Returns true if position is valid.
     /// </summary>
@@ -279,6 +275,11 @@ public class Block : MonoBehaviour {
                 siteDataRef.grid[(int)newCoord.x, (int)newCoord.y] = this;
             }
         }
+    }
+
+    int CheckTowerHeight()
+    {
+        return (int)(gridPositionOfOrigin.y + yLength + 1);
     }
 
 }
