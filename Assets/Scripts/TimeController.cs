@@ -37,6 +37,7 @@ public class TimeController : MonoBehaviour {
 
 	}
 	
+    //TODO: these movements need to use delta time.
 	// Update is called once per frame
 	void Update () {
 		//sun circle segments

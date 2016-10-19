@@ -5,7 +5,7 @@ using UnityEngine;
 public class Messages : MonoBehaviour {
 
 	public GameObject Message_1;
-	public TimeController _TimeController;
+	private TimeController _TimeController;
 
     void Awake()
     {

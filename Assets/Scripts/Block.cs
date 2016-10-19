@@ -4,11 +4,12 @@ using System.Collections.Generic;
 
 public class Block : MonoBehaviour {
     //This is the basic script that buildings and toppers derive from.
-    //TODO: I have a worldspace/localspace issue.
     [HideInInspector]
-    public SiteManager SiteManagerRef;
+    public SiteManager siteManagerRef;
+    [HideInInspector]
+    public SiteData siteDataRef;
     public TileData shape;
-
+    CameraController camControllerRef;
     List<Block> neighbors = new List<Block>();
 
     [HideInInspector]
@@ -30,6 +31,35 @@ public class Block : MonoBehaviour {
     public bool falling = false;
 
     public float fallSpeed = 2;
+
+    int leftEdge
+    {
+        get
+        {
+            if (siteManagerRef.inShadow)
+                return 7;
+            else
+                return 0;
+        }
+    }
+    int rightEdge
+    {
+        get
+        {
+            if (siteManagerRef.inShadow)
+                return 11;
+            else
+                return 4;
+        }
+    }
+
+    void Awake()
+    {
+        camControllerRef = FindObjectOfType<CameraController>();
+        siteManagerRef = transform.parent.GetComponent<SiteManager>();
+        siteDataRef = siteManagerRef.currentSite;
+    }
+
 
     // Use this for initialization
     void Start () {
@@ -56,12 +86,27 @@ public class Block : MonoBehaviour {
         }
     }
 
-	public void SpawnGhost()
+    // Update is called once per frame
+    void Update()
+    {
+
+        if (falling)
+        {
+            transform.localPosition += (Vector3.down * fallSpeed);
+
+            if (transform.localPosition.y < ghostOrigin.y)
+            {
+                Land();
+            }
+        }
+    }
+
+    public void SpawnGhost()
     {
         ghost = Instantiate(image);
         //TODO: depth sort the ghost so it's behind the block.
-        //might not work with Jai's images
-        SetGhostColor(SiteManagerRef.ghostColor);
+        //TODO: fix so that ghosts are silhouettes
+        SetGhostColor(siteManagerRef.ghostColor);
     }
 
     void SetGhostColor(Color color)
@@ -71,28 +116,15 @@ public class Block : MonoBehaviour {
             render.material.color = color;
         }
     }
-	// Update is called once per frame
-	void Update () {
-        
-        if (falling)
-        {
-            transform.position += (Vector3.down * fallSpeed);
-
-            if (transform.position.y < ghostOrigin.y)
-            {
-                Land();
-            }
-        }
-    }
 
     public void MoveBlock(Vector2 moveDir)
     {
         Vector2 proposedDestination = gridPositionOfOrigin + moveDir;
         
-        if (proposedDestination.x >= 0 && proposedDestination.x + xLength < 5)
+        if (proposedDestination.x >= leftEdge && proposedDestination.x + xLength <= rightEdge)
         {
             gridPositionOfOrigin = proposedDestination;
-            transform.position = gridPositionOfOrigin;
+            transform.localPosition = gridPositionOfOrigin;
         }
         CheckGhostPos();
     }
@@ -105,12 +137,25 @@ public class Block : MonoBehaviour {
     public void Land()
     {
         falling = false;
-        SiteManagerRef.heldBlock = null;
+        siteManagerRef.heldBlock = null;
+
         SetGridPos(ghostOrigin,true);
-        if (gridPositionOfOrigin.y + yLength > SiteManagerRef.topBlockHeight)
+
+        if (siteManagerRef.inShadow)
         {
-            SiteManagerRef.topBlockHeight = (int)(gridPositionOfOrigin.y + yLength);
+            if (CheckTowerHeight() > siteManagerRef.shadowTopBlock)
+            {
+                siteManagerRef.shadowTopBlock = CheckTowerHeight();
+            }
         }
+        else
+        {
+            if (CheckTowerHeight() > siteManagerRef.normalTopBlock)
+            {
+                siteManagerRef.normalTopBlock = CheckTowerHeight();
+            }
+        }
+
         UpdateNeighbors();
         Destroy(ghost);
     }
@@ -123,32 +168,33 @@ public class Block : MonoBehaviour {
     {
         Vector2 potentialGhostPos = new Vector2(gridPositionOfOrigin.x, 0);
 
-        for (int i = SiteManagerRef.maxHeight - 1; i >= 0; i--)
+        for (int i = siteManagerRef.maxHeight - 1; i >= 0; i--)
         {
             potentialGhostPos.y = i;
 
             //go through all tiles if origin is at this height
             foreach (Vector2 tileCoords in shape.AllTileCoords)
             {
+                //print(leftEdge);
                 Tile currentTile = shape.col[(int)tileCoords.x].row[(int)tileCoords.y];
                 Vector2 tileGridPos = tileCoords + potentialGhostPos;
 
                 //if there is something overlapping the space
-                if (SiteManagerRef.grid[(int)tileGridPos.x, (int)tileGridPos.y])
+                if (siteDataRef.grid[(int)tileGridPos.x, (int)tileGridPos.y])
                 {
                     //ghost should move up, then check down.
                     potentialGhostPos.y += 1;
                     ghostOrigin = potentialGhostPos;
-                    ghost.transform.position = ghostOrigin;
+                    ghost.transform.localPosition = ghostOrigin;
 
                     return CheckMoveValidity();
                 }
             }
         }
         //If the checker reaches the floor
-        SetGhostColor(SiteManagerRef.ghostColor);
+        SetGhostColor(siteManagerRef.ghostColor);
         ghostOrigin = potentialGhostPos;
-        ghost.transform.position = ghostOrigin;
+        ghost.transform.localPosition = ghostOrigin;
         return true;
     }
 
@@ -158,7 +204,7 @@ public class Block : MonoBehaviour {
         {
             Vector2 tileGridPos = tileCoords + ghostOrigin + Vector2.down;
             //if any part of the shape is above the max height
-            if (tileGridPos.y > SiteManagerRef.maxHeight)
+            if (tileGridPos.y > siteManagerRef.maxHeight)
             {
                 return false;
             }
@@ -170,7 +216,7 @@ public class Block : MonoBehaviour {
                 //do nothing cause NoDown
                 if (currentTile != Tile.NoDown)
                 {
-                    Block foundBlock = SiteManagerRef.grid[(int)tileGridPos.x, (int)tileGridPos.y];
+                    Block foundBlock = siteDataRef.grid[(int)tileGridPos.x, (int)tileGridPos.y];
                     //if a block is found
                     if (foundBlock != null)
                     {
@@ -180,7 +226,7 @@ public class Block : MonoBehaviour {
                         //if one block is above a solid, move is valid
                         if (foundTile == Tile.Solid)
                         {
-                            SetGhostColor(SiteManagerRef.ghostColor);
+                            SetGhostColor(siteManagerRef.ghostColor);
                             return true;
                         }
                     }
@@ -188,7 +234,7 @@ public class Block : MonoBehaviour {
             }
         }
         //if you've been through all tiles and not found a solid
-        SetGhostColor(SiteManagerRef.invalidMoveColor);
+        SetGhostColor(siteManagerRef.invalidMoveColor);
         return false;
     }
 
@@ -203,11 +249,11 @@ public class Block : MonoBehaviour {
         foreach(Vector2 dir in dirs)
         {
             Vector2 neighborCoord = dir + gridPositionOfOrigin;
-            if(neighborCoord.x < 0 || neighborCoord.x > SiteManagerRef.grid.GetLength(0) - 1 ||
-                neighborCoord.y < 0 || neighborCoord.y > SiteManagerRef.grid.GetLength(1) - 1)
+            if(neighborCoord.x < 0 || neighborCoord.x > siteDataRef.grid.GetLength(0) - 1 ||
+                neighborCoord.y < 0 || neighborCoord.y > siteDataRef.grid.GetLength(1) - 1)
                 continue;
 
-            Block maybeNeighbor = SiteManagerRef.grid[(int)neighborCoord.x, (int)neighborCoord.y];
+            Block maybeNeighbor = siteDataRef.grid[(int)neighborCoord.x, (int)neighborCoord.y];
             if (maybeNeighbor != null)
             {
                 neighbors.Add(maybeNeighbor);
@@ -219,24 +265,21 @@ public class Block : MonoBehaviour {
     public void SetGridPos(Vector2 newPos, bool onGrid)
     {
         gridPositionOfOrigin = newPos;
-        transform.position = gridPositionOfOrigin;
+        transform.localPosition = gridPositionOfOrigin;
 
         if (onGrid)
         {
             foreach (Vector2 tileCoord in shape.AllTileCoords)
             {
                 Vector2 newCoord = tileCoord + gridPositionOfOrigin;
-                SiteManagerRef.grid[(int)newCoord.x, (int)newCoord.y] = this;
+                siteDataRef.grid[(int)newCoord.x, (int)newCoord.y] = this;
             }
         }
     }
 
-}
+    int CheckTowerHeight()
+    {
+        return (int)(gridPositionOfOrigin.y + yLength + 1);
+    }
 
-public struct GhostInfo
-{
-    /// <summary>
-    /// The Grid Coord that will be used if the ghost is dropped.
-    /// </summary>
-    public Vector2 ghostOriginCoord;
 }

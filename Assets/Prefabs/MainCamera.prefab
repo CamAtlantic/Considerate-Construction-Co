@@ -339,8 +339,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 494a2a0ec111c4e8d8847433de35365e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainCamera: {fileID: 1646622336957344}
-  DistanceBetweenPlots: 15
+  cameraOffset: -0.5
+  lerpSpeed: 0.1
+  mode: 1
 --- !u!114 &114510726658876246
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -353,7 +354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Messages: {fileID: 0}
-  DayDuration_s: 20
+  DayDuration_s: 200
   DottedCircle: {fileID: 1246266950882876}
   SunCenter_: {fileID: 1489711310320544}
   SunSymbol: {fileID: 1518796607751046}

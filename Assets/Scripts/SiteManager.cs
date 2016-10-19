@@ -6,56 +6,60 @@ public enum LevelMode { Fixed,Random,MagicBag};
 
 public class SiteManager : MonoBehaviour {
     //This script controls spawning and moving blocks.
-    //TODO: standardize worldSpace vs local.
 	public static string SwipedDirection;
-    
-    public Block[,] grid;
+    CameraController camControllerRef;
 
-    public int gridSizeX = 5;
-    /// <summary>
-    /// The size of the array. Larger than the maxHeight to avoid Out of Range fuckery.
-    /// </summary>
-    [HideInInspector]
+    private int gridSizeX = 12;
     public int gridSizeY = 30;
+
     /// <summary>
-    /// The actual size of the array being used.
+    /// The actual height of the array being used.
     /// </summary>
     [HideInInspector]
     public int maxHeight = 20;
 
-    public int topBlockHeight = 0;
-	public static int topBlockHeight_static = 0;
+    public SiteData currentSite;
 
+    //TODO: These might go well on SiteData
     public LevelMode modeSelect;
-
     public GameObject[] blockList;
+
+    public int normalTopBlock = 0;
+    public int shadowTopBlock = 0;
 
     [HideInInspector]
     public Block heldBlock;
 
-    //I feel like these should be on another, global script. Maybe SiteManager? or Jai's color manager thing.
+    //TODO: move to color manager
     public Color ghostColor;
     public Color invalidMoveColor;
 
+    public bool inShadow = false;
+
+    void Awake()
+    {
+        camControllerRef = FindObjectOfType<CameraController>();
+
+        currentSite = GetComponent<SiteData>();
+        currentSite.grid = new Block[gridSizeX, gridSizeY];
+
+        SwipedDirection = "null";
+    }
+
     // Use this for initialization
     void Start () {
-        grid = new Block[gridSizeX,gridSizeY];
 
-		SwipedDirection = "null";
     }
     
     // Update is called once per frame
     void Update () {
-		
-		topBlockHeight_static = topBlockHeight;
-
         if (!heldBlock)
         {
-            //TODO: not spawn blocks on pressing space
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                SpawnNewBlock();
-            }
+            //TODO: possibly a delay or small animation on spawning a new block?
+            
+            SpawnNewBlock();
+            inShadow = false;
+            camControllerRef.ChangeCamPosition_leftright(1);
         }
         else
         {
@@ -111,16 +115,32 @@ public class SiteManager : MonoBehaviour {
                 fixedModeIndex = 0;
             }
         }
-        GameObject newBlock = Instantiate(blockList[newBlockIndex]);
-
-        //TODO: better block constructor
-        newBlock.transform.parent = transform;
+        GameObject newBlock = Instantiate(blockList[newBlockIndex],transform);
         heldBlock = newBlock.GetComponent<Block>();
-        heldBlock.SiteManagerRef = this;
-
-        Vector2 newBlockPos = new Vector2(2, maxHeight - 1);
-        heldBlock.SetGridPos(newBlockPos,false);
         
+        Vector2 newBlockPos = new Vector2(2, normalTopBlock + 10);
+        heldBlock.SetGridPos(newBlockPos,false);   
+    }
+
+    public void ToggleShadow()
+    {
+        camControllerRef.ChangeCamPosition_leftright();
+        if(!inShadow)
+        {
+            inShadow = true;
+            if(heldBlock)
+            {
+                heldBlock.MoveBlock(new Vector2(7,0));
+            }
+        }
+        else
+        {
+            inShadow = false;
+            if (heldBlock)
+            {
+                heldBlock.MoveBlock(new Vector2(-7, 0));
+            }
+        }
     }
     #region swipes
     public static void SwipeLeft() {

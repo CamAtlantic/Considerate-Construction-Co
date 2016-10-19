@@ -4,57 +4,81 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour {
 
-	public GameObject MainCamera;
-	//public GameObject Location_left;
-	//public GameObject Location_right;
-	//public GameObject Location_depth;
-	public float DistanceBetweenPlots;
-	//leftright 1 = left; 2 = right
-	private int CameraLocation_leftright;
-	//updown -1 = backward; 0 = standard; 1 = forward
-	private int CameraLocation_updown;
+    SiteManager siteManagerRef;
+    public float cameraOffset;
 
-	// Use this for initialization
-	void Start () {
-		
-		CameraLocation_leftright = 1;
+    /// <summary>
+    /// 1 = left; 2 = right
+    /// </summary>
+    private int CameraLocation_leftright = 1;
+    /// <summary>
+    /// -1 = backward; 0 = standard; 1 = forward
+    /// </summary>
+    private int CameraLocation_updown;
 
-	}
+    private int leftXPos = 2;
+    private int rightXPos = 9;
+    public float lerpSpeed = 0.1f;
+
+    public CameraMode mode = CameraMode.MoveWithBlock;
+
+    void Awake()
+    {
+        siteManagerRef = FindObjectOfType<SiteManager>();
+        CameraLocation_leftright = 1;
+
+    }
+
+    // Use this for initialization
+    void Start () {
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		//cam focus on highest block
-		MainCamera.transform.position = Vector3.Lerp (MainCamera.transform.position, new Vector3 (MainCamera.transform.position.x, SiteManager.topBlockHeight_static - 0.5f, MainCamera.transform.position.z), 0.1f);
-        /*
+        //== Vertical ==============================
+
+        if (mode == CameraMode.MoveWithBlock && siteManagerRef.heldBlock)
+        {
+            LerpToHeight((int)siteManagerRef.heldBlock.ghostOrigin.y);
+        }
+        else
+        {
+            if (siteManagerRef.inShadow)
+                LerpToHeight(siteManagerRef.shadowTopBlock);
+            else
+                LerpToHeight(siteManagerRef.normalTopBlock);
+        }
+        
+        //== Horizontal ==============================
 		if (CameraLocation_leftright == 1) {
-			MainCamera.transform.position = Vector3.Lerp (MainCamera.transform.position, new Vector3 (Location_left.transform.position.x, MainCamera.transform.position.y, MainCamera.transform.position.z ), 0.1f);
+			transform.position = Vector3.Lerp (transform.position,
+                new Vector3 (leftXPos, transform.position.y, transform.position.z ), lerpSpeed);
 		}
 		if (CameraLocation_leftright == 2) {
-			MainCamera.transform.position = Vector3.Lerp (MainCamera.transform.position, new Vector3 (Location_right.transform.position.x,MainCamera.transform.position.y,MainCamera.transform.position.z), 0.1f);
+			transform.position = Vector3.Lerp (transform.position,
+                new Vector3 (rightXPos,transform.position.y,transform.position.z), lerpSpeed);
 		}
-
-		MainCamera.transform.position = Vector3.Lerp (MainCamera.transform.position, new Vector3 (MainCamera.transform.position.x,MainCamera.transform.position.y,Location_depth.transform.position.z), 0.1f);
-        */
 	}
-		
+	
 	public void ChangeCamPosition_leftright ()
 	{
-		if (CameraLocation_leftright == 1) {
+        if (CameraLocation_leftright == 1) {
 			CameraLocation_leftright = 2;
 		}
 		else if (CameraLocation_leftright == 2) {
 			CameraLocation_leftright = 1;
 		}
 	}
-    /*
-	public void ChangeCamPosition_forward ()
-	{
-		Location_depth.transform.position = MainCamera.transform.position + Vector3.back * DistanceBetweenPlots;
-	}
+    public void ChangeCamPosition_leftright(int leftRight)
+    {
+        CameraLocation_leftright = leftRight;
+    }
+    
+    void LerpToHeight(int height)
+    {
+        transform.position = Vector3.Lerp(transform.position,
+            new Vector3(transform.position.x, height + cameraOffset, transform.position.z), lerpSpeed);
+    }
 
-	public void ChangeCamPosition_back ()
-	{
-		Location_depth.transform.position = MainCamera.transform.position + Vector3.forward * DistanceBetweenPlots;
-	}
-    */
+    public enum CameraMode { FixedToHeight,MoveWithBlock}
 }
