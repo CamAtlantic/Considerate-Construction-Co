@@ -17,7 +17,7 @@ public class CameraController : MonoBehaviour {
 	private int CameraLocation_updown;
 
     private int leftXPos = 2;
-    private int rightXPos = 7;
+    private int rightXPos = 9;
     public float lerpSpeed = 0.1f;
 
 	// Use this for initialization

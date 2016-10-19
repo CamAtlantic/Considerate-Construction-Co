@@ -37,7 +37,7 @@ public class Block : MonoBehaviour {
         get
         {
             if (siteManagerRef.inShadow)
-                return 5;
+                return 7;
             else
                 return 0;
         }
@@ -47,7 +47,7 @@ public class Block : MonoBehaviour {
         get
         {
             if (siteManagerRef.inShadow)
-                return 9;
+                return 11;
             else
                 return 4;
         }

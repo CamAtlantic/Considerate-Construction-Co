@@ -8,13 +8,9 @@ public class SiteManager : MonoBehaviour {
     //This script controls spawning and moving blocks.
 	public static string SwipedDirection;
 
-    private int gridSizeX = 10;
-
-    /// <summary>
-    /// The size of the array. Larger than the maxHeight to avoid Out of Range fuckery.
-    /// </summary>
-    [HideInInspector]
+    private int gridSizeX = 12;
     public int gridSizeY = 30;
+
     /// <summary>
     /// The actual size of the array being used.
     /// </summary>
@@ -64,7 +60,7 @@ public class SiteManager : MonoBehaviour {
         {
             //TODO: possibly a delay on spawning a new block?
             
-                SpawnNewBlock();
+            SpawnNewBlock();
             inShadow = false;
             camControllerRef.ChangeCamPosition_leftright(1);
         }
@@ -141,7 +137,7 @@ public class SiteManager : MonoBehaviour {
             inShadow = true;
             if(heldBlock)
             {
-                heldBlock.MoveBlock(new Vector2(5,0));
+                heldBlock.MoveBlock(new Vector2(7,0));
             }
         }
         else
@@ -149,7 +145,7 @@ public class SiteManager : MonoBehaviour {
             inShadow = false;
             if (heldBlock)
             {
-                heldBlock.MoveBlock(new Vector2(-5, 0));
+                heldBlock.MoveBlock(new Vector2(-7, 0));
             }
         }
     }
