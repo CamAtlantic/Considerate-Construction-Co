@@ -20,10 +20,6 @@ public class TimeController : MonoBehaviour {
 	public float DaySpeed;
 	public static string TimeState;
 	private Quaternion SunStartPosition;
-	public GameObject time_Dawn;
-	public GameObject time_Noon;
-	public GameObject time_Dusk;
-	public GameObject time_Twilight;
 
 	// Use this for initialization
 	void Start () {
