@@ -46,7 +46,7 @@ namespace Lean.Touch
 				}
 
 				// Copy all snapshot data into this line
-				line.SetVertexCount(finger.Snapshots.Count);
+				line.numPositions = finger.Snapshots.Count;
 			
 				for (var j = 0; j < finger.Snapshots.Count; j++)
 				{
