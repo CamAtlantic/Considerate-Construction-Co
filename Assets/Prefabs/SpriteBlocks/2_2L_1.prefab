@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212902889898719992}
   - component: {fileID: 114475964590018354}
   m_Layer: 0
-  m_Name: building_a_2
+  m_Name: Backing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 212110463563314274}
   - component: {fileID: 114184304245546644}
   m_Layer: 0
-  m_Name: door_3
+  m_Name: door_accent_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 212580666300421118}
   - component: {fileID: 114356199640537942}
   m_Layer: 0
-  m_Name: aircon_unit_3
+  m_Name: aircon_unit_accent_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 212394703786588896}
   - component: {fileID: 114499418891779980}
   m_Layer: 0
-  m_Name: door_2
+  m_Name: door_glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 212507986086206000}
   - component: {fileID: 114533757002701742}
   m_Layer: 0
-  m_Name: building_a_1
+  m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 212967041779841552}
   - component: {fileID: 114742357453669426}
   m_Layer: 0
-  m_Name: building_a_3
+  m_Name: Accent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 212780140775216086}
   - component: {fileID: 114192107877634666}
   m_Layer: 0
-  m_Name: aircon_unit_2
+  m_Name: aircon_unit_accent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 212023556156108770}
   - component: {fileID: 114978665591083700}
   m_Layer: 0
-  m_Name: building_a_4
+  m_Name: Inside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -189,7 +189,7 @@ GameObject:
   - component: {fileID: 212242835011413920}
   - component: {fileID: 114558185491298316}
   m_Layer: 0
-  m_Name: door_1
+  m_Name: door_frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 212842119042012166}
   - component: {fileID: 114907815582861032}
   m_Layer: 0
-  m_Name: aircon_unit_1
+  m_Name: aircon_unit_accent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -258,7 +258,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1743468027282780}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.512, y: 1.002, z: -2.4}
+  m_LocalPosition: {x: 0.512, y: 1.002, z: -1.8}
   m_LocalScale: {x: 0.13884316, y: 0.13884313, z: 0.13884313}
   m_Children: []
   m_Father: {fileID: 4498905701652034}
@@ -307,7 +307,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1175828536619218}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2.12, y: 3.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4498905701652034}
@@ -404,7 +404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 6
-  MyColorCode: 3
+  MyColorCode: 2
 --- !u!114 &114356199640537942
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -417,7 +417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 5
-  MyColorCode: 5
+  MyColorCode: 3
 --- !u!114 &114475964590018354
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -430,7 +430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 6
-  MyColorCode: 1
+  MyColorCode: 10
 --- !u!114 &114499418891779980
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -455,8 +455,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc08b2892b8a44e129d53971487c3b1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Depth: 7
-  MyColorCode: 7
+  Depth: 4
+  MyColorCode: 1
 --- !u!114 &114558185491298316
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -469,7 +469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 3
-  MyColorCode: 3
+  MyColorCode: 10
 --- !u!114 &114580977187558906
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -507,7 +507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 2
-  MyColorCode: 6
+  MyColorCode: 5
 --- !u!114 &114907815582861032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -520,7 +520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 6
-  MyColorCode: 3
+  MyColorCode: 2
 --- !u!114 &114978665591083700
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -533,7 +533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Depth: 0
-  MyColorCode: 3
+  MyColorCode: 9
 --- !u!212 &212023556156108770
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -566,7 +566,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6c81be8eaae344e398c95ec617058454, type: 3}
-  m_Color: {r: 0.9959894, g: 1, b: 0.6911765, a: 1}
+  m_Color: {r: 0.15289794, g: 0.16422564, b: 0.20588237, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212110463563314274
@@ -601,7 +601,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 531a1d0a746494f6d80e191e99072e5a, type: 3}
-  m_Color: {r: 1, g: 0.4784314, b: 0.4784314, a: 1}
+  m_Color: {r: 1, g: 0.77839756, b: 0.30147058, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212242835011413920
@@ -636,7 +636,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3349cc6fa51924be0a758f260028db6b, type: 3}
-  m_Color: {r: 0.9959894, g: 1, b: 0.6911765, a: 1}
+  m_Color: {r: 0.22670329, g: 0.22166955, b: 0.36764705, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212394703786588896
@@ -671,7 +671,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4a567714543424ba8907936702eca18f, type: 3}
-  m_Color: {r: 0.6911765, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.89705884, g: 0.7882472, b: 0.5936419, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212507986086206000
@@ -706,7 +706,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 508055d6f86b042f69d6970c5f266b8a, type: 3}
-  m_Color: {r: 0.5480645, g: 0.6838235, b: 0.56023604, a: 1}
+  m_Color: {r: 0.39463666, g: 0.28222317, b: 0.42647058, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212580666300421118
@@ -741,7 +741,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 013852ca38d504dddb462b506c1f3907, type: 3}
-  m_Color: {r: 1, g: 0.639858, b: 0.50735295, a: 1}
+  m_Color: {r: 0.51578724, g: 0.66176474, b: 0.56511754, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212780140775216086
@@ -776,7 +776,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 531cd852edf9346188e52c49bd598409, type: 3}
-  m_Color: {r: 0.9959894, g: 1, b: 0.6911765, a: 1}
+  m_Color: {r: 1, g: 0.77839756, b: 0.30147058, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212842119042012166
@@ -811,7 +811,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 850c6fcae94b54083ba4d1f0f4aa4c67, type: 3}
-  m_Color: {r: 0.9959894, g: 1, b: 0.6911765, a: 1}
+  m_Color: {r: 1, g: 0.77839756, b: 0.30147058, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212902889898719992
@@ -846,7 +846,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: dd2615993760944f9b6382ccaf2a3574, type: 3}
-  m_Color: {r: 0.9117647, g: 0.38213664, b: 0.38213664, a: 1}
+  m_Color: {r: 0.22670329, g: 0.22166955, b: 0.36764705, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212967041779841552
@@ -881,6 +881,6 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 50296bb794b2f469095f2fd6f70a6788, type: 3}
-  m_Color: {r: 0.6985294, g: 0.28762975, b: 0.33013645, a: 1}
+  m_Color: {r: 0.62128025, g: 0.57807094, b: 0.7941176, a: 1}
   m_FlipX: 0
   m_FlipY: 0

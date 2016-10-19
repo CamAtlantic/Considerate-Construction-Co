@@ -23,6 +23,7 @@ public class CameraController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		//cam focus on highest block
 		MainCamera.transform.position = Vector3.Lerp (MainCamera.transform.position, new Vector3 (MainCamera.transform.position.x, SiteManager.topBlockHeight_static - 0.5f, MainCamera.transform.position.z), 0.1f);
         /*
 		if (CameraLocation_leftright == 1) {
