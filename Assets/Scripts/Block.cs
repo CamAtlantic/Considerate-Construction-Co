@@ -139,14 +139,31 @@ public class Block : MonoBehaviour {
         siteManagerRef.heldBlock = null;
 
         SetGridPos(ghostOrigin,true);
-        if (gridPositionOfOrigin.y + yLength +1 > siteManagerRef.topBlockHeight)
+
+        if (siteManagerRef.inShadow)
         {
-            siteManagerRef.topBlockHeight = (int)(gridPositionOfOrigin.y + yLength +1 );
+            if (CheckTowerHeight() > siteManagerRef.shadowTopBlock)
+            {
+                siteManagerRef.shadowTopBlock = CheckTowerHeight();
+            }
+        }
+        else
+        {
+            if (CheckTowerHeight() > siteManagerRef.normalTopBlock)
+            {
+                siteManagerRef.normalTopBlock = CheckTowerHeight();
+            }
+           
         }
         UpdateNeighbors();
         Destroy(ghost);
     }
     
+    int CheckTowerHeight()
+    {
+        return (int)(gridPositionOfOrigin.y + yLength + 1);
+    }
+
     /// <summary>
     /// Returns true if position is valid.
     /// </summary>

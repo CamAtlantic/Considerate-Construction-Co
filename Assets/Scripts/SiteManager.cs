@@ -7,22 +7,25 @@ public enum LevelMode { Fixed,Random,MagicBag};
 public class SiteManager : MonoBehaviour {
     //This script controls spawning and moving blocks.
 	public static string SwipedDirection;
+    CameraController camControllerRef;
 
     private int gridSizeX = 12;
     public int gridSizeY = 30;
 
     /// <summary>
-    /// The actual size of the array being used.
+    /// The actual height of the array being used.
     /// </summary>
     [HideInInspector]
     public int maxHeight = 20;
 
-    public int topBlockHeight = 0;
-	public static int topBlockHeight_static = 0;
+    public SiteData currentSite;
 
     //TODO: These might go well on SiteData
     public LevelMode modeSelect;
     public GameObject[] blockList;
+
+    public int normalTopBlock = 0;
+    public int shadowTopBlock = 0;
 
     [HideInInspector]
     public Block heldBlock;
@@ -32,33 +35,28 @@ public class SiteManager : MonoBehaviour {
     public Color invalidMoveColor;
 
     public bool inShadow = false;
-    public SiteData currentSite;
-
-    CameraController camControllerRef;
 
     void Awake()
     {
-        currentSite = GetComponent<SiteData>();
         camControllerRef = FindObjectOfType<CameraController>();
 
+        currentSite = GetComponent<SiteData>();
         currentSite.grid = new Block[gridSizeX, gridSizeY];
+
+        SwipedDirection = "null";
     }
 
     // Use this for initialization
     void Start () {
-        
 
-		SwipedDirection = "null";
     }
     
     // Update is called once per frame
     void Update () {
-		
-		topBlockHeight_static = topBlockHeight;
 
         if (!heldBlock)
         {
-            //TODO: possibly a delay on spawning a new block?
+            //TODO: possibly a delay or small animation on spawning a new block?
             
             SpawnNewBlock();
             inShadow = false;
@@ -119,14 +117,10 @@ public class SiteManager : MonoBehaviour {
             }
         }
         GameObject newBlock = Instantiate(blockList[newBlockIndex],transform);
-
-        
         heldBlock = newBlock.GetComponent<Block>();
         
         Vector2 newBlockPos = new Vector2(2, maxHeight - 1);
-        heldBlock.SetGridPos(newBlockPos,false);
-        
-        
+        heldBlock.SetGridPos(newBlockPos,false);   
     }
 
     public void ToggleShadow()

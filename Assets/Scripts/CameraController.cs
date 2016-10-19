@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour {
 
+    SiteManager siteManagerRef;
 	//public GameObject MainCamera;
     public float cameraOffset;
     //public GameObject Location_left;
@@ -20,6 +21,11 @@ public class CameraController : MonoBehaviour {
     private int rightXPos = 9;
     public float lerpSpeed = 0.1f;
 
+    void Awake()
+    {
+        siteManagerRef = FindObjectOfType<SiteManager>();
+    }
+
 	// Use this for initialization
 	void Start () {
         CameraLocation_leftright = 1;
@@ -28,10 +34,11 @@ public class CameraController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
-		transform.position = Vector3.Lerp (transform.position,
-            new Vector3 (transform.position.x, SiteManager.topBlockHeight_static + cameraOffset, transform.position.z), lerpSpeed);
 
+        if (siteManagerRef.inShadow)
+            LerpToHeight(siteManagerRef.shadowTopBlock);
+        else
+            LerpToHeight(siteManagerRef.normalTopBlock);
         
 		if (CameraLocation_leftright == 1) {
 			transform.position = Vector3.Lerp (transform.position,
@@ -72,4 +79,10 @@ public class CameraController : MonoBehaviour {
 		Location_depth.transform.position = MainCamera.transform.position + Vector3.forward * DistanceBetweenPlots;
 	}
     */
+
+    void LerpToHeight(int height)
+    {
+        transform.position = Vector3.Lerp(transform.position,
+            new Vector3(transform.position.x, height + cameraOffset, transform.position.z), lerpSpeed);
+    }
 }
