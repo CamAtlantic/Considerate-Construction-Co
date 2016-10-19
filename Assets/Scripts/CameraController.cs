@@ -44,9 +44,9 @@ public class CameraController : MonoBehaviour {
         else
         {
             if (siteManagerRef.inShadow)
-                LerpToHeight(siteManagerRef.shadowTopBlock);
+                LerpToHeight(siteManagerRef.siteDataRef.shadowTopBlock);
             else
-                LerpToHeight(siteManagerRef.normalTopBlock);
+                LerpToHeight(siteManagerRef.siteDataRef.normalTopBlock);
         }
         
         //== Horizontal ==============================

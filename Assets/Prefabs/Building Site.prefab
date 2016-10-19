@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4000010016926918}
-  - component: {fileID: 114000010925157906}
   - component: {fileID: 114671144629508774}
   m_Layer: 0
   m_Name: Building Site
@@ -179,41 +178,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1216453659036182}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114000010925157906
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013087376882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93ea666e7f4e57247b736154ae2aae85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gridSizeY: 30
-  maxHeight: 20
-  currentSite: {fileID: 0}
-  modeSelect: 0
-  blockList:
-  - {fileID: 1700916580742118, guid: aa8e42ef35ea2443d805e15f336dc209, type: 2}
-  - {fileID: 1634631806330128, guid: 34819d92adf8c4130aa73e1a619b7196, type: 2}
-  - {fileID: 1966148775900114, guid: 96130551a25104d29b66c53d3915f2e4, type: 2}
-  - {fileID: 1246923975351032, guid: ddee4cb1494fd45da9b699b11eef2ee1, type: 2}
-  - {fileID: 1455746184638508, guid: f359c83175f1444a69fc2ee361c80256, type: 2}
-  - {fileID: 1175828536619218, guid: b89e502cfd2134c08803ac3011807eec, type: 2}
-  - {fileID: 1706287722262902, guid: 6d25e056824a0440d8024c20c4bf2ba5, type: 2}
-  - {fileID: 1141468625312388, guid: ba2a134d6a8de44c3a1c50383b51af14, type: 2}
-  - {fileID: 1517729970320102, guid: d279f23e7173f4e09b3568f48f3f4774, type: 2}
-  - {fileID: 1563706980183728, guid: dfa15e54ecbd740188b8a47d56dbed0a, type: 2}
-  - {fileID: 1700916580742118, guid: aa8e42ef35ea2443d805e15f336dc209, type: 2}
-  - {fileID: 1925907442303088, guid: 6a8b66485eb724f91837c5c95c7cd943, type: 2}
-  - {fileID: 1424095295140126, guid: 94cf099a829694985a05befd8118619f, type: 2}
-  normalTopBlock: 0
-  shadowTopBlock: 0
-  heldBlock: {fileID: 0}
-  ghostColor: {r: 0.841, g: 0.96661, b: 1, a: 1}
-  invalidMoveColor: {r: 1, g: 0.44099998, b: 0.44099998, a: 1}
-  inShadow: 0
 --- !u!114 &114671144629508774
 MonoBehaviour:
   m_ObjectHideFlags: 1

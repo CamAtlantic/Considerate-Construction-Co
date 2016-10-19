@@ -6,8 +6,14 @@ public enum LevelMode { Fixed,Random,MagicBag};
 
 public class SiteManager : MonoBehaviour {
     //This script controls spawning and moving blocks.
+
 	public static string SwipedDirection;
+
     CameraController camControllerRef;
+
+    public GameObject buildingSitePrefab;
+    [HideInInspector]
+    public SiteData siteDataRef;
 
     private int gridSizeX = 12;
     public int gridSizeY = 30;
@@ -16,23 +22,14 @@ public class SiteManager : MonoBehaviour {
     /// The actual height of the array being used.
     /// </summary>
     [HideInInspector]
-    public int maxHeight = 20;
-
-    public SiteData currentSite;
+    public int maxHeight = 30;
 
     //TODO: These might go well on SiteData
     public LevelMode modeSelect;
     public GameObject[] blockList;
 
-    public int normalTopBlock = 0;
-    public int shadowTopBlock = 0;
-
     [HideInInspector]
     public Block heldBlock;
-
-    //TODO: move to color manager
-    public Color ghostColor;
-    public Color invalidMoveColor;
 
     public bool inShadow = false;
 
@@ -40,8 +37,9 @@ public class SiteManager : MonoBehaviour {
     {
         camControllerRef = FindObjectOfType<CameraController>();
 
-        currentSite = GetComponent<SiteData>();
-        currentSite.grid = new Block[gridSizeX, gridSizeY];
+        GameObject newSite = Instantiate(buildingSitePrefab);
+        siteDataRef = newSite.GetComponent<SiteData>();
+        siteDataRef.grid = new Block[gridSizeX, gridSizeY];
 
         SwipedDirection = "null";
     }
@@ -56,7 +54,6 @@ public class SiteManager : MonoBehaviour {
         if (!heldBlock)
         {
             //TODO: possibly a delay or small animation on spawning a new block?
-            
             SpawnNewBlock();
             inShadow = false;
             camControllerRef.ChangeCamPosition_leftright(1);
@@ -115,15 +112,16 @@ public class SiteManager : MonoBehaviour {
                 fixedModeIndex = 0;
             }
         }
-        GameObject newBlock = Instantiate(blockList[newBlockIndex],transform);
+        GameObject newBlock = Instantiate(blockList[newBlockIndex],siteDataRef.transform);
         heldBlock = newBlock.GetComponent<Block>();
         
-        Vector2 newBlockPos = new Vector2(2, normalTopBlock + 10);
+        Vector2 newBlockPos = new Vector2(2, siteDataRef.normalTopBlock + 10);
         heldBlock.SetGridPos(newBlockPos,false);   
     }
 
     public void ToggleShadow()
     {
+        
         camControllerRef.ChangeCamPosition_leftright();
         if(!inShadow)
         {
@@ -142,6 +140,7 @@ public class SiteManager : MonoBehaviour {
             }
         }
     }
+
     #region swipes
     public static void SwipeLeft() {
 		SwipedDirection = "left";

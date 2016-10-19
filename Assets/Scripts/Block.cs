@@ -56,13 +56,15 @@ public class Block : MonoBehaviour {
     void Awake()
     {
         camControllerRef = FindObjectOfType<CameraController>();
-        siteManagerRef = transform.parent.GetComponent<SiteManager>();
-        siteDataRef = siteManagerRef.currentSite;
+        siteManagerRef = FindObjectOfType<SiteManager>();
+        siteDataRef = transform.parent.GetComponent<SiteData>();
+
     }
 
 
     // Use this for initialization
     void Start () {
+        
         if (!image)
             Debug.LogError(gameObject.name + " has a null Image field! Fix the prefab.");
         else
@@ -89,7 +91,6 @@ public class Block : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
         if (falling)
         {
             transform.localPosition += (Vector3.down * fallSpeed);
@@ -103,10 +104,10 @@ public class Block : MonoBehaviour {
 
     public void SpawnGhost()
     {
-        ghost = Instantiate(image);
+        ghost = Instantiate(image,transform.parent);
         //TODO: depth sort the ghost so it's behind the block.
-        //TODO: fix so that ghosts are silhouettes
-        SetGhostColor(siteManagerRef.ghostColor);
+        //TODO: Make the ghosts silhouettes
+        SetGhostColor(ColorManager.ghostColor);
     }
 
     void SetGhostColor(Color color)
@@ -143,16 +144,16 @@ public class Block : MonoBehaviour {
 
         if (siteManagerRef.inShadow)
         {
-            if (CheckTowerHeight() > siteManagerRef.shadowTopBlock)
+            if (CheckTowerHeight() > siteDataRef.shadowTopBlock)
             {
-                siteManagerRef.shadowTopBlock = CheckTowerHeight();
+                siteDataRef.shadowTopBlock = CheckTowerHeight();
             }
         }
         else
         {
-            if (CheckTowerHeight() > siteManagerRef.normalTopBlock)
+            if (CheckTowerHeight() > siteDataRef.normalTopBlock)
             {
-                siteManagerRef.normalTopBlock = CheckTowerHeight();
+                siteDataRef.normalTopBlock = CheckTowerHeight();
             }
         }
 
@@ -192,7 +193,7 @@ public class Block : MonoBehaviour {
             }
         }
         //If the checker reaches the floor
-        SetGhostColor(siteManagerRef.ghostColor);
+        SetGhostColor(ColorManager.ghostColor);
         ghostOrigin = potentialGhostPos;
         ghost.transform.localPosition = ghostOrigin;
         return true;
@@ -227,7 +228,7 @@ public class Block : MonoBehaviour {
                         //if one block is above a solid, move is valid
                         if (foundTile == Tile.Solid || foundTile == Tile.NoDown)
                         {
-                            SetGhostColor(siteManagerRef.ghostColor);
+                            SetGhostColor(ColorManager.ghostColor);
                             return true;
                         }
                     }
@@ -235,7 +236,7 @@ public class Block : MonoBehaviour {
             }
         }
         //if you've been through all tiles and not found a solid
-        SetGhostColor(siteManagerRef.invalidMoveColor);
+        SetGhostColor(ColorManager.invalidMoveColor);
         return false;
     }
 

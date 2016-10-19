@@ -6,6 +6,9 @@ public class SiteData : MonoBehaviour {
 
     public Block[,] grid;
 
+    public int normalTopBlock = 0;
+    public int shadowTopBlock = 0;
+
     // Use this for initialization
     void Start () {
 		
