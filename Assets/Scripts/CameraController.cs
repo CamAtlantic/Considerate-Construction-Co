@@ -36,27 +36,27 @@ public class CameraController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //== Vertical ==============================
-
-        if (mode == CameraMode.MoveWithBlock && siteManagerRef.heldBlock)
-        {
-            LerpToHeight((int)siteManagerRef.heldBlock.ghostOrigin.y);
-        }
-        else
-        {
-            if (siteManagerRef.inShadow)
-                LerpToHeight(siteManagerRef.shadowTopBlock);
-            else
-                LerpToHeight(siteManagerRef.normalTopBlock);
-        }
+		if (SelectBuilding.LookingAtBuilding == false) 
+		{
+			Debug.Log ("active");
+			if (mode == CameraMode.MoveWithBlock && siteManagerRef.heldBlock) {
+				LerpToHeight ((int)siteManagerRef.heldBlock.ghostOrigin.y);
+			} else {
+				if (siteManagerRef.inShadow)
+					LerpToHeight (siteManagerRef.shadowTopBlock);
+				else
+					LerpToHeight (siteManagerRef.normalTopBlock);
+			}
         
-        //== Horizontal ==============================
-		if (CameraLocation_leftright == 1) {
-			transform.position = Vector3.Lerp (transform.position,
-                new Vector3 (leftXPos, transform.position.y, transform.position.z ), lerpSpeed);
-		}
-		if (CameraLocation_leftright == 2) {
-			transform.position = Vector3.Lerp (transform.position,
-                new Vector3 (rightXPos,transform.position.y,transform.position.z), lerpSpeed);
+			//== Horizontal ==============================
+			if (CameraLocation_leftright == 1) {
+				transform.position = Vector3.Lerp (transform.position,
+					new Vector3 (leftXPos, transform.position.y, transform.position.z), lerpSpeed);
+			}
+			if (CameraLocation_leftright == 2) {
+				transform.position = Vector3.Lerp (transform.position,
+					new Vector3 (rightXPos, transform.position.y, transform.position.z), lerpSpeed);
+			}
 		}
 	}
 	
@@ -80,5 +80,5 @@ public class CameraController : MonoBehaviour {
             new Vector3(transform.position.x, height + cameraOffset, transform.position.z), lerpSpeed);
     }
 
-    public enum CameraMode { FixedToHeight,MoveWithBlock}
+    public enum CameraMode {FixedToHeight,MoveWithBlock}
 }
