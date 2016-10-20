@@ -26,7 +26,8 @@ public class SelectBuilding : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		LookingAtBuilding = false;
-		OuterRing.transform.localScale = new Vector3 (0, 0, 0);
+		OuterRing.transform.localScale = Vector3.one * 35;
+		Confirm.transform.localScale = new Vector3 (0, 0, 0);
 	}
 	
 	// Update is called once per frame
