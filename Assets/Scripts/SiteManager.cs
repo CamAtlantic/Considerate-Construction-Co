@@ -4,10 +4,11 @@ using System.Collections.Generic;
 
 public enum LevelMode { Fixed,Random,MagicBag};
 
-public class SiteManager : MonoBehaviour {
+public class SiteManager : MonoBehaviour
+{
     //This script controls spawning and moving blocks.
 
-	public static string SwipedDirection;
+    public static string SwipedDirection;
 
     CameraController camControllerRef;
 
@@ -45,12 +46,14 @@ public class SiteManager : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
 
     }
-    
+
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         if (!heldBlock)
         {
             //TODO: possibly a delay or small animation on spawning a new block?
@@ -62,28 +65,31 @@ public class SiteManager : MonoBehaviour {
         {
             if (SwipedDirection == "left" ||
                 Input.GetKeyDown(KeyCode.A) ||
-                Input.GetKeyDown(KeyCode.LeftArrow)) {
+                Input.GetKeyDown(KeyCode.LeftArrow))
+            {
                 heldBlock.MoveBlock(Vector2.left);
                 SwipedDirection = "null";
-			}
+            }
 
-			if (SwipedDirection == "right" ||
+            if (SwipedDirection == "right" ||
                 Input.GetKeyDown(KeyCode.D) ||
-                Input.GetKeyDown(KeyCode.RightArrow)) {
+                Input.GetKeyDown(KeyCode.RightArrow))
+            {
                 heldBlock.MoveBlock(Vector2.right);
                 SwipedDirection = "null";
-			}
+            }
 
-			if (SwipedDirection == "down" ||
-                Input.GetKeyDown(KeyCode.Space)){
+            if (SwipedDirection == "down" ||
+                Input.GetKeyDown(KeyCode.Space))
+            {
                 if (heldBlock.CheckGhostPos())
                 {
                     heldBlock.Drop();
                     SwipedDirection = "null";
                 }
-			}
+            }
 
-            if(Input.GetKeyDown(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.X))
             {
                 Destroy(heldBlock.ghost);
                 Destroy(heldBlock.gameObject);
@@ -106,29 +112,29 @@ public class SiteManager : MonoBehaviour {
         {
             newBlockIndex = fixedModeIndex;
             fixedModeIndex++;
-            if(fixedModeIndex == blockList.Length)
+            if (fixedModeIndex == blockList.Length)
             {
                 //here is where the level can end or we can reset or something
                 fixedModeIndex = 0;
             }
         }
-        GameObject newBlock = Instantiate(blockList[newBlockIndex],siteDataRef.transform);
+        GameObject newBlock = Instantiate(blockList[newBlockIndex], siteDataRef.transform);
         heldBlock = newBlock.GetComponent<Block>();
-        
+
         Vector2 newBlockPos = new Vector2(2, siteDataRef.normalTopBlock + 10);
-        heldBlock.SetGridPos(newBlockPos,false);   
+        heldBlock.SetGridPos(newBlockPos, false);
     }
 
     public void ToggleShadow()
     {
-        
+
         camControllerRef.ChangeCamPosition_leftright();
-        if(!inShadow)
+        if (!inShadow)
         {
             inShadow = true;
-            if(heldBlock)
+            if (heldBlock)
             {
-                heldBlock.MoveBlock(new Vector2(7,0));
+                heldBlock.MoveBlock(new Vector2(7, 0));
             }
         }
         else
@@ -142,17 +148,21 @@ public class SiteManager : MonoBehaviour {
     }
 
     #region swipes
-    public static void SwipeLeft() {
-		SwipedDirection = "left";
-	}
-	public static void SwipeRight() {
-		SwipedDirection = "right";
-	}
-	public static void SwipeUp() {
-		SwipedDirection = "up";
-	}
-	public static void SwipeDown() {
-		SwipedDirection = "down";
-	}
+    public static void SwipeLeft()
+    {
+        SwipedDirection = "left";
+    }
+    public static void SwipeRight()
+    {
+        SwipedDirection = "right";
+    }
+    public static void SwipeUp()
+    {
+        SwipedDirection = "up";
+    }
+    public static void SwipeDown()
+    {
+        SwipedDirection = "down";
+    }
     #endregion
 }

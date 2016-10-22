@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode]
+//public enum ColorCode { Base, Accent, Accent2, Glass, Column, ColumnFoot, Roofing1, Roofing2, Inside,BaseBack}
+
+//[ExecuteInEditMode]
 public class ColorManager : MonoBehaviour {
 
     public static Color ghostColor;
     public static Color invalidMoveColor;
 
+    public Color _ghostColor;
+    public Color _invalidMoveColor;
 
     public static Color Clr_1;
 	public static Color Clr_2;
@@ -31,8 +35,13 @@ public class ColorManager : MonoBehaviour {
 	public Color Clr9_inside;
 	public Color Clr10_base_back;
 
+    //public Dictionary<>
+
 	// Use this for initialization
 	void Start () {
+        ghostColor = _ghostColor;
+        invalidMoveColor = _invalidMoveColor;
+
         Clr_1 = Clr1_base;
         Clr_2 = Clr2_accent;
         Clr_3 = Clr3_accent_2;

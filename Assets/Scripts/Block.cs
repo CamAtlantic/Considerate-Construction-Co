@@ -112,9 +112,9 @@ public class Block : MonoBehaviour {
 
     void SetGhostColor(Color color)
     {
-        foreach (Renderer render in ghost.GetComponentsInChildren<Renderer>())
+        foreach (BuidlingControllerScript control in ghost.GetComponentsInChildren<BuidlingControllerScript>())
         {
-            render.material.color = color;
+            control.SetColor(color);
         }
     }
 

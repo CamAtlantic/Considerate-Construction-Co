@@ -242,6 +242,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7029303951c3644cc8ee1525e94fadf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ghostColor: {r: 0.841, g: 0.96661, b: 1, a: 1}
+  _invalidMoveColor: {r: 1, g: 0.44099998, b: 0.44099998, a: 1}
   Clr1_base: {r: 0.39607844, g: 0.28235295, b: 0.42745098, a: 1}
   Clr2_accent: {r: 1, g: 0.7764706, b: 0.3019608, a: 1}
   Clr3_accent_2: {r: 0.5176471, g: 0.6627451, b: 0.5647059, a: 1}
