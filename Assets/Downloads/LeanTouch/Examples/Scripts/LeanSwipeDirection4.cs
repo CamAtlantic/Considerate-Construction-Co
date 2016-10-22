@@ -26,12 +26,12 @@ namespace Lean.Touch
 		
 			if (swipe.x < -Mathf.Abs(swipe.y))
 			{
-				SiteManager.SwipeLeft ();
+				//SiteManager.SwipeLeft ();
 			}
 		
 			if (swipe.x > Mathf.Abs(swipe.y))
 			{
-				SiteManager.SwipeRight ();
+				//SiteManager.SwipeRight ();
 			}
 		
 			if (swipe.y < -Mathf.Abs(swipe.x))

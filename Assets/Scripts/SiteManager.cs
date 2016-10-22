@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Lean.Touch;
 
 public enum LevelMode { Fixed,Random,MagicBag};
 
@@ -67,6 +68,7 @@ public class SiteManager : MonoBehaviour {
                 Input.GetKeyDown(KeyCode.A) ||
                 Input.GetKeyDown(KeyCode.LeftArrow)) {
                 heldBlock.MoveBlock(Vector2.left);
+				//LeanTouchEvents.OnDrag ();
                 SwipedDirection = "null";
 			}
 
@@ -142,6 +144,7 @@ public class SiteManager : MonoBehaviour {
             }
         }
     }
+
     #region swipes
     public static void SwipeLeft() {
 		SwipedDirection = "left";

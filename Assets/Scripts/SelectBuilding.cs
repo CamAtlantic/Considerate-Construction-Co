@@ -9,6 +9,7 @@ public class SelectBuilding : MonoBehaviour {
 	private GameObject Target;
 	private GameObject Target_1;
 	public static bool LookingAtBuilding;
+	private bool Counting = false;
 	private bool Selecting = false;
 	public float SelectZoom;
 	public float NoSelectZoom;
@@ -40,15 +41,20 @@ public class SelectBuilding : MonoBehaviour {
 				//print ("I am hitting" + hit.transform.parent.name);
 				print ("I am hitting" + hit.transform.root.name);
 				Target = hit.transform.parent.gameObject;
-				if (Input.GetMouseButton (0)) {
-					counter += Time.deltaTime;
-					if (counter > SelectCount) {
-						Selecting = true;
-					}
+				if (Input.GetMouseButtonDown (0)) {
+					Counting = true;
 				}
 			}
 		}
 
+		if (Counting == true) 
+		{
+			counter += Time.deltaTime;
+			if (counter > SelectCount) 
+			{
+				Selecting = true;
+			}
+		}
 		if (Selecting == true) {
 			this.GetComponent<CanvasGroup> ().blocksRaycasts = true;
 			LookingAtBuilding = true;
@@ -72,8 +78,9 @@ public class SelectBuilding : MonoBehaviour {
 			this.GetComponent<CanvasGroup> ().blocksRaycasts = false;
 		}
 
-		if (Input.GetMouseButtonUp (0) && Selecting == true) 
+		if (Input.GetMouseButtonUp (0) && Selecting == true || Input.GetMouseButtonUp (0) && Counting == true) 
 		{
+			Counting = false;
 			Selecting = false;
 			counter = 0;
 			LookingAtBuilding = false;

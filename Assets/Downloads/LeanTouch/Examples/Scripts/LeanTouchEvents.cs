@@ -119,12 +119,12 @@ namespace Lean.Touch
 		
 		public void OnTwistDegrees(float angle)
 		{
-			Debug.Log("Many fingers twisted " + angle + " degrees");
+			//Debug.Log("Many fingers twisted " + angle + " degrees");
 		}
 		
 		public void OnTwistRadians(float angle)
 		{
-			Debug.Log("Many fingers twisted " + angle + " radians");
+			//Debug.Log("Many fingers twisted " + angle + " radians");
 		}
 	}
 }
