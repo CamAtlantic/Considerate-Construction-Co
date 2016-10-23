@@ -6,8 +6,8 @@ using System.Collections.Generic;
 public enum Tile { Empty, Solid, NoDown,NoUp}
 
 [System.Serializable]
-public class TileData  {
-    
+public class TileData {
+
     [System.Serializable]
     public struct column
     {
@@ -40,5 +40,15 @@ public class TileData  {
             }
         }
         return temp;
+    }
+
+    public void FlipHorizontal()
+    {
+        column[] oldCol = col;
+        column[] newCol = {
+            oldCol[2],
+            oldCol[1],
+            oldCol[0] };
+        col = newCol;
     }
 }

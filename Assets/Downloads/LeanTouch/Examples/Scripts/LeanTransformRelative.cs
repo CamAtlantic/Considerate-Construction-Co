@@ -7,9 +7,9 @@ namespace Lean.Touch
 	{
 		public bool AllowTranslate = true;
 
-		public bool AllowRotate = true;
+		//public bool AllowRotate = true;
 
-		public bool AllowScale = true;
+		//public bool AllowScale = true;
 
 		protected virtual void Update()
 		{
@@ -18,15 +18,15 @@ namespace Lean.Touch
 				Translate(LeanTouch.DragDelta);
 			}
 
-			if (AllowRotate == true)
-			{
-				RotateRelative(LeanTouch.TwistDegrees, LeanTouch.CenterOfFingers);
-			}
+			//if (AllowRotate == true)
+			//{
+			//	RotateRelative(LeanTouch.TwistDegrees, LeanTouch.CenterOfFingers);
+			//}
 
-			if (AllowScale == true)
-			{
-				ScaleRelative(LeanTouch.PinchScale, LeanTouch.CenterOfFingers);
-			}
+			//if (AllowScale == true)
+			//{
+			//	ScaleRelative(LeanTouch.PinchScale, LeanTouch.CenterOfFingers);
+			//}
 		}
 
 		public void Translate(Vector2 screenPositionDelta)

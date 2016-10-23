@@ -36,27 +36,29 @@ public class CameraController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //== Vertical ==============================
+		if (SelectBuilding.LookingAtBuilding == false) 
+		{
+			if (mode == CameraMode.MoveWithBlock && siteManagerRef.heldBlock) {
+				LerpToHeight ((int)siteManagerRef.heldBlock.ghostOrigin.y);
+			}
 
-        if (mode == CameraMode.MoveWithBlock && siteManagerRef.heldBlock)
-        {
-            LerpToHeight((int)siteManagerRef.heldBlock.ghostOrigin.y);
-        }
-        else
-        {
-            if (siteManagerRef.inShadow)
-                LerpToHeight(siteManagerRef.siteDataRef.shadowTopBlock);
             else
-                LerpToHeight(siteManagerRef.siteDataRef.normalTopBlock);
-        }
+            {
+				if (siteManagerRef.inShadow)
+					LerpToHeight (siteManagerRef.siteDataRef.shadowTopBlock);
+				else
+					LerpToHeight (siteManagerRef.siteDataRef.normalTopBlock);
+			}
         
-        //== Horizontal ==============================
-		if (CameraLocation_leftright == 1) {
-			transform.position = Vector3.Lerp (transform.position,
-                new Vector3 (leftXPos, transform.position.y, transform.position.z ), lerpSpeed);
-		}
-		if (CameraLocation_leftright == 2) {
-			transform.position = Vector3.Lerp (transform.position,
-                new Vector3 (rightXPos,transform.position.y,transform.position.z), lerpSpeed);
+			//== Horizontal ==============================
+			if (CameraLocation_leftright == 1) {
+				transform.position = Vector3.Lerp (transform.position,
+					new Vector3 (leftXPos, transform.position.y, transform.position.z), lerpSpeed);
+			}
+			if (CameraLocation_leftright == 2) {
+				transform.position = Vector3.Lerp (transform.position,
+					new Vector3 (rightXPos, transform.position.y, transform.position.z), lerpSpeed);
+			}
 		}
 	}
 	
@@ -80,5 +82,5 @@ public class CameraController : MonoBehaviour {
             new Vector3(transform.position.x, height + cameraOffset, transform.position.z), lerpSpeed);
     }
 
-    public enum CameraMode { FixedToHeight,MoveWithBlock}
+    public enum CameraMode {FixedToHeight,MoveWithBlock}
 }

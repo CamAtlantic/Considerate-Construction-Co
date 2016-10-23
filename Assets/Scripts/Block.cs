@@ -8,8 +8,9 @@ public class Block : MonoBehaviour {
     public SiteManager siteManagerRef;
     [HideInInspector]
     public SiteData siteDataRef;
-    public TileData shape;
     CameraController camControllerRef;
+
+    public TileData shape;
     List<Block> neighbors = new List<Block>();
 
     [HideInInspector]
@@ -22,15 +23,18 @@ public class Block : MonoBehaviour {
     public GameObject ghost;
 
     public Vector2 gridPositionOfOrigin;
-
     [HideInInspector]
     public Vector2 ghostOrigin = new Vector2();
 
     int value = 0;
     [HideInInspector]
     public bool falling = false;
-
     public float fallSpeed = 2;
+
+    bool flipped = false;
+    Quaternion normalRot = Quaternion.Euler(Vector3.zero);
+    Quaternion flippedRot = Quaternion.Euler(0, 180, 0);
+    float flipSpeed = 0.1f;
 
     int leftEdge
     {
@@ -58,7 +62,6 @@ public class Block : MonoBehaviour {
         camControllerRef = FindObjectOfType<CameraController>();
         siteManagerRef = FindObjectOfType<SiteManager>();
         siteDataRef = transform.parent.GetComponent<SiteData>();
-
     }
 
 
@@ -99,6 +102,15 @@ public class Block : MonoBehaviour {
             {
                 Land();
             }
+        }
+
+        if (flipped)
+        {
+            transform.localRotation = Quaternion.Lerp(transform.localRotation,flippedRot, flipSpeed);
+        }
+        else
+        {
+            transform.localRotation = Quaternion.Lerp(transform.localRotation, normalRot, flipSpeed);
         }
     }
 
@@ -277,6 +289,12 @@ public class Block : MonoBehaviour {
                 siteDataRef.grid[(int)newCoord.x, (int)newCoord.y] = this;
             }
         }
+    }
+
+    public void FlipHorizontal()
+    {
+        flipped = true;
+        shape.FlipHorizontal();
     }
 
     int CheckTowerHeight()
