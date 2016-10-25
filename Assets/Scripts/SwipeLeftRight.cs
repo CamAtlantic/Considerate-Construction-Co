@@ -33,7 +33,7 @@ public class SwipeLeftRight : MonoBehaviour
 			{
 			if (DistanceBetween < -(IntervalCount)) 
 				{
-					Debug.Log ("right");
+					//Debug.Log ("right");
 					SiteManager.SwipeRight ();
 					MouseStartLocation.transform.position = MouseCurrentLocation.transform.position;
 				}
@@ -42,7 +42,7 @@ public class SwipeLeftRight : MonoBehaviour
 			{
 				if (DistanceBetween > IntervalCount) 
 				{
-					Debug.Log ("left");
+					//Debug.Log ("left");
 					SiteManager.SwipeLeft ();
 					MouseStartLocation.transform.position = MouseCurrentLocation.transform.position;
 				}

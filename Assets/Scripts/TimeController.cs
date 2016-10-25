@@ -5,7 +5,7 @@ using UnityEngine;
 public class TimeController : MonoBehaviour {
 
 	public static int CurrentEnviroment;
-	public Messages _Messages;
+	//public GameObject _Messages;
 	private bool DuringDay = false;
 
 	private Vector3 temp;
@@ -27,7 +27,7 @@ public class TimeController : MonoBehaviour {
 		SunStartPosition = SunCenter_.transform.rotation;
 
 		//deciding how to trigger
-		_Messages.Message_1_on ();
+		//_Messages.Message_1_on ();
 		TimeState = "Twilight";
 		CurrentEnviroment = 0;
 
@@ -74,7 +74,7 @@ public class TimeController : MonoBehaviour {
 		else if (DuringDay == false) 
 		{
 			//temp = new Vector3 (0, 0, 0);
-			_Messages.Message_1_on ();
+			//_Messages.Message_1_on ();
 		}
 	}
 

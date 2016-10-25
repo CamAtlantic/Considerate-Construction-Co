@@ -10,7 +10,7 @@ public class SelectBuilding : MonoBehaviour {
 	private GameObject Target_1;
 	public static bool LookingAtBuilding;
 	private bool Counting = false;
-	private bool Selecting = false;
+	public static bool Selecting = false;
 	public float SelectZoom;
 	public float NoSelectZoom;
 	private float counter = 0;

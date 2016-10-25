@@ -64,40 +64,37 @@ public class SiteManager : MonoBehaviour
         }
         else
         {
-            if (SwipedDirection == "left" ||
-                Input.GetKeyDown(KeyCode.A) ||
-                Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                heldBlock.MoveBlock(Vector2.left);
-				//LeanTouchEvents.OnDrag ();
-                SwipedDirection = "null";
-            }
+			if (SelectBuilding.Selecting == false) {
+				if (SwipedDirection == "left" ||
+				            Input.GetKeyDown (KeyCode.A) ||
+				            Input.GetKeyDown (KeyCode.LeftArrow)) {
+					heldBlock.MoveBlock (Vector2.left);
+					//LeanTouchEvents.OnDrag ();
+					SwipedDirection = "null";
+				}
 
-            if (SwipedDirection == "right" ||
-                Input.GetKeyDown(KeyCode.D) ||
-                Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                heldBlock.MoveBlock(Vector2.right);
-                SwipedDirection = "null";
-            }
+				if (SwipedDirection == "right" ||
+				            Input.GetKeyDown (KeyCode.D) ||
+				            Input.GetKeyDown (KeyCode.RightArrow)) {
+					heldBlock.MoveBlock (Vector2.right);
+					SwipedDirection = "null";
+				}
 
-            if (SwipedDirection == "down" ||
-                Input.GetKeyDown(KeyCode.Space))
-            {
-                if (heldBlock.CheckGhostPos())
-                {
-                    heldBlock.Drop();
-                    SwipedDirection = "null";
-                }
-            }
+				if (SwipedDirection == "down" ||
+				            Input.GetKeyDown (KeyCode.Space)) {
+					if (heldBlock.CheckGhostPos ()) {
+						heldBlock.Drop ();
+						SwipedDirection = "null";
+					}
+				}
 
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                Destroy(heldBlock.ghost);
-                Destroy(heldBlock.gameObject);
-                heldBlock = null;
-                SpawnNewBlock();
-            }
+				if (Input.GetKeyDown (KeyCode.X)) {
+					Destroy (heldBlock.ghost);
+					Destroy (heldBlock.gameObject);
+					heldBlock = null;
+					SpawnNewBlock ();
+				}
+			}
         }
     }
 
