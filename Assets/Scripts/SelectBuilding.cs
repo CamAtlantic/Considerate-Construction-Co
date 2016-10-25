@@ -17,6 +17,7 @@ public class SelectBuilding : MonoBehaviour {
 	public float SelectCount;
 	public GameObject OuterRing;
 	public float SelectSize;
+	public float UnSelectSize;
 	public GameObject Confirm;
 	private bool ConfirmingDemolish = false;
 	public float ConfirmSize;
@@ -27,7 +28,7 @@ public class SelectBuilding : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		LookingAtBuilding = false;
-		OuterRing.transform.localScale = Vector3.one * 35;
+		OuterRing.transform.localScale = Vector3.one * UnSelectSize;
 		Confirm.transform.localScale = new Vector3 (0, 0, 0);
 	}
 	
@@ -72,7 +73,7 @@ public class SelectBuilding : MonoBehaviour {
 			}
 		} else {
 			MainCamera.orthographicSize = Mathf.Lerp (MainCamera.orthographicSize, NoSelectZoom, 0.1f);
-			OuterRing.transform.localScale = Vector3.Lerp (OuterRing.transform.localScale, Vector3.one * 35, 0.25f);
+			OuterRing.transform.localScale = Vector3.Lerp (OuterRing.transform.localScale, Vector3.one * UnSelectSize, 0.25f);
 			Confirm.transform.localScale = Vector3.Lerp (Confirm.transform.localScale, Vector3.one * 0, 0.25f);
 			AccentRing.color = Color.Lerp (AccentRing.color, AccentRing_noselect, 0.1f);
 			this.GetComponent<CanvasGroup> ().blocksRaycasts = false;
