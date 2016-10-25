@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SelectBuilding : MonoBehaviour {
 
-	public Camera MainCamera;
+	Camera MainCamera;
 	private GameObject Target;
 	private GameObject Target_1;
 	public static bool LookingAtBuilding;
@@ -27,6 +27,7 @@ public class SelectBuilding : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        MainCamera = Camera.main;
 		LookingAtBuilding = false;
 		OuterRing.transform.localScale = Vector3.one * UnSelectSize;
 		Confirm.transform.localScale = new Vector3 (0, 0, 0);

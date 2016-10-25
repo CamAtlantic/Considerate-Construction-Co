@@ -449,7 +449,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ea666e7f4e57247b736154ae2aae85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TutorialMode: 0
+  tutorialMode: 1
+  tutorial_no_up: {fileID: 1604437819931846, guid: f5d06703d7223a242a35d714af7b2276,
+    type: 2}
   buildingSitePrefab: {fileID: 1000013087376882, guid: 3d59254db818b9840898059005e07c35,
     type: 2}
   siteDataRef: {fileID: 0}

@@ -9,7 +9,8 @@ public class SiteManager : MonoBehaviour
 {
     //This script controls spawning and moving blocks.
     
-    public bool TutorialMode = false;
+    public bool tutorialMode = false;
+    public GameObject tutorial_no_up;
     [Space(10)]
     public static string SwipedDirection;
 
@@ -40,10 +41,29 @@ public class SiteManager : MonoBehaviour
     {
         camControllerRef = FindObjectOfType<CameraController>();
 
-        GameObject newSite = Instantiate(buildingSitePrefab);
-        siteDataRef = newSite.GetComponent<SiteData>();
-        siteDataRef.grid = new Block[gridSizeX, gridSizeY];
+        if (tutorialMode)
+        {
+            siteDataRef = FindObjectOfType<SiteData>();
+            siteDataRef.grid = new Block[gridSizeX, gridSizeY];
+            
+            for(int i = 0;i<5;i++)
+            {
+                if (i == 2)
+                    continue;
+                GameObject block = Instantiate(tutorial_no_up, siteDataRef.transform);
+                Block new_no_up = block.GetComponent<Block>();
+                new_no_up.SetGridPos(new Vector2(i, 0),false);
+                new_no_up.Land();
 
+            }
+        }
+        else
+        {
+            //normal operations
+            GameObject newSite = Instantiate(buildingSitePrefab);
+            siteDataRef = newSite.GetComponent<SiteData>();
+            siteDataRef.grid = new Block[gridSizeX, gridSizeY];
+        }
         SwipedDirection = "null";
     }
 
@@ -70,7 +90,6 @@ public class SiteManager : MonoBehaviour
                 Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 heldBlock.MoveBlock(Vector2.left);
-				//LeanTouchEvents.OnDrag ();
                 SwipedDirection = "null";
             }
 
@@ -111,7 +130,6 @@ public class SiteManager : MonoBehaviour
     //TODO: some of this feels like bad OOP
     void SpawnNewBlock()
     {
-        //TODO: some way of choosing different blocks
         int newBlockIndex = 0;
 
         if (modeSelect == LevelMode.Random)
