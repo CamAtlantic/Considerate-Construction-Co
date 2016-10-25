@@ -21,6 +21,7 @@ public class Block : MonoBehaviour {
     public GameObject image;
     [HideInInspector]
     public GameObject ghost;
+    public GameObject center;
 
     public Vector2 gridPositionOfOrigin;
     [HideInInspector]
@@ -31,7 +32,7 @@ public class Block : MonoBehaviour {
     public bool falling = false;
     public float fallSpeed = 2;
 
-    bool flipped = false;
+    public bool flipped = false;
     Quaternion normalRot = Quaternion.Euler(Vector3.zero);
     Quaternion flippedRot = Quaternion.Euler(0, 180, 0);
     float flipSpeed = 0.1f;
@@ -106,11 +107,35 @@ public class Block : MonoBehaviour {
 
         if (flipped)
         {
-            transform.localRotation = Quaternion.Lerp(transform.localRotation,flippedRot, flipSpeed);
+            //transform.localRotation = Quaternion.Lerp(transform.localRotation,flippedRot, flipSpeed);
+            //ghost.transform.localRotation = Quaternion.Lerp(transform.localRotation, flippedRot, flipSpeed);
+
+            /*
+            image.transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(-1,1,1), flipSpeed);
+            ghost.transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(-1, 1, 1), flipSpeed);
+            center.transform.localRotation = Quaternion.Lerp(center.transform.localRotation,flippedRot, flipSpeed);
+            */
+
+            image.transform.localScale  = new Vector3(-1, 1, 1);
+            if (ghost)
+                ghost.transform.localScale = new Vector3(-1, 1, 1);
+
+            center.transform.localRotation =  flippedRot;
         }
         else
         {
-            transform.localRotation = Quaternion.Lerp(transform.localRotation, normalRot, flipSpeed);
+            //transform.localRotation = Quaternion.Lerp(transform.localRotation, normalRot, flipSpeed);
+            //ghost.transform.localRotation = Quaternion.Lerp(transform.localRotation, normalRot, flipSpeed);
+
+            /*
+            image.transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1, 1, 1), flipSpeed);
+            ghost.transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1, 1, 1), flipSpeed);
+            center.transform.localRotation = Quaternion.Lerp(center.transform.localRotation, normalRot, flipSpeed);
+            */
+            image.transform.localScale  = new Vector3(1, 1, 1);
+            if(ghost)
+            ghost.transform.localScale = new Vector3(1, 1, 1);
+            center.transform.localRotation = normalRot;
         }
     }
 
@@ -198,8 +223,10 @@ public class Block : MonoBehaviour {
                     //ghost should move up, then check down.
                     potentialGhostPos.y += 1;
                     ghostOrigin = potentialGhostPos;
+                    
                     ghost.transform.localPosition = ghostOrigin;
-
+                    if (flipped)
+                        ghost.transform.Translate (Vector2.right);
                     return CheckMoveValidity();
                 }
             }
@@ -207,7 +234,10 @@ public class Block : MonoBehaviour {
         //If the checker reaches the floor
         SetGhostColor(ColorManager.ghostColor);
         ghostOrigin = potentialGhostPos;
+        
         ghost.transform.localPosition = ghostOrigin;
+        if (flipped)
+            ghost.transform.Translate(Vector2.right);
         return true;
     }
 
@@ -236,7 +266,7 @@ public class Block : MonoBehaviour {
                     {
                         Vector2 foundTileCoord = tileGridPos - foundBlock.gridPositionOfOrigin;
                         Tile foundTile = foundBlock.shape.col[(int)foundTileCoord.x].row[(int)foundTileCoord.y];
-
+                        
                         //if one block is above a solid, move is valid
                         if (foundTile == Tile.Solid || foundTile == Tile.NoDown)
                         {
@@ -293,7 +323,18 @@ public class Block : MonoBehaviour {
 
     public void FlipHorizontal()
     {
-        flipped = true;
+        if (!flipped)
+        {
+            flipped = true;
+            image.transform.Translate(1, 0, 0);
+            ghost.transform.Translate(1, 0, 0);
+        }
+        else
+        {
+            flipped = false;
+            image.transform.Translate(-1, 0, 0);
+            ghost.transform.Translate(-1, 0, 0);
+        }
         shape.FlipHorizontal();
     }
 

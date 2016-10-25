@@ -49,6 +49,30 @@ public class TileData {
             oldCol[2],
             oldCol[1],
             oldCol[0] };
+
+        bool leftEdgeEmpty = false;
+        foreach (Tile tile in newCol[0].row)
+        {
+            if (tile != Tile.Empty)
+            {
+                leftEdgeEmpty = false;
+                break;
+            }
+            else
+            {
+                leftEdgeEmpty = true;
+            }
+        }
+
+        if(leftEdgeEmpty)
+        {
+            column[] newCol1 = newCol;
+            column[] newCol2 = {
+                    newCol1[1],
+                    newCol1[2],
+                    newCol1[0] };
+            newCol = newCol2;
+        }
         col = newCol;
     }
 }

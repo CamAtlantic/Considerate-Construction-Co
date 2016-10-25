@@ -98,6 +98,10 @@ public class SiteManager : MonoBehaviour
                 heldBlock = null;
                 SpawnNewBlock();
             }
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                heldBlock.FlipHorizontal();
+            }
         }
     }
 
