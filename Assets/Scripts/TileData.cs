@@ -44,6 +44,9 @@ public class TileData {
 
     public void FlipHorizontal()
     {
+        if (xLength == 0)
+            return;
+
         column[] oldCol = col;
         column[] newCol = {
             oldCol[2],
@@ -75,4 +78,37 @@ public class TileData {
         }
         col = newCol;
     }
+
+    public int xLength
+    {
+        get
+        {
+            int _xLength = 0;
+            foreach (Vector2 tile in AllTileCoords)
+            {
+                if (tile.x > _xLength)
+                {
+                    _xLength = (int)tile.x;
+                }
+            }
+            return _xLength;
+        }
+    }
+
+    public int yLength
+    {
+        get
+        {
+            int _yLength = 0;
+            foreach (Vector2 tile in AllTileCoords)
+            {
+                if (tile.y > _yLength)
+                {
+                    _yLength = (int)tile.y;
+                }
+            }
+            return _yLength;
+        }
+    }
+
 }
