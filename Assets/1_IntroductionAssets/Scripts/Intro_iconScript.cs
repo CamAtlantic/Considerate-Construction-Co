@@ -29,8 +29,11 @@ public class Intro_iconScript : MonoBehaviour {
 	private float currentCurveSize = 0f;
 	private float currentCurveAngle = -Mathf.PI/2f;
 
+	public static string SwipeDirection;
+
 	// Use this for initialization
 	void Start () {
+		SwipeDirection = "null";
 
 		a = GetComponent<Animator> ();
 		ParticleEffect.SetActive (false);
@@ -44,9 +47,11 @@ public class Intro_iconScript : MonoBehaviour {
 		{
 			b.SetBool ("SwipeDown", true);
 			ParticleEffect.SetActive (true);
-		if (Input.GetKeyDown ("a")) 
+		
+		if (SwipeDirection == "down") 
 			{
-			SwipedFromLoad = true;
+				Debug.Log ("move down");
+				SwipedFromLoad = true;
 			}
 		}
 		if (SwipedFromLoad == true) {

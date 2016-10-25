@@ -37,6 +37,7 @@ namespace Lean.Touch
 			if (swipe.y < -Mathf.Abs(swipe.x))
 			{
 				SiteManager.SwipeDown ();
+				Intro_iconScript.SwipeDirection = "down";
 			}
 		
 			if (swipe.y > Mathf.Abs(swipe.x))

@@ -37,6 +37,6 @@ public class IntroScript : MonoBehaviour {
 
 	public void StartTutorial ()
 	{
-		SceneManager.LoadScene ("2_Tutorial");
+		//SceneManager.LoadScene ("2_Tutorial");
 	}
 }
