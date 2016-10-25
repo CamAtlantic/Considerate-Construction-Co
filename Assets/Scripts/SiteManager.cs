@@ -8,7 +8,9 @@ public enum LevelMode { Fixed,Random,MagicBag};
 public class SiteManager : MonoBehaviour
 {
     //This script controls spawning and moving blocks.
-
+    
+    public bool TutorialMode = false;
+    [Space(10)]
     public static string SwipedDirection;
 
     CameraController camControllerRef;
@@ -34,7 +36,6 @@ public class SiteManager : MonoBehaviour
     public Block heldBlock;
 
     public bool inShadow = false;
-
     void Awake()
     {
         camControllerRef = FindObjectOfType<CameraController>();
@@ -98,6 +99,11 @@ public class SiteManager : MonoBehaviour
                 heldBlock = null;
                 SpawnNewBlock();
             }
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                heldBlock.FlipHorizontal();
+                heldBlock.CheckGhostPos();
+            }
         }
     }
 
@@ -129,7 +135,6 @@ public class SiteManager : MonoBehaviour
 
     public void ToggleShadow()
     {
-
         camControllerRef.ChangeCamPosition_leftright();
         if (!inShadow)
         {

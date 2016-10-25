@@ -44,11 +44,71 @@ public class TileData {
 
     public void FlipHorizontal()
     {
+        if (xLength == 0)
+            return;
+
         column[] oldCol = col;
         column[] newCol = {
             oldCol[2],
             oldCol[1],
             oldCol[0] };
+
+        bool leftEdgeEmpty = false;
+        foreach (Tile tile in newCol[0].row)
+        {
+            if (tile != Tile.Empty)
+            {
+                leftEdgeEmpty = false;
+                break;
+            }
+            else
+            {
+                leftEdgeEmpty = true;
+            }
+        }
+
+        if(leftEdgeEmpty)
+        {
+            column[] newCol1 = newCol;
+            column[] newCol2 = {
+                    newCol1[1],
+                    newCol1[2],
+                    newCol1[0] };
+            newCol = newCol2;
+        }
         col = newCol;
     }
+
+    public int xLength
+    {
+        get
+        {
+            int _xLength = 0;
+            foreach (Vector2 tile in AllTileCoords)
+            {
+                if (tile.x > _xLength)
+                {
+                    _xLength = (int)tile.x;
+                }
+            }
+            return _xLength;
+        }
+    }
+
+    public int yLength
+    {
+        get
+        {
+            int _yLength = 0;
+            foreach (Vector2 tile in AllTileCoords)
+            {
+                if (tile.y > _yLength)
+                {
+                    _yLength = (int)tile.y;
+                }
+            }
+            return _yLength;
+        }
+    }
+
 }

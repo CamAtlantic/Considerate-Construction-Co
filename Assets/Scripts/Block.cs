@@ -12,15 +12,11 @@ public class Block : MonoBehaviour {
 
     public TileData shape;
     List<Block> neighbors = new List<Block>();
-
-    [HideInInspector]
-    public int xLength = 0;
-    [HideInInspector]
-    public int yLength = 0;
-
+    
     public GameObject image;
     [HideInInspector]
     public GameObject ghost;
+    public GameObject center;
 
     public Vector2 gridPositionOfOrigin;
     [HideInInspector]
@@ -31,7 +27,7 @@ public class Block : MonoBehaviour {
     public bool falling = false;
     public float fallSpeed = 2;
 
-    bool flipped = false;
+    public bool flipped = false;
     Quaternion normalRot = Quaternion.Euler(Vector3.zero);
     Quaternion flippedRot = Quaternion.Euler(0, 180, 0);
     float flipSpeed = 0.1f;
@@ -56,12 +52,14 @@ public class Block : MonoBehaviour {
                 return 4;
         }
     }
-
+    float offset;
     void Awake()
     {
+        Debug.Log(shape.xLength.ToString() + shape.yLength);
         camControllerRef = FindObjectOfType<CameraController>();
         siteManagerRef = FindObjectOfType<SiteManager>();
         siteDataRef = transform.parent.GetComponent<SiteData>();
+        
     }
 
 
@@ -75,20 +73,8 @@ public class Block : MonoBehaviour {
             SpawnGhost();
             CheckGhostPos();
         }
-        //TODO: consider using a vector2 somehow
-        //TODO: find a way of generalizing this foreach, i'm using it very frequently
-        //TODO: serialize this or put it in shape?
-        foreach (Vector2 tile in shape.AllTileCoords)
-        {
-            if(tile.x > xLength)
-            {
-                xLength = (int)tile.x;
-            }
-            if (tile.y> yLength)
-            {
-                yLength = (int)tile.y;
-            }
-        }
+        
+        offset = shape.xLength;
     }
 
     // Update is called once per frame
@@ -106,11 +92,20 @@ public class Block : MonoBehaviour {
 
         if (flipped)
         {
-            transform.localRotation = Quaternion.Lerp(transform.localRotation,flippedRot, flipSpeed);
+            
+            image.transform.localScale  = new Vector3(-1, 1, 1);
+            if (ghost)
+                ghost.transform.localScale = new Vector3(-1, 1, 1);
+
+            center.transform.localRotation =  flippedRot;
         }
         else
         {
-            transform.localRotation = Quaternion.Lerp(transform.localRotation, normalRot, flipSpeed);
+          
+            image.transform.localScale  = new Vector3(1, 1, 1);
+            if(ghost)
+            ghost.transform.localScale = new Vector3(1, 1, 1);
+            center.transform.localRotation = normalRot;
         }
     }
 
@@ -134,7 +129,7 @@ public class Block : MonoBehaviour {
     {
         Vector2 proposedDestination = gridPositionOfOrigin + moveDir;
         
-        if (proposedDestination.x >= leftEdge && proposedDestination.x + xLength <= rightEdge)
+        if (proposedDestination.x >= leftEdge && proposedDestination.x + shape.xLength <= rightEdge)
         {
             gridPositionOfOrigin = proposedDestination;
             transform.localPosition = gridPositionOfOrigin;
@@ -198,8 +193,10 @@ public class Block : MonoBehaviour {
                     //ghost should move up, then check down.
                     potentialGhostPos.y += 1;
                     ghostOrigin = potentialGhostPos;
+                    
                     ghost.transform.localPosition = ghostOrigin;
-
+                    if (flipped)
+                        ghost.transform.Translate(new Vector3(offset, 0, 0));
                     return CheckMoveValidity();
                 }
             }
@@ -207,7 +204,10 @@ public class Block : MonoBehaviour {
         //If the checker reaches the floor
         SetGhostColor(ColorManager.ghostColor);
         ghostOrigin = potentialGhostPos;
+        
         ghost.transform.localPosition = ghostOrigin;
+        if (flipped)
+            ghost.transform.Translate(new Vector3(offset, 0, 0))    ;
         return true;
     }
 
@@ -236,7 +236,7 @@ public class Block : MonoBehaviour {
                     {
                         Vector2 foundTileCoord = tileGridPos - foundBlock.gridPositionOfOrigin;
                         Tile foundTile = foundBlock.shape.col[(int)foundTileCoord.x].row[(int)foundTileCoord.y];
-
+                        
                         //if one block is above a solid, move is valid
                         if (foundTile == Tile.Solid || foundTile == Tile.NoDown)
                         {
@@ -293,13 +293,26 @@ public class Block : MonoBehaviour {
 
     public void FlipHorizontal()
     {
-        flipped = true;
+        if (!flipped)
+        {
+            //when you flip it
+            flipped = true;
+            image.transform.Translate(offset, 0, 0);
+            ghost.transform.Translate(offset, 0, 0);
+        }
+        else
+        {
+            //when it's flipped back
+            flipped = false;
+            image.transform.Translate(-offset, 0, 0);
+            ghost.transform.Translate(-offset, 0, 0);
+        }
         shape.FlipHorizontal();
     }
 
     int CheckTowerHeight()
     {
-        return (int)(gridPositionOfOrigin.y + yLength + 1);
+        return (int)(gridPositionOfOrigin.y + shape.yLength + 1);
     }
 
 }
