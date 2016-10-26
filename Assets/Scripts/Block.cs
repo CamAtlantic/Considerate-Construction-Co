@@ -55,7 +55,6 @@ public class Block : MonoBehaviour {
     float offset;
     void Awake()
     {
-        Debug.Log(shape.xLength.ToString() + shape.yLength);
         camControllerRef = FindObjectOfType<CameraController>();
         siteManagerRef = FindObjectOfType<SiteManager>();
         siteDataRef = transform.parent.GetComponent<SiteData>();
@@ -308,6 +307,8 @@ public class Block : MonoBehaviour {
             ghost.transform.Translate(-offset, 0, 0);
         }
         shape.FlipHorizontal();
+
+        CheckGhostPos();
     }
 
     int CheckTowerHeight()

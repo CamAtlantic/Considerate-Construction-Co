@@ -25,6 +25,7 @@ namespace Lean.Touch
 		
 		private void OnFingerTap(LeanFinger finger)
 		{
+			Debug.Log ("tapped");
 			// Does the prefab exist?
 			if (Prefab != null)
 			{

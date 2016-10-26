@@ -450,6 +450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TutorialMode: 0
+  tapped: 0
   buildingSitePrefab: {fileID: 1000013087376882, guid: 3d59254db818b9840898059005e07c35,
     type: 2}
   siteDataRef: {fileID: 0}

@@ -338,7 +338,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 648b39ea9efda4d83bdbd991af970228, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Messages: {fileID: 0}
   DayDuration_s: 200
   DottedCircle: {fileID: 1246266950882876}
   SunCenter_: {fileID: 1489711310320544}

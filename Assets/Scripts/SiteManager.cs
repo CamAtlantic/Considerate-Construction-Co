@@ -11,7 +11,9 @@ public class SiteManager : MonoBehaviour
     
     public bool TutorialMode = false;
     [Space(10)]
+
     public static string SwipedDirection;
+    public bool tapped;
 
     CameraController camControllerRef;
 
@@ -63,27 +65,27 @@ public class SiteManager : MonoBehaviour
             inShadow = false;
             camControllerRef.ChangeCamPosition_leftright(1);
         }
-        else
+        else if(SelectBuilding.Selecting == false)
         {
             if (SwipedDirection == "left" ||
-                Input.GetKeyDown(KeyCode.A) ||
-                Input.GetKeyDown(KeyCode.LeftArrow))
+                        Input.GetKeyDown(KeyCode.A) ||
+                        Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 heldBlock.MoveBlock(Vector2.left);
-				//LeanTouchEvents.OnDrag ();
+                //LeanTouchEvents.OnDrag ();
                 SwipedDirection = "null";
             }
 
             if (SwipedDirection == "right" ||
-                Input.GetKeyDown(KeyCode.D) ||
-                Input.GetKeyDown(KeyCode.RightArrow))
+                        Input.GetKeyDown(KeyCode.D) ||
+                        Input.GetKeyDown(KeyCode.RightArrow))
             {
                 heldBlock.MoveBlock(Vector2.right);
                 SwipedDirection = "null";
             }
 
             if (SwipedDirection == "down" ||
-                Input.GetKeyDown(KeyCode.Space))
+                        Input.GetKeyDown(KeyCode.Space))
             {
                 if (heldBlock.CheckGhostPos())
                 {
@@ -99,14 +101,16 @@ public class SiteManager : MonoBehaviour
                 heldBlock = null;
                 SpawnNewBlock();
             }
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+
+            if (Input.GetKeyDown(KeyCode.Alpha1) || tapped)
             {
                 heldBlock.FlipHorizontal();
-                heldBlock.CheckGhostPos();
+                tapped = false;
             }
+
         }
     }
-
+    
     int fixedModeIndex = 0;
     //TODO: some of this feels like bad OOP
     void SpawnNewBlock()
@@ -170,6 +174,20 @@ public class SiteManager : MonoBehaviour
     public static void SwipeDown()
     {
         SwipedDirection = "down";
+    }
+    protected virtual void OnEnable()
+    {
+        // Hook into the events we need
+        LeanTouch.OnFingerTap += OnFingerTap;
+    }
+    protected virtual void OnDisable()
+    {
+        // Unhook the events
+        LeanTouch.OnFingerTap -= OnFingerTap;
+    }
+    private void OnFingerTap(LeanFinger finger)
+    {
+        tapped = true;
     }
     #endregion
 }
