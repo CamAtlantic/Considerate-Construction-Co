@@ -12,6 +12,8 @@ public class SiteManager : MonoBehaviour
     public bool tutorialMode = false;
     public GameObject tutorial_no_up;
     [Space(10)]
+    public bool gamePaused = false;
+
     public static string SwipedDirection;
 
     CameraController camControllerRef;
@@ -37,10 +39,15 @@ public class SiteManager : MonoBehaviour
     public Block heldBlock;
 
     public bool inShadow = false;
+
+    public float newBlockDelay = 0.1f;
+    private float newBlockTimer = 0;
+
     void Awake()
     {
         camControllerRef = FindObjectOfType<CameraController>();
 
+        //make pillar ready for tutorial
         if (tutorialMode)
         {
             siteDataRef = FindObjectOfType<SiteData>();
@@ -53,7 +60,7 @@ public class SiteManager : MonoBehaviour
                 GameObject block = Instantiate(tutorial_no_up, siteDataRef.transform);
                 Block new_no_up = block.GetComponent<Block>();
                 new_no_up.SetGridPos(new Vector2(i, 0),false);
-                new_no_up.Land();
+                new_no_up.Drop();
 
             }
         }
@@ -79,55 +86,65 @@ public class SiteManager : MonoBehaviour
         if (!heldBlock)
         {
             //TODO: possibly a delay or small animation on spawning a new block?
-            SpawnNewBlock();
-            inShadow = false;
-            camControllerRef.ChangeCamPosition_leftright(1);
-        }
-        else
-        {
-            if (SwipedDirection == "left" ||
-                Input.GetKeyDown(KeyCode.A) ||
-                Input.GetKeyDown(KeyCode.LeftArrow))
+            newBlockTimer += Time.deltaTime;
+            if (newBlockTimer > newBlockDelay)
             {
-                heldBlock.MoveBlock(Vector2.left);
-                SwipedDirection = "null";
-            }
-
-            if (SwipedDirection == "right" ||
-                Input.GetKeyDown(KeyCode.D) ||
-                Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                heldBlock.MoveBlock(Vector2.right);
-                SwipedDirection = "null";
-            }
-
-            if (SwipedDirection == "down" ||
-                Input.GetKeyDown(KeyCode.Space))
-            {
-                if (heldBlock.CheckGhostPos())
-                {
-                    heldBlock.Drop();
-                    SwipedDirection = "null";
-                }
-            }
-
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                Destroy(heldBlock.ghost);
-                Destroy(heldBlock.gameObject);
-                heldBlock = null;
+                newBlockTimer = 0;
                 SpawnNewBlock();
+                inShadow = false;
+                camControllerRef.ChangeCamPosition_leftright(1);
             }
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                heldBlock.FlipHorizontal();
-                heldBlock.CheckGhostPos();
-            }
+        }
+        else if(!gamePaused)
+        {
+            GetInput();
         }
     }
 
+    void GetInput()
+    {
+        if (SwipedDirection == "left" ||
+               Input.GetKeyDown(KeyCode.A) ||
+               Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            heldBlock.MoveBlock(Vector2.left);
+            SwipedDirection = "null";
+        }
+
+        if (SwipedDirection == "right" ||
+            Input.GetKeyDown(KeyCode.D) ||
+            Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            heldBlock.MoveBlock(Vector2.right);
+            SwipedDirection = "null";
+        }
+
+        if (SwipedDirection == "down" ||
+            Input.GetKeyDown(KeyCode.Space))
+        {
+            if (heldBlock.CheckGhostPos())
+            {
+                heldBlock.Drop();
+                SwipedDirection = "null";
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            Destroy(heldBlock.ghost);
+            Destroy(heldBlock.gameObject);
+            heldBlock = null;
+            SpawnNewBlock();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            heldBlock.FlipHorizontal();
+            heldBlock.CheckGhostPos();
+        }
+    }
+
+
     int fixedModeIndex = 0;
-    //TODO: some of this feels like bad OOP
     void SpawnNewBlock()
     {
         int newBlockIndex = 0;
