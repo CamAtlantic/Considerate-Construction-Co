@@ -9,8 +9,11 @@ public class SiteManager : MonoBehaviour
 {
     //This script controls spawning and moving blocks.
     
-    public bool TutorialMode = false;
+    public bool tutorialMode = false;
+    public GameObject tutorial_no_up;
     [Space(10)]
+
+    public bool gamePaused = false;
 
     public static string SwipedDirection;
     public bool tapped;
@@ -38,14 +41,39 @@ public class SiteManager : MonoBehaviour
     public Block heldBlock;
 
     public bool inShadow = false;
+
+    public float newBlockDelay = 0.1f;
+    private float newBlockTimer = 0;
+
     void Awake()
     {
         camControllerRef = FindObjectOfType<CameraController>();
 
-        GameObject newSite = Instantiate(buildingSitePrefab);
-        siteDataRef = newSite.GetComponent<SiteData>();
-        siteDataRef.grid = new Block[gridSizeX, gridSizeY];
+        //make pillar ready for tutorial
+        //TODO: something something siteData
+        if (tutorialMode)
+        {
+            siteDataRef = FindObjectOfType<SiteData>();
+            siteDataRef.grid = new Block[gridSizeX, gridSizeY];
+            
+            for(int i = 0;i<5;i++)
+            {
+                if (i == 2)
+                    continue;
+                GameObject block = Instantiate(tutorial_no_up, siteDataRef.transform);
+                Block new_no_up = block.GetComponent<Block>();
+                new_no_up.SetGridPos(new Vector2(i, 0),false);
+                new_no_up.Drop();
 
+            }
+        }
+        else
+        {
+            //normal operations
+            GameObject newSite = Instantiate(buildingSitePrefab);
+            siteDataRef = newSite.GetComponent<SiteData>();
+            siteDataRef.grid = new Block[gridSizeX, gridSizeY];
+        }
         SwipedDirection = "null";
     }
 
@@ -60,62 +88,69 @@ public class SiteManager : MonoBehaviour
     {
         if (!heldBlock)
         {
-            //TODO: possibly a delay or small animation on spawning a new block?
-            SpawnNewBlock();
-            inShadow = false;
-            camControllerRef.ChangeCamPosition_leftright(1);
-        }
-        else if(SelectBuilding.Selecting == false)
-        {
-            if (SwipedDirection == "left" ||
-                        Input.GetKeyDown(KeyCode.A) ||
-                        Input.GetKeyDown(KeyCode.LeftArrow))
+            newBlockTimer += Time.deltaTime;
+            if (newBlockTimer > newBlockDelay)
             {
-                heldBlock.MoveBlock(Vector2.left);
-                //LeanTouchEvents.OnDrag ();
-                SwipedDirection = "null";
-            }
-
-            if (SwipedDirection == "right" ||
-                        Input.GetKeyDown(KeyCode.D) ||
-                        Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                heldBlock.MoveBlock(Vector2.right);
-                SwipedDirection = "null";
-            }
-
-            if (SwipedDirection == "down" ||
-                        Input.GetKeyDown(KeyCode.Space))
-            {
-                if (heldBlock.CheckGhostPos())
-                {
-                    heldBlock.Drop();
-                    SwipedDirection = "null";
-                }
-            }
-
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                Destroy(heldBlock.ghost);
-                Destroy(heldBlock.gameObject);
-                heldBlock = null;
+                newBlockTimer = 0;
                 SpawnNewBlock();
+                inShadow = false;
+                camControllerRef.ChangeCamPosition_leftright(1);
             }
-
-            if (Input.GetKeyDown(KeyCode.Alpha1) || tapped)
-            {
-                heldBlock.FlipHorizontal();
-                tapped = false;
-            }
-
+        }
+        else if(!gamePaused && SelectBuilding.Selecting == false)
+        {
+            
+            GetInput();
         }
     }
-    
+
+
+    void GetInput()
+    {
+        if (SwipedDirection == "left" ||
+               Input.GetKeyDown(KeyCode.A) ||
+               Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            heldBlock.MoveBlock(Vector2.left);
+            SwipedDirection = "null";
+        }
+
+        if (SwipedDirection == "right" ||
+            Input.GetKeyDown(KeyCode.D) ||
+            Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            heldBlock.MoveBlock(Vector2.right);
+            SwipedDirection = "null";
+        }
+
+        if (SwipedDirection == "down" ||
+            Input.GetKeyDown(KeyCode.Space))
+        {
+            if (heldBlock.CheckGhostPos())
+            {
+                heldBlock.Drop();
+                SwipedDirection = "null";
+            }
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            Destroy(heldBlock.ghost);
+            Destroy(heldBlock.gameObject);
+            heldBlock = null;
+            SpawnNewBlock();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1) || tapped)
+        {
+            heldBlock.FlipHorizontal();
+            tapped = false;
+        }
+    }
+
     int fixedModeIndex = 0;
-    //TODO: some of this feels like bad OOP
     void SpawnNewBlock()
     {
-        //TODO: some way of choosing different blocks
         int newBlockIndex = 0;
 
         if (modeSelect == LevelMode.Random)
