@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Intro_iconScript : MonoBehaviour {
 
-	public GameObject MainCamera;
-	public GameObject MainCamera_Destination;
+	public GameObject MainCamera_start;
+	public GameObject MainCamera_end;
 
 	public GameObject AllIcons;
 	public GameObject Icon_Center;
@@ -56,7 +56,7 @@ public class Intro_iconScript : MonoBehaviour {
 		if (SwipedFromLoad == true) {
 			Icon_Center.transform.position = Vector3.Lerp (Icon_Center.transform.position, IconCenter_Destination.transform.position, 0.01f);
 			Icon_Center.transform.localScale = Vector3.Lerp (Icon_Center.transform.localScale, IconCenter_Destination.transform.localScale, 0.05f);
-			MainCamera.transform.position = Vector3.Lerp (MainCamera.transform.position, MainCamera_Destination.transform.position, 0.01f);
+			MainCamera_start.transform.position = Vector3.Lerp (MainCamera_start.transform.position, MainCamera_end.transform.position, 0.01f);
 			a.enabled = false;
 		}
 
