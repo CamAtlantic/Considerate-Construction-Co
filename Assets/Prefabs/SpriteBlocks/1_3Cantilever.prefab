@@ -1039,6 +1039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 2
   MyColorCode: 10
+  Ghost: 0
 --- !u!114 &114034551849924046
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1052,6 +1053,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 2
   MyColorCode: 4
+  Ghost: 0
 --- !u!114 &114123469649112230
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1065,6 +1067,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 3
   MyColorCode: 1
+  Ghost: 0
 --- !u!114 &114137808606702976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1078,6 +1081,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 2
   MyColorCode: 10
+  Ghost: 0
 --- !u!114 &114158257929366690
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1091,6 +1095,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 2
   MyColorCode: 1
+  Ghost: 0
 --- !u!114 &114190171428309646
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1104,6 +1109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 2
   MyColorCode: 4
+  Ghost: 0
 --- !u!114 &114267851669622506
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1117,6 +1123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 3
   MyColorCode: 2
+  Ghost: 0
 --- !u!114 &114268772119312764
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1130,6 +1137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: -2
   MyColorCode: 10
+  Ghost: 0
 --- !u!114 &114278728771761088
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1143,6 +1151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 3
   MyColorCode: 1
+  Ghost: 0
 --- !u!114 &114379102925739430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1156,6 +1165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: -2
   MyColorCode: 10
+  Ghost: 0
 --- !u!114 &114415571773033562
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1169,6 +1179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 2
   MyColorCode: 10
+  Ghost: 0
 --- !u!114 &114487101964514500
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1182,6 +1193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 2
   MyColorCode: 10
+  Ghost: 0
 --- !u!114 &114487550307344644
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1195,6 +1207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 2
   MyColorCode: 4
+  Ghost: 0
 --- !u!114 &114502939194495826
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1208,6 +1221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 3
   MyColorCode: 7
+  Ghost: 0
 --- !u!114 &114506066917550918
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1221,6 +1235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 2
   MyColorCode: 1
+  Ghost: 0
 --- !u!114 &114506716898776094
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1234,6 +1249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 2
   MyColorCode: 4
+  Ghost: 0
 --- !u!114 &114554405859140064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1247,6 +1263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 1
+  Ghost: 0
 --- !u!114 &114607972585564548
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1258,6 +1275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40714376d38d74e4b922f75c18f860c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseValue: 30
   siteManagerRef: {fileID: 0}
   siteDataRef: {fileID: 0}
   shape:
@@ -1265,8 +1283,6 @@ MonoBehaviour:
     - row: 020000000000000000000000
     - row: 010000000000000000000000
     - row: 020000000000000000000000
-  xLength: 0
-  yLength: 0
   image: {fileID: 1975185959558922}
   ghost: {fileID: 0}
   center: {fileID: 1744505742930780}
@@ -1288,6 +1304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 2
   MyColorCode: 10
+  Ghost: 0
 --- !u!114 &114733588911948242
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1301,6 +1318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 2
   MyColorCode: 10
+  Ghost: 0
 --- !u!114 &114751789361559962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1314,6 +1332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 2
   MyColorCode: 4
+  Ghost: 0
 --- !u!114 &114768533724619316
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1327,6 +1346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 2
   MyColorCode: 4
+  Ghost: 0
 --- !u!114 &114821460028052808
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1340,6 +1360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 3
   MyColorCode: 7
+  Ghost: 0
 --- !u!212 &212036753959840304
 SpriteRenderer:
   m_ObjectHideFlags: 1
