@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class Block : MonoBehaviour {
     //This is the basic script that buildings and toppers derive from.
+    public int baseValue = 0;
+
     [HideInInspector]
     public SiteManager siteManagerRef;
     [HideInInspector]
@@ -31,7 +33,6 @@ public class Block : MonoBehaviour {
     Quaternion flippedRot = Quaternion.Euler(0, 180, 0);
     float flipSpeed = 0.1f;
 
-    int baseValue = 0;
 
     int leftEdge
     {
@@ -180,42 +181,71 @@ public class Block : MonoBehaviour {
         foreach (Vector2 tileCoords in shape.AllTileCoords)
         {
             Tile currentTile = shape.col[(int)tileCoords.x].row[(int)tileCoords.y];
+            Vector2 tileCoordsOnGrid = tileCoords + gridPositionOfOrigin;
             switch (currentTile)
             {
-                case Tile.NoDown:
-                    {
-                        break;
-                    }
                 case Tile.NoUp:
                     {
-                        CheckTileScore(noUpScores);
+                        tempScore += CheckTileScore(Tile.NoUp, tileCoordsOnGrid, noUpScores);
                         break;
                     }
                 case Tile.Solid:
                     {
-                        CheckTileScore(solidScores);
+                        tempScore += CheckTileScore(Tile.Solid, tileCoordsOnGrid, solidScores);
                         break;
                     }
             }
         }
+        //here is the final score
+        print(siteDataRef.currentBlock.ToString()+ ": " + gameObject.name + ": " + tempScore);
     }
 
-    public void CheckTileScore(Vector2[] dirs)
+    public int CheckTileScore(Tile tile, Vector2 tileCoords, Vector2[] dirs)
     {
+        int tileScore = 0;
         foreach (Vector2 dir in dirs)
         {
-            Vector2 neighborCoord = dir + gridPositionOfOrigin;
-            if (neighborCoord.x < 0 || neighborCoord.x > siteDataRef.grid.GetLength(0) - 1 ||
-                neighborCoord.y < 0 || neighborCoord.y > siteDataRef.grid.GetLength(1) - 1)
+            Vector2 neighborGridPos = dir + tileCoords;
+            if (neighborGridPos.x < 0 || neighborGridPos.x > siteDataRef.grid.GetLength(0) - 1 ||
+                neighborGridPos.y < 0 || neighborGridPos.y > siteDataRef.grid.GetLength(1) - 1)
                 continue;
 
-            Block maybeNeighbor = siteDataRef.grid[(int)neighborCoord.x, (int)neighborCoord.y];
+            Block maybeNeighbor = siteDataRef.grid[(int)neighborGridPos.x, (int)neighborGridPos.y];
             if (maybeNeighbor != null && maybeNeighbor != this)
             {
-                print(maybeNeighbor.name);
+                Vector2 neighborTileCoords = neighborGridPos - maybeNeighbor.gridPositionOfOrigin;
+
+                Tile neighborTile = (maybeNeighbor.shape.col[(int)neighborTileCoords.x].row[(int)neighborTileCoords.y]);
+
+                switch(tile)
+                {
+                    case Tile.Solid:
+                        {
+                            if (neighborTile == Tile.Solid)
+                            {
+                                tileScore += baseValue;
+
+                                //print("neighbor is valid");
+                            }
+                            break;
+                        }
+                    case Tile.NoUp:
+                        {
+                            if (neighborTile == Tile.Solid || neighborTile == Tile.NoDown)
+                            {
+                                tileScore += baseValue;
+
+                                //print("neighbor is valid");
+                            }
+                            break;
+                        }
+                }
+
+                //print(maybeNeighbor.shape.col[(int)tileCoord.x].row[(int)tileCoord.y]);
 
             }
         }
+        return tileScore;
     }
 
     /// <summary>

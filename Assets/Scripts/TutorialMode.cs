@@ -29,13 +29,13 @@ public class TutorialMode : MonoBehaviour {
 		if(!messageShown1 && siteDataRef.currentBlock == 1)
         {
             messageShown1 = true;
-            print("This is the first block to spawn!");
+            //print("This is the first block to spawn!");
         }
         if (!messageShown2 && siteDataRef.currentBlock == 3)
         {
             messageShown2 = true;
 
-            print("Now it's the third!");
+//            print("Now it's the third!");
         }
     }
 
