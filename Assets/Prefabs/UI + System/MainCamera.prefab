@@ -382,7 +382,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeMaterial: {fileID: 2100000, guid: a4607df337dd64dac8383d989bc2b59a, type: 2}
-  targetMaterial: {fileID: 2100000, guid: b5e0d7a025ebc427ab78f4f9f056fd74, type: 2}
+  targetMaterial:
+  - {fileID: 2100000, guid: b5e0d7a025ebc427ab78f4f9f056fd74, type: 2}
+  - {fileID: 2100000, guid: e72f8c351aead4472b9d9759ff799d1c, type: 2}
+  - {fileID: 2100000, guid: 3e92a0871554e46d28470794dfa7c432, type: 2}
+  - {fileID: 2100000, guid: 75a16728eb2f64673bbffb7c8a0a090d, type: 2}
+  - {fileID: 2100000, guid: d66ce5b04857148be9ff319a817a2268, type: 2}
 --- !u!114 &114783234873248908
 MonoBehaviour:
   m_ObjectHideFlags: 1

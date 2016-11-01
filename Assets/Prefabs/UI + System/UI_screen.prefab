@@ -28,7 +28,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1001394267216756
 GameObject:
   m_ObjectHideFlags: 1
@@ -2314,7 +2314,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4832910565857932
 Transform:
   m_ObjectHideFlags: 1
@@ -2783,6 +2783,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114034016737447100
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2796,6 +2798,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114034970057728446
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2809,6 +2813,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114035181688246588
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2936,6 +2942,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 2
   MyColorCode: 5
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114080117650468976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3036,6 +3044,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114104501031747322
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3049,6 +3059,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 6
   MyColorCode: 2
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114112017202448308
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3062,6 +3074,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114112029581267824
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3075,6 +3089,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114112457081546198
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3088,6 +3104,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114112586961837628
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3155,6 +3173,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 3
   MyColorCode: 10
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114134844159970872
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3390,6 +3410,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114175576255593526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3519,6 +3541,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114186396559053154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3586,6 +3610,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114205161415872466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3721,6 +3747,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114244433393696122
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3953,6 +3981,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114273261281629996
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4418,6 +4448,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 3
   MyColorCode: 4
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114360031566370030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4431,6 +4463,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 9
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114373526848586726
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4444,6 +4478,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114410829200255262
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4457,6 +4493,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114420775670138138
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4482,6 +4520,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114430423318512572
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4601,6 +4641,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 5
   MyColorCode: 3
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114451538020812530
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4856,6 +4898,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 6
   MyColorCode: 10
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114485993670577856
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4929,6 +4973,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114503147277824496
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4996,6 +5042,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114542590562158126
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5225,6 +5273,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114596213340597918
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5279,6 +5329,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114607690566128722
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5506,6 +5558,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114646025364963824
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5579,6 +5633,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114656962877964032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5700,6 +5756,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114678716953294326
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5783,6 +5841,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114709318792885090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5823,6 +5883,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114731400588139370
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5969,6 +6031,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114749810044916968
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6063,6 +6127,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 6
   MyColorCode: 2
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114763914702768040
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6128,6 +6194,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114770407150044956
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6141,6 +6209,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114772220668844212
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6181,6 +6251,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 4
   MyColorCode: 1
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114788039294198116
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6300,6 +6372,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 3
   MyColorCode: 2
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114808093531891442
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6827,6 +6901,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114914060258960618
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6840,6 +6916,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114920990813206526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6907,6 +6985,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114934270922913938
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7001,6 +7081,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114945791196073582
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7014,6 +7096,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114945928609854370
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7189,6 +7273,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114964521653410190
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7250,6 +7336,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114974830197708756
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7263,6 +7351,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114976759551459708
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7328,6 +7418,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Depth: 0
   MyColorCode: 0
+  Ghost: 0
+  Valid: 0
 --- !u!114 &114985340561950800
 MonoBehaviour:
   m_ObjectHideFlags: 1

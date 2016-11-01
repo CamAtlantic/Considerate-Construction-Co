@@ -402,6 +402,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7029303951c3644cc8ee1525e94fadf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  valid_ghost: {r: 1, g: 1, b: 1, a: 1}
+  invalid_ghost: {r: 1, g: 0.38235295, b: 0.38235295, a: 1}
   _invalidMoveColor: {r: 1, g: 0.44099998, b: 0.44099998, a: 1}
   ActiveColorScheme: 2
   TotalColorSchemes: 5
@@ -458,16 +460,16 @@ MonoBehaviour:
   - {r: 0, g: 1, b: 0.17241383, a: 1}
   - {r: 0, g: 1, b: 0.17241383, a: 1}
   ClrChangeSpeed: 0.1
-  g_Clr1_base: {r: 1, g: 1, b: 1, a: 0.466}
-  g_Clr2_accent: {r: 1, g: 1, b: 1, a: 0.784}
-  g_Clr3_accent_2: {r: 1, g: 1, b: 1, a: 0.716}
-  g_Clr4_glass: {r: 1, g: 1, b: 1, a: 0}
-  g_Clr5_column: {r: 1, g: 1, b: 1, a: 0.822}
-  g_Clr6_column_foot: {r: 1, g: 1, b: 1, a: 1}
-  g_Clr7_roofing_1: {r: 1, g: 1, b: 1, a: 1}
-  g_Clr8_roofing_2: {r: 1, g: 1, b: 1, a: 1}
-  g_Clr9_inside: {r: 1, g: 1, b: 1, a: 0}
-  g_Clr10_base_back: {r: 1, g: 1, b: 1, a: 0.316}
+  a_Clr1_base: {r: 0, g: 0, b: 0, a: 0.566}
+  a_Clr2_accent: {r: 0, g: 0, b: 0, a: 0.578}
+  a_Clr3_accent_2: {r: 0, g: 0, b: 0, a: 0.634}
+  a_Clr4_glass: {r: 0, g: 0, b: 0, a: 0.559}
+  a_Clr5_column: {r: 0, g: 0, b: 0, a: 0.603}
+  a_Clr6_column_foot: {r: 0, g: 0, b: 0, a: 0.528}
+  a_Clr7_roofing_1: {r: 0, g: 0, b: 0, a: 0.953}
+  a_Clr8_roofing_2: {r: 0, g: 0, b: 0, a: 0.972}
+  a_Clr9_inside: {r: 0, g: 0, b: 0, a: 0.19607843}
+  a_Clr10_base_back: {r: 0, g: 0, b: 0, a: 0.54901963}
 --- !u!114 &114090680186949142
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -519,7 +521,7 @@ MonoBehaviour:
   - {r: 1, g: 0.60553634, b: 1, a: 0}
   - {r: 0.9705882, g: 0.2662719, b: 0.007136685, a: 0}
   Bots:
-  - {r: 1, g: 0, b: 0, a: 0}
+  - {r: 0.8308824, g: 0.6109429, b: 0.7065028, a: 0}
   - {r: 0.18382353, g: 0.86490864, b: 1, a: 0}
   - {r: 0.9338235, g: 0.5561743, b: 0.5561743, a: 0}
   - {r: 0.31617647, g: 1, b: 0.85851926, a: 0}

@@ -6,11 +6,11 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: BG_scheme_4
-  m_Shader: {fileID: 4800000, guid: cd16d48ef06ea49a6b0c3ac787843a35, type: 3}
+  m_Name: Mat_FadedPlane
+  m_Shader: {fileID: 4800000, guid: c2d02e639760c4afdafa6f80fc89be97, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -48,7 +48,7 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 9f9e4b77a3c164a5ca6af956ed6a1708, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -71,9 +71,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - first:
-        name: _Alpha
-      second: 1
-    - first:
         name: _BumpScale
       second: 1
     - first:
@@ -85,9 +82,6 @@ Material:
     - first:
         name: _DstBlend
       second: 0
-    - first:
-        name: _Emit
-      second: 0.5
     - first:
         name: _GlossMapScale
       second: 1
@@ -110,9 +104,6 @@ Material:
         name: _Parallax
       second: 0.02
     - first:
-        name: _Ratio
-      second: 0.5
-    - first:
         name: _SmoothnessTextureChannel
       second: 0
     - first:
@@ -125,45 +116,12 @@ Material:
         name: _UVSec
       second: 0
     - first:
-        name: _VertMotion
-      second: 0
-    - first:
-        name: _VertOffset
-      second: 0
-    - first:
-        name: _VertWobble
-      second: 0
-    - first:
-        name: _VertWobbleSpeed
-      second: 0
-    - first:
-        name: _YOffset
-      second: 0.11
-    - first:
-        name: _YScale
-      second: 114.2
-    - first:
         name: _ZWrite
       second: 1
     m_Colors:
     - first:
-        name: _BottomColor
-      second: {r: 0.31617647, g: 1, b: 0.85851926, a: 0}
-    - first:
         name: _Color
       second: {r: 1, g: 1, b: 1, a: 1}
     - first:
-        name: _ColorOne
-      second: {r: 0.32300442, g: 0.28546715, b: 0.32352942, a: 1}
-    - first:
-        name: _ColorTwo
-      second: {r: 0.1544118, g: 0.04178201, b: 0.02270762, a: 1}
-    - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
-    - first:
-        name: _ShadeColor
-      second: {r: 1, g: 1, b: 1, a: 1}
-    - first:
-        name: _TopColor
-      second: {r: 1, g: 0.60553634, b: 1, a: 0}

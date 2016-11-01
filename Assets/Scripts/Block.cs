@@ -113,15 +113,21 @@ public class Block : MonoBehaviour {
     {
         ghost = Instantiate(image,transform.parent);
         //TODO: depth sort the ghost so it's behind the block.
-        SetGhostColor(ColorManager.ghostColor);
+        SetGhostColor(true);
     }
 
-    void SetGhostColor(Color color)
+    void SetGhostColor(bool validInvalid)
     {
         foreach (BuidlingControllerScript control in ghost.GetComponentsInChildren<BuidlingControllerScript>())
         {
             control.Ghost = true;
+            if (validInvalid)
+                control.Valid = true;
+            else
+                control.Valid = false;
+            control.UpdateAllColor();
         }
+
     }
 
     public void MoveBlock(Vector2 moveDir)
@@ -282,7 +288,7 @@ public class Block : MonoBehaviour {
             }
         }
         //If the checker reaches the floor
-        SetGhostColor(ColorManager.ghostColor);
+        SetGhostColor(true);
         ghostOrigin = potentialGhostPos;
         
         ghost.transform.localPosition = ghostOrigin;
@@ -301,7 +307,7 @@ public class Block : MonoBehaviour {
             if (tileGridPos.y > siteManagerRef.maxHeight - 1)
             {
                 //print("Too High: " + (tileGridPos.y).ToString() + " " + (siteManagerRef.maxHeight - 1));
-                SetGhostColor(ColorManager.invalidMoveColor);
+                SetGhostColor(false);
                 return false;
             }
         }
@@ -328,7 +334,7 @@ public class Block : MonoBehaviour {
                         //if one block is above a solid, move is valid
                         if (foundTile == Tile.Solid || foundTile == Tile.NoDown)
                         {
-                            SetGhostColor(ColorManager.ghostColor);
+                            SetGhostColor(true);
                             return true;
                         }
                     }
@@ -336,7 +342,7 @@ public class Block : MonoBehaviour {
             }
         }
         //if you've been through all tiles and not found a solid
-        SetGhostColor(ColorManager.invalidMoveColor);
+        SetGhostColor(false);
         return false;
     }
 

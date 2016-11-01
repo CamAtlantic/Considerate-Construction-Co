@@ -44,7 +44,7 @@ public class SiteManager : MonoBehaviour
         heightLimitUI = GameObject.FindGameObjectWithTag("HeightLimitUI");
         if (!heightLimitUI)
             Debug.LogError("Can't find height limit UI thingy!!");
-        heightLimitUI.transform.position = new Vector3(heightLimitUI.transform.position.x, maxHeight, heightLimitUI.transform.position.z);
+ 
         //make pillar ready for tutorial
         //TODO: something something siteData
         

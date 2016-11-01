@@ -5,7 +5,7 @@ using UnityEngine;
 public class FadeCopiesBG : MonoBehaviour {
 
 	public Material fadeMaterial;
-	public Material targetMaterial;
+	public Material[] targetMaterial;
 
 	// Use this for initialization
 	void Start () {
@@ -15,7 +15,11 @@ public class FadeCopiesBG : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		fadeMaterial.SetColor ("_Color",  targetMaterial.GetColor ("_ColorOne"));
+		//fadeMaterial.SetColor ("_Color",  targetMaterial[ ColorManager.ActiveColorScheme ].GetColor ("_BottomColor"));
+		//Debug.Log (targetMaterial [ColorManager.ActiveColorScheme].GetColor ("_BottomColor"));
+		//fadeMaterial.color.r = targetMaterial [ColorManager.ActiveColorScheme].GetColor ("_BottomColor").r;
+		//fadeMaterial.color.g = targetMaterial [ColorManager.ActiveColorScheme].GetColor ("_BottomColor").g;
+		//fadeMaterial.color.rb = targetMaterial [ColorManager.ActiveColorScheme].GetColor ("_BottomColor").rb;
 		
 	}
 }
