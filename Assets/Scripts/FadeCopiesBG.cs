@@ -16,13 +16,7 @@ public class FadeCopiesBG : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-		//fadeMaterial.SetColor ("_Color",  targetMaterial[ ColorManager.ActiveColorScheme ].GetColor ("_BottomColor"));
-		//Debug.Log (targetMaterial [ColorManager.ActiveColorScheme].GetColor ("_BottomColor").r);
-		//fadeMaterial.color = new Color (
-		//fadeMaterial.color.r = targetMaterial [ColorManager.ActiveColorScheme].GetColor ("_BottomColor").r;
-		//fadeMaterial.color.g = targetMaterial [ColorManager.ActiveColorScheme].GetColor ("_BottomColor").g;
-		//fadeMaterial.color.b = targetMaterial [ColorManager.ActiveColorScheme].GetColor ("_BottomColor").b;
+		fadeMaterial.color = new Color (targetMaterial [ColorManager.ActiveColorScheme].GetColor ("_BottomColor").r, targetMaterial [ColorManager.ActiveColorScheme].GetColor ("_BottomColor").g, targetMaterial [ColorManager.ActiveColorScheme].GetColor ("_BottomColor").b, 1f);
 		
 	}
 }
