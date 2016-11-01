@@ -50,7 +50,6 @@ public class Intro_iconScript : MonoBehaviour {
 		
 		if (SwipeDirection == "down") 
 			{
-				Debug.Log ("move down");
 				SwipedFromLoad = true;
 			}
 		}
