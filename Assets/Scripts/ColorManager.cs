@@ -7,11 +7,15 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class ColorManager : MonoBehaviour {
 
+	//remove later
     public static Color ghostColor;
     public static Color invalidMoveColor;
 
+	public Color valid_ghost;
+	public Color invalid_ghost;
+
     public Color _invalidMoveColor;
-	public int ActiveColorScheme = 0;
+	public int ActiveColorScheme = 1;
 	public float TotalColorSchemes;
 
 	public Color[] ClrScheme;
@@ -30,27 +34,38 @@ public class ColorManager : MonoBehaviour {
 	public static Color Clr_9;
 	public static Color Clr_10;
 
-	public Color g_Clr1_base;
-	public Color g_Clr2_accent;
-	public Color g_Clr3_accent_2;
-	public Color g_Clr4_glass;
-	public Color g_Clr5_column;
-	public Color g_Clr6_column_foot;
-	public Color g_Clr7_roofing_1;
-	public Color g_Clr8_roofing_2;
-	public Color g_Clr9_inside;
-	public Color g_Clr10_base_back;
+	public Color a_Clr1_base;
+	public Color a_Clr2_accent;
+	public Color a_Clr3_accent_2;
+	public Color a_Clr4_glass;
+	public Color a_Clr5_column;
+	public Color a_Clr6_column_foot;
+	public Color a_Clr7_roofing_1;
+	public Color a_Clr8_roofing_2;
+	public Color a_Clr9_inside;
+	public Color a_Clr10_base_back;
 
-	public static Color g_Clr_1;
-	public static Color g_Clr_2;
-	public static Color g_Clr_3;
-	public static Color g_Clr_4;
-	public static Color g_Clr_5;
-	public static Color g_Clr_6;
-	public static Color g_Clr_7;
-	public static Color g_Clr_8;
-	public static Color g_Clr_9;
-	public static Color g_Clr_10;
+	public static Color g_Clr_1_valid;
+	public static Color g_Clr_2_valid;
+	public static Color g_Clr_3_valid;
+	public static Color g_Clr_4_valid;
+	public static Color g_Clr_5_valid;
+	public static Color g_Clr_6_valid;
+	public static Color g_Clr_7_valid;
+	public static Color g_Clr_8_valid;
+	public static Color g_Clr_9_valid;
+	public static Color g_Clr_10_valid;
+
+	public static Color g_Clr_1_invalid;
+	public static Color g_Clr_2_invalid;
+	public static Color g_Clr_3_invalid;
+	public static Color g_Clr_4_invalid;
+	public static Color g_Clr_5_invalid;
+	public static Color g_Clr_6_invalid;
+	public static Color g_Clr_7_invalid;
+	public static Color g_Clr_8_invalid;
+	public static Color g_Clr_9_invalid;
+	public static Color g_Clr_10_invalid;
 
 	// Use this for initialization
 	void Start () 
@@ -62,18 +77,28 @@ public class ColorManager : MonoBehaviour {
 	void Update () 
 	{
 		TotalColorSchemes = Mathf.Floor((ClrScheme.Length - 1) / 10);
-			
-		g_Clr_1 = g_Clr1_base;
-		g_Clr_1 = g_Clr1_base;
-		g_Clr_2 = g_Clr2_accent;
-		g_Clr_3 = g_Clr3_accent_2;
-		g_Clr_4 = g_Clr4_glass;
-		g_Clr_5 = g_Clr5_column;
-		g_Clr_6 = g_Clr6_column_foot;
-		g_Clr_7 = g_Clr7_roofing_1;
-		g_Clr_8 = g_Clr8_roofing_2;
-		g_Clr_9 = g_Clr9_inside;
-		g_Clr_10 = g_Clr10_base_back;
+
+		g_Clr_1_valid = new Color (valid_ghost.r, valid_ghost.g, valid_ghost.b, a_Clr1_base.a);
+		g_Clr_2_valid = new Color (valid_ghost.r, valid_ghost.g, valid_ghost.b, a_Clr2_accent.a);
+		g_Clr_3_valid = new Color (valid_ghost.r, valid_ghost.g, valid_ghost.b, a_Clr3_accent_2.a);
+		g_Clr_4_valid = new Color (valid_ghost.r, valid_ghost.g, valid_ghost.b, a_Clr4_glass.a);
+		g_Clr_5_valid = new Color (valid_ghost.r, valid_ghost.g, valid_ghost.b, a_Clr5_column.a);
+		g_Clr_6_valid = new Color (valid_ghost.r, valid_ghost.g, valid_ghost.b, a_Clr6_column_foot.a);
+		g_Clr_7_valid = new Color (valid_ghost.r, valid_ghost.g, valid_ghost.b, a_Clr7_roofing_1.a);
+		g_Clr_8_valid = new Color (valid_ghost.r, valid_ghost.g, valid_ghost.b, a_Clr8_roofing_2.a);
+		g_Clr_9_valid = new Color (valid_ghost.r, valid_ghost.g, valid_ghost.b, a_Clr9_inside.a);
+		g_Clr_10_valid = new Color (valid_ghost.r, valid_ghost.g, valid_ghost.b, a_Clr10_base_back.a);
+
+		g_Clr_1_invalid = new Color (invalid_ghost.r, invalid_ghost.g, invalid_ghost.b, a_Clr1_base.a);
+		g_Clr_2_invalid = new Color (invalid_ghost.r, invalid_ghost.g, invalid_ghost.b, a_Clr2_accent.a);
+		g_Clr_3_invalid = new Color (invalid_ghost.r, invalid_ghost.g, invalid_ghost.b, a_Clr3_accent_2.a);
+		g_Clr_4_invalid = new Color (invalid_ghost.r, invalid_ghost.g, invalid_ghost.b, a_Clr4_glass.a);
+		g_Clr_5_invalid = new Color (invalid_ghost.r, invalid_ghost.g, invalid_ghost.b, a_Clr5_column.a);
+		g_Clr_6_invalid = new Color (invalid_ghost.r, invalid_ghost.g, invalid_ghost.b, a_Clr6_column_foot.a);
+		g_Clr_7_invalid = new Color (invalid_ghost.r, invalid_ghost.g, invalid_ghost.b, a_Clr7_roofing_1.a);
+		g_Clr_8_invalid = new Color (invalid_ghost.r, invalid_ghost.g, invalid_ghost.b, a_Clr8_roofing_2.a);
+		g_Clr_9_invalid = new Color (invalid_ghost.r, invalid_ghost.g, invalid_ghost.b, a_Clr9_inside.a);
+		g_Clr_10_invalid = new Color (invalid_ghost.r, invalid_ghost.g, invalid_ghost.b, a_Clr10_base_back.a);
 
 		Clr_1 = Color.Lerp (Clr_1, ClrScheme [((ActiveColorScheme - 1)*10) + 1], ClrChangeSpeed);
 		Clr_2 = Color.Lerp (Clr_2, ClrScheme [((ActiveColorScheme - 1)*10) + 2], ClrChangeSpeed);
@@ -85,22 +110,5 @@ public class ColorManager : MonoBehaviour {
 		Clr_8 = Color.Lerp (Clr_8, ClrScheme [((ActiveColorScheme - 1)*10) + 8], ClrChangeSpeed);
 		Clr_9 = Color.Lerp (Clr_9, ClrScheme [((ActiveColorScheme - 1)*10) + 9], ClrChangeSpeed);
 		Clr_10 = Color.Lerp (Clr_10, ClrScheme [((ActiveColorScheme - 1)*10) + 10], ClrChangeSpeed);
-
-		/*
-		if (ColorSchemes == 0) 
-		{
-			if (ClrScheme.Length != 11) 
-			{
-				//ClrScheme = new Color[11];
-			}
-		} 
-		else 
-		{
-			if (ClrScheme.Length != (1 + (ColorSchemes * 10))) 
-			{
-				//ClrScheme = new Color[ 1 + (ColorSchemes * 10)];
-			}
-		}
-		*/
 	}
 }
