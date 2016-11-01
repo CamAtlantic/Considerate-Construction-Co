@@ -10,12 +10,12 @@
 		Cull Off
         ZWrite Off
                  
-		Tags { "QUEUE"="Background" "RenderType"="Opaque" }
+		Tags { "RenderType"="Opaque" }
 		LOD 200
 
 		Pass {
 
-		Tags { "LIGHTMODE"="ForwardBase" "QUEUE"="Background" "RenderType"="Opaque" }
+		Tags { "LIGHTMODE"="ForwardBase" "RenderType"="Opaque" }
 		
 			CGPROGRAM
 			#pragma vertex vert
