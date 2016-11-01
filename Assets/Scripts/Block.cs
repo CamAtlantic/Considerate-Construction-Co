@@ -120,7 +120,7 @@ public class Block : MonoBehaviour {
     {
         foreach (BuidlingControllerScript control in ghost.GetComponentsInChildren<BuidlingControllerScript>())
         {
-            control.SetColor(color);
+            control.Ghost = true;
         }
     }
 

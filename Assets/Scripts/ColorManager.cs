@@ -4,14 +4,20 @@ using UnityEngine;
 
 //public enum ColorCode { Base, Accent, Accent2, Glass, Column, ColumnFoot, Roofing1, Roofing2, Inside,BaseBack}
 
-//[ExecuteInEditMode]
+[ExecuteInEditMode]
 public class ColorManager : MonoBehaviour {
 
     public static Color ghostColor;
     public static Color invalidMoveColor;
 
-    public Color _ghostColor;
     public Color _invalidMoveColor;
+	public int ActiveColorScheme = 0;
+	public float TotalColorSchemes;
+
+	public Color[] ClrScheme;
+	public static int Row = 0;
+	public static int Column = 0;
+	public float ClrChangeSpeed;
 
     public static Color Clr_1;
 	public static Color Clr_2;
@@ -24,38 +30,77 @@ public class ColorManager : MonoBehaviour {
 	public static Color Clr_9;
 	public static Color Clr_10;
 
-	public Color Clr1_base;
-	public Color Clr2_accent;
-	public Color Clr3_accent_2;
-	public Color Clr4_glass;
-	public Color Clr5_column;
-	public Color Clr6_column_foot;
-	public Color Clr7_roofing_1;
-	public Color Clr8_roofing_2;
-	public Color Clr9_inside;
-	public Color Clr10_base_back;
+	public Color g_Clr1_base;
+	public Color g_Clr2_accent;
+	public Color g_Clr3_accent_2;
+	public Color g_Clr4_glass;
+	public Color g_Clr5_column;
+	public Color g_Clr6_column_foot;
+	public Color g_Clr7_roofing_1;
+	public Color g_Clr8_roofing_2;
+	public Color g_Clr9_inside;
+	public Color g_Clr10_base_back;
 
-    //public Dictionary<>
+	public static Color g_Clr_1;
+	public static Color g_Clr_2;
+	public static Color g_Clr_3;
+	public static Color g_Clr_4;
+	public static Color g_Clr_5;
+	public static Color g_Clr_6;
+	public static Color g_Clr_7;
+	public static Color g_Clr_8;
+	public static Color g_Clr_9;
+	public static Color g_Clr_10;
 
 	// Use this for initialization
-	void Start () {
-        ghostColor = _ghostColor;
-        invalidMoveColor = _invalidMoveColor;
-
-        Clr_1 = Clr1_base;
-        Clr_2 = Clr2_accent;
-        Clr_3 = Clr3_accent_2;
-        Clr_4 = Clr4_glass;
-        Clr_5 = Clr5_column;
-        Clr_6 = Clr6_column_foot;
-        Clr_7 = Clr7_roofing_1;
-        Clr_8 = Clr8_roofing_2;
-        Clr_9 = Clr9_inside;
-        Clr_10 = Clr10_base_back;
-    }
+	void Start () 
+		{
+        	invalidMoveColor = _invalidMoveColor;
+    	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
+		TotalColorSchemes = Mathf.Floor((ClrScheme.Length - 1) / 10);
+			
+		g_Clr_1 = g_Clr1_base;
+		g_Clr_1 = g_Clr1_base;
+		g_Clr_2 = g_Clr2_accent;
+		g_Clr_3 = g_Clr3_accent_2;
+		g_Clr_4 = g_Clr4_glass;
+		g_Clr_5 = g_Clr5_column;
+		g_Clr_6 = g_Clr6_column_foot;
+		g_Clr_7 = g_Clr7_roofing_1;
+		g_Clr_8 = g_Clr8_roofing_2;
+		g_Clr_9 = g_Clr9_inside;
+		g_Clr_10 = g_Clr10_base_back;
 
+		Clr_1 = Color.Lerp (Clr_1, ClrScheme [((ActiveColorScheme - 1)*10) + 1], ClrChangeSpeed);
+		Clr_2 = Color.Lerp (Clr_2, ClrScheme [((ActiveColorScheme - 1)*10) + 2], ClrChangeSpeed);
+		Clr_3 = Color.Lerp (Clr_3, ClrScheme [((ActiveColorScheme - 1)*10) + 3], ClrChangeSpeed);
+		Clr_4 = Color.Lerp (Clr_4, ClrScheme [((ActiveColorScheme - 1)*10) + 4], ClrChangeSpeed);
+		Clr_5 = Color.Lerp (Clr_5, ClrScheme [((ActiveColorScheme - 1)*10) + 5], ClrChangeSpeed);
+		Clr_6 = Color.Lerp (Clr_6, ClrScheme [((ActiveColorScheme - 1)*10) + 6], ClrChangeSpeed);
+		Clr_7 = Color.Lerp (Clr_7, ClrScheme [((ActiveColorScheme - 1)*10) + 7], ClrChangeSpeed);
+		Clr_8 = Color.Lerp (Clr_8, ClrScheme [((ActiveColorScheme - 1)*10) + 8], ClrChangeSpeed);
+		Clr_9 = Color.Lerp (Clr_9, ClrScheme [((ActiveColorScheme - 1)*10) + 9], ClrChangeSpeed);
+		Clr_10 = Color.Lerp (Clr_10, ClrScheme [((ActiveColorScheme - 1)*10) + 10], ClrChangeSpeed);
+
+		/*
+		if (ColorSchemes == 0) 
+		{
+			if (ClrScheme.Length != 11) 
+			{
+				//ClrScheme = new Color[11];
+			}
+		} 
+		else 
+		{
+			if (ClrScheme.Length != (1 + (ColorSchemes * 10))) 
+			{
+				//ClrScheme = new Color[ 1 + (ColorSchemes * 10)];
+			}
+		}
+		*/
 	}
 }
