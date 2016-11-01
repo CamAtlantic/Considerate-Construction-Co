@@ -22,7 +22,6 @@ public class Block : MonoBehaviour {
     [HideInInspector]
     public Vector2 ghostOrigin = new Vector2();
 
-    int value = 0;
     [HideInInspector]
     public bool falling = false;
     public float fallSpeed = 2;
@@ -31,6 +30,8 @@ public class Block : MonoBehaviour {
     Quaternion normalRot = Quaternion.Euler(Vector3.zero);
     Quaternion flippedRot = Quaternion.Euler(0, 180, 0);
     float flipSpeed = 0.1f;
+
+    int baseValue = 0;
 
     int leftEdge
     {
@@ -58,7 +59,6 @@ public class Block : MonoBehaviour {
         camControllerRef = FindObjectOfType<CameraController>();
         siteManagerRef = FindObjectOfType<SiteManager>();
         siteDataRef = transform.parent.GetComponent<SiteData>();
-        
     }
 
 
@@ -112,7 +112,6 @@ public class Block : MonoBehaviour {
     {
         ghost = Instantiate(image,transform.parent);
         //TODO: depth sort the ghost so it's behind the block.
-        //TODO: Make the ghosts silhouettes
         SetGhostColor(ColorManager.ghostColor);
     }
 
@@ -164,9 +163,61 @@ public class Block : MonoBehaviour {
         }
 
         UpdateNeighbors();
+        CheckBlockScore();
         Destroy(ghost);
     }
-    
+
+    public void CheckBlockScore()
+    {
+        int tempScore = baseValue;
+
+        Vector2[] noUpScores = {
+            new Vector2(0,-1)};
+        Vector2[] solidScores = {
+            new Vector2(-1,0),
+            new Vector2(1,0)};
+
+        foreach (Vector2 tileCoords in shape.AllTileCoords)
+        {
+            Tile currentTile = shape.col[(int)tileCoords.x].row[(int)tileCoords.y];
+            switch (currentTile)
+            {
+                case Tile.NoDown:
+                    {
+                        break;
+                    }
+                case Tile.NoUp:
+                    {
+                        CheckTileScore(noUpScores);
+                        break;
+                    }
+                case Tile.Solid:
+                    {
+                        CheckTileScore(solidScores);
+                        break;
+                    }
+            }
+        }
+    }
+
+    public void CheckTileScore(Vector2[] dirs)
+    {
+        foreach (Vector2 dir in dirs)
+        {
+            Vector2 neighborCoord = dir + gridPositionOfOrigin;
+            if (neighborCoord.x < 0 || neighborCoord.x > siteDataRef.grid.GetLength(0) - 1 ||
+                neighborCoord.y < 0 || neighborCoord.y > siteDataRef.grid.GetLength(1) - 1)
+                continue;
+
+            Block maybeNeighbor = siteDataRef.grid[(int)neighborCoord.x, (int)neighborCoord.y];
+            if (maybeNeighbor != null && maybeNeighbor != this)
+            {
+                print(maybeNeighbor.name);
+
+            }
+        }
+    }
+
     /// <summary>
     /// Returns true if position is valid.
     /// </summary>
@@ -185,8 +236,6 @@ public class Block : MonoBehaviour {
                 //print(leftEdge);
                 Tile currentTile = shape.col[(int)tileCoords.x].row[(int)tileCoords.y];
                 Vector2 tileGridPos = tileCoords + potentialGhostPos;
-
-
 
                 //if there is something overlapping the space
                 if (siteDataRef.grid[(int)tileGridPos.x, (int)tileGridPos.y])
@@ -280,6 +329,7 @@ public class Block : MonoBehaviour {
             if (maybeNeighbor != null)
             {
                 neighbors.Add(maybeNeighbor);
+
                 maybeNeighbor.neighbors.Add(this);
             }
         }
