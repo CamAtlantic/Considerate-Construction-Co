@@ -578,6 +578,16 @@ Prefab:
       propertyPath: a_Clr9_inside.a
       value: 0.19607843
       objectReference: {fileID: 0}
+    - target: {fileID: 114009236213491164, guid: 36f504a30cb946e408ed3001bca7926f,
+        type: 2}
+      propertyPath: ActiveColorScheme
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114009236213491164, guid: 36f504a30cb946e408ed3001bca7926f,
+        type: 2}
+      propertyPath: ClrChangeSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 36f504a30cb946e408ed3001bca7926f, type: 2}
   m_IsPrefabParent: 0

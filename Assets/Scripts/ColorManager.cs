@@ -15,7 +15,7 @@ public class ColorManager : MonoBehaviour {
 	public Color invalid_ghost;
 
     public Color _invalidMoveColor;
-	public int ActiveColorScheme = 1;
+	public static int ActiveColorScheme = 1;
 	public float TotalColorSchemes;
 
 	public Color[] ClrScheme;

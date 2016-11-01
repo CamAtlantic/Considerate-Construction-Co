@@ -7,6 +7,8 @@ public class FadeCopiesBG : MonoBehaviour {
 	public Material fadeMaterial;
 	public Material[] targetMaterial;
 
+
+
 	// Use this for initialization
 	void Start () {
 		
@@ -16,10 +18,11 @@ public class FadeCopiesBG : MonoBehaviour {
 	void Update () {
 
 		//fadeMaterial.SetColor ("_Color",  targetMaterial[ ColorManager.ActiveColorScheme ].GetColor ("_BottomColor"));
-		//Debug.Log (targetMaterial [ColorManager.ActiveColorScheme].GetColor ("_BottomColor"));
+		//Debug.Log (targetMaterial [ColorManager.ActiveColorScheme].GetColor ("_BottomColor").r);
+		//fadeMaterial.color = new Color (
 		//fadeMaterial.color.r = targetMaterial [ColorManager.ActiveColorScheme].GetColor ("_BottomColor").r;
 		//fadeMaterial.color.g = targetMaterial [ColorManager.ActiveColorScheme].GetColor ("_BottomColor").g;
-		//fadeMaterial.color.rb = targetMaterial [ColorManager.ActiveColorScheme].GetColor ("_BottomColor").rb;
+		//fadeMaterial.color.b = targetMaterial [ColorManager.ActiveColorScheme].GetColor ("_BottomColor").b;
 		
 	}
 }
