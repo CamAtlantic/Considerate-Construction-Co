@@ -320,7 +320,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1382203976974858}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -351,7 +351,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1515767910333500}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -449,8 +449,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ea666e7f4e57247b736154ae2aae85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialMode: 0
-  tutorial_no_up: {fileID: 0}
   gamePaused: 0
   tapped: 0
   buildingSitePrefab: {fileID: 1000013087376882, guid: 3d59254db818b9840898059005e07c35,
@@ -458,11 +456,6 @@ MonoBehaviour:
   siteDataRef: {fileID: 0}
   gridSizeY: 50
   maxHeight: 20
-  modeSelect: 0
-  blockList:
-  - {fileID: 1700916580742118, guid: aa8e42ef35ea2443d805e15f336dc209, type: 2}
-  - {fileID: 1455746184638508, guid: f359c83175f1444a69fc2ee361c80256, type: 2}
-  - {fileID: 1706287722262902, guid: 6d25e056824a0440d8024c20c4bf2ba5, type: 2}
   heldBlock: {fileID: 0}
   inShadow: 0
   newBlockDelay: 0.5

@@ -175,7 +175,7 @@ public class Block : MonoBehaviour {
     {
         Vector2 potentialGhostPos = new Vector2(gridPositionOfOrigin.x, 0);
 
-        for (int i = siteManagerRef.maxHeight - 1; i >= 0; i--)
+        for (int i = (int)gridPositionOfOrigin.y; i >= 0; i--)
         {
             potentialGhostPos.y = i;
 
@@ -185,6 +185,8 @@ public class Block : MonoBehaviour {
                 //print(leftEdge);
                 Tile currentTile = shape.col[(int)tileCoords.x].row[(int)tileCoords.y];
                 Vector2 tileGridPos = tileCoords + potentialGhostPos;
+
+
 
                 //if there is something overlapping the space
                 if (siteDataRef.grid[(int)tileGridPos.x, (int)tileGridPos.y])
@@ -212,15 +214,23 @@ public class Block : MonoBehaviour {
 
     bool CheckMoveValidity()
     {
+        //if any part of the shape is above the max height
+        //need to do this first as the other one only checks bottom row
+        foreach (Vector2 tileCoords in shape.AllTileCoords)
+        {
+            Vector2 tileGridPos = tileCoords + ghostOrigin;
+            if (tileGridPos.y > siteManagerRef.maxHeight - 1)
+            {
+                //print("Too High: " + (tileGridPos.y).ToString() + " " + (siteManagerRef.maxHeight - 1));
+                SetGhostColor(ColorManager.invalidMoveColor);
+                return false;
+            }
+        }
+
         foreach (Vector2 tileCoords in shape.AllTileCoords)
         {
             Vector2 tileGridPos = tileCoords + ghostOrigin + Vector2.down;
-            //if any part of the shape is above the max height
-            if (tileGridPos.y > siteManagerRef.maxHeight)
-            {
-                return false;
-            }
-
+           
             //check the bottom row
             if (tileCoords.y == 0)
             {

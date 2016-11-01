@@ -188,21 +188,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114310350900302538, guid: dc504a243d8514bee9cce16690d5d29f,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1923273269}
-    - target: {fileID: 114462130060382778, guid: dc504a243d8514bee9cce16690d5d29f,
-        type: 2}
-      propertyPath: MainCamera
-      value: 
-      objectReference: {fileID: 358487177}
     - target: {fileID: 223028733125679230, guid: dc504a243d8514bee9cce16690d5d29f,
         type: 2}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 358487177}
+    - target: {fileID: 114310350900302538, guid: dc504a243d8514bee9cce16690d5d29f,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 978262393}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc504a243d8514bee9cce16690d5d29f, type: 2}
   m_IsPrefabParent: 0
@@ -253,6 +248,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b233380f5cfd6f24c9ebdc8bed31f2dc, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &978262393 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114460427194125866, guid: 36f504a30cb946e408ed3001bca7926f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1522970779}
+  m_Script: {fileID: 11500000, guid: 93ea666e7f4e57247b736154ae2aae85, type: 3}
 --- !u!1001 &1330568548
 Prefab:
   m_ObjectHideFlags: 0
@@ -334,12 +335,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114460427194125866, guid: 36f504a30cb946e408ed3001bca7926f,
+        type: 2}
+      propertyPath: maxHeight
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 36f504a30cb946e408ed3001bca7926f, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &1923273269 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114267676588281664, guid: b233380f5cfd6f24c9ebdc8bed31f2dc,
-    type: 2}
-  m_PrefabInternal: {fileID: 776428264}
-  m_Script: {fileID: 11500000, guid: 494a2a0ec111c4e8d8847433de35365e, type: 3}

@@ -1992,11 +1992,9 @@ MonoBehaviour:
   siteDataRef: {fileID: 0}
   shape:
     col:
-    - row: 010000000000000000000000
+    - row: 020000000000000000000000
     - row: 010000000100000000000000
-    - row: 000000000100000000000000
-  xLength: 0
-  yLength: 0
+    - row: 000000000200000000000000
   image: {fileID: 1400721638325852}
   ghost: {fileID: 0}
   center: {fileID: 1330955043258008}

@@ -845,7 +845,7 @@ GameObject:
   - component: {fileID: 4446860470119984}
   - component: {fileID: 114091943381513236}
   m_Layer: 0
-  m_Name: 1_2Storey
+  m_Name: Lobby
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1739,8 +1739,6 @@ MonoBehaviour:
     - row: 010000000100000000000000
     - row: 000000000000000000000000
     - row: 000000000000000000000000
-  xLength: 0
-  yLength: 0
   image: {fileID: 1534673092533488}
   ghost: {fileID: 0}
   center: {fileID: 1086095596631798}

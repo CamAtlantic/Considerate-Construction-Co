@@ -4225,7 +4225,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_MethodName: ChangeCamPosition_leftright
+        m_MethodName: ToggleShadow
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4778,7 +4778,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcaab788a0dd64c1881f77e88e4ca10e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainCamera: {fileID: 0}
   SelectZoom: 2.5
   NoSelectZoom: 5.5
   SelectCount: 1

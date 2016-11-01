@@ -3,15 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Lean.Touch;
 
-public enum LevelMode { Fixed,Random,MagicBag};
 
 public class SiteManager : MonoBehaviour
 {
     //This script controls spawning and moving blocks.
     
-    public bool tutorialMode = false;
-    public GameObject tutorial_no_up;
-    [Space(10)]
+    TutorialMode tutorialScript;
 
     public bool gamePaused = false;
 
@@ -30,12 +27,8 @@ public class SiteManager : MonoBehaviour
     /// <summary>
     /// The actual height of the array being used.
     /// </summary>
-    [HideInInspector]
-    public int maxHeight = 30;
-
-    //TODO: These might go well on SiteData
-    public LevelMode modeSelect;
-    public GameObject[] blockList;
+    public int maxHeight = 20;
+    GameObject heightLimitUI;
 
     [HideInInspector]
     public Block heldBlock;
@@ -48,24 +41,24 @@ public class SiteManager : MonoBehaviour
     void Awake()
     {
         camControllerRef = FindObjectOfType<CameraController>();
-
+        heightLimitUI = GameObject.FindGameObjectWithTag("HeightLimitUI");
+        if (!heightLimitUI)
+            Debug.LogError("Can't find height limit UI thingy!!");
+        heightLimitUI.transform.position = new Vector3(heightLimitUI.transform.position.x, maxHeight, heightLimitUI.transform.position.z);
         //make pillar ready for tutorial
         //TODO: something something siteData
-        if (tutorialMode)
-        {
-            siteDataRef = FindObjectOfType<SiteData>();
-            siteDataRef.grid = new Block[gridSizeX, gridSizeY];
-            
-            for(int i = 0;i<5;i++)
-            {
-                if (i == 2)
-                    continue;
-                GameObject block = Instantiate(tutorial_no_up, siteDataRef.transform);
-                Block new_no_up = block.GetComponent<Block>();
-                new_no_up.SetGridPos(new Vector2(i, 0),false);
-                new_no_up.Drop();
+        
+        SwipedDirection = "null";
+    }
 
-            }
+    // Use this for initialization
+    void Start()
+    {
+        if (FindObjectOfType<TutorialMode>())
+        {
+            tutorialScript = FindObjectOfType<TutorialMode>();
+            siteDataRef = FindObjectOfType<SiteData>();
+            tutorialScript.SetUpPillar(gridSizeX, gridSizeY);
         }
         else
         {
@@ -74,13 +67,6 @@ public class SiteManager : MonoBehaviour
             siteDataRef = newSite.GetComponent<SiteData>();
             siteDataRef.grid = new Block[gridSizeX, gridSizeY];
         }
-        SwipedDirection = "null";
-    }
-
-    // Use this for initialization
-    void Start()
-    {
-
     }
 
     // Update is called once per frame
@@ -147,25 +133,27 @@ public class SiteManager : MonoBehaviour
             tapped = false;
         }
     }
-
+    //TODO: this function should be on siteData probably
     int fixedModeIndex = 0;
     void SpawnNewBlock()
     {
+        siteDataRef.currentBlock++;
+
         int newBlockIndex = 0;
 
-        if (modeSelect == LevelMode.Random)
-            newBlockIndex = Random.Range(0, blockList.Length);
-        else if (modeSelect == LevelMode.Fixed)
+        if (siteDataRef.modeSelect == LevelMode.Random)
+            newBlockIndex = Random.Range(0, siteDataRef.blockList.Length);
+        else if (siteDataRef.modeSelect == LevelMode.Fixed)
         {
             newBlockIndex = fixedModeIndex;
             fixedModeIndex++;
-            if (fixedModeIndex == blockList.Length)
+            if (fixedModeIndex == siteDataRef.blockList.Length)
             {
                 //here is where the level can end or we can reset or something
                 fixedModeIndex = 0;
             }
         }
-        GameObject newBlock = Instantiate(blockList[newBlockIndex], siteDataRef.transform);
+        GameObject newBlock = Instantiate(siteDataRef.blockList.list[newBlockIndex], siteDataRef.transform);
         heldBlock = newBlock.GetComponent<Block>();
 
         Vector2 newBlockPos = new Vector2(2, siteDataRef.normalTopBlock + 10);
