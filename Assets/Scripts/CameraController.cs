@@ -38,9 +38,10 @@ public class CameraController : MonoBehaviour {
         //== Vertical ==============================
 		if (SelectBuilding.LookingAtBuilding == false) 
 		{
-			if (mode == CameraMode.MoveWithBlock && siteManagerRef.heldBlock) 
+			if (mode == CameraMode.MoveWithBlock && siteManagerRef.heldBlock && siteManagerRef.heldBlock.ghost) 
 			{
 				LerpToHeight ((int)siteManagerRef.heldBlock.ghostOrigin.y);
+                print((int)siteManagerRef.heldBlock.ghostOrigin.y);
 			}
 
             else
