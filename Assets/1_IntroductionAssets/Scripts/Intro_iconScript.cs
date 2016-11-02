@@ -64,9 +64,9 @@ public class Intro_iconScript : MonoBehaviour {
 
 			if (MainCamera_start.activeSelf == true) 
 			{
-				if (MainCamera_start.transform.position.y - MainCamera_end.transform.position.y < 1.0) 
+				if (MainCamera_start.transform.position.y - MainCamera_end.transform.position.y < 0.1) 
 				{
-					MainCamera_start.transform.position = Vector3.Lerp (MainCamera_start.transform.position, MainCamera_end.transform.position, 0.1f);
+					TutorialMode.TutorialStart = true;
 					if (MainCamera_start.transform.position.y - MainCamera_end.transform.position.y < 0.01) 
 					{
 						MainCamera_start.SetActive (false);

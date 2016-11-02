@@ -18,12 +18,23 @@ public class LevelHeightBGManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		HeightLimit_0.SetActive (false);
+		HeightLimit_1.SetActive (false);
+		HeightLimit_2.SetActive (false);
+		HeightLimit_3.SetActive (false);
+		HeightLimit_4.SetActive (false);
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+		if (TutorialMode.TutorialStart == true) {
+			HeightLimit_0.SetActive (true);
+			HeightLimit_1.SetActive (true);
+			HeightLimit_2.SetActive (true);
+			HeightLimit_3.SetActive (true);
+			HeightLimit_4.SetActive (true);
+		}
 		HeightLimit_0.transform.position = new Vector3 (2, LevelHeight[0] + 5  + StartingHeight, 0);
 		Level [0].transform.localScale = new Vector3 (20, LevelHeight[0], 20);
 		Level [0].transform.position = new Vector3 (2, LevelHeight[0]/2 + StartingHeight, 50);
