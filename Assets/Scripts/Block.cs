@@ -133,7 +133,6 @@ public class Block : MonoBehaviour {
     public void MoveBlock(Vector2 moveDir)
     {
         Vector2 proposedDestination = gridPositionOfOrigin + moveDir;
-        
         if (proposedDestination.x >= leftEdge && proposedDestination.x + shape.xLength <= rightEdge)
         {
             gridPositionOfOrigin = proposedDestination;
@@ -203,7 +202,7 @@ public class Block : MonoBehaviour {
             }
         }
         //here is the final score
-        print(siteDataRef.currentBlock.ToString()+ ": " + gameObject.name + ": " + tempScore);
+       // print(siteDataRef.currentBlock.ToString()+ ": " + gameObject.name + ": " + tempScore);
     }
 
     public int CheckTileScore(Tile tile, Vector2 tileCoords, Vector2[] dirs)

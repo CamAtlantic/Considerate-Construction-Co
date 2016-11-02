@@ -53,14 +53,25 @@ public class Intro_iconScript : MonoBehaviour {
 				SwipedFromLoad = true;
 			}
 		}
-		if (SwipedFromLoad == true) {
+		if (SwipedFromLoad == true) 
+		{
 			Icon_Center.transform.position = Vector3.Lerp (Icon_Center.transform.position, IconCenter_Destination.transform.position, 0.01f);
 			Icon_Center.transform.localScale = Vector3.Lerp (Icon_Center.transform.localScale, IconCenter_Destination.transform.localScale, 0.05f);
 			MainCamera_start.transform.position = Vector3.Lerp (MainCamera_start.transform.position, MainCamera_end.transform.position, 0.01f);
 			a.enabled = false;
-		}
 
-		//loading pulse
+			if (MainCamera_start.activeSelf == true) 
+			{
+				if (MainCamera_start.transform.position.y - MainCamera_end.transform.position.y < 1.0) 
+				{
+					MainCamera_start.transform.position = Vector3.Lerp (MainCamera_start.transform.position, MainCamera_end.transform.position, 0.1f);
+					if (MainCamera_start.transform.position.y - MainCamera_end.transform.position.y < 0.01) 
+					{
+						MainCamera_start.SetActive (false);
+					}
+				}
+			}
+		}
 
 		//finish sequence
 		/*AllIcons.transform.Rotate (Vector3.back * 3);

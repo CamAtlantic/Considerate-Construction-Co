@@ -100,15 +100,15 @@ public class ColorManager : MonoBehaviour {
 		g_Clr_9_invalid = new Color (invalid_ghost.r, invalid_ghost.g, invalid_ghost.b, a_Clr9_inside.a);
 		g_Clr_10_invalid = new Color (invalid_ghost.r, invalid_ghost.g, invalid_ghost.b, a_Clr10_base_back.a);
 
-		Clr_1 = Color.Lerp (Clr_1, ClrScheme [((ActiveColorScheme - 1)*10) + 1], ClrChangeSpeed);
-		Clr_2 = Color.Lerp (Clr_2, ClrScheme [((ActiveColorScheme - 1)*10) + 2], ClrChangeSpeed);
-		Clr_3 = Color.Lerp (Clr_3, ClrScheme [((ActiveColorScheme - 1)*10) + 3], ClrChangeSpeed);
-		Clr_4 = Color.Lerp (Clr_4, ClrScheme [((ActiveColorScheme - 1)*10) + 4], ClrChangeSpeed);
-		Clr_5 = Color.Lerp (Clr_5, ClrScheme [((ActiveColorScheme - 1)*10) + 5], ClrChangeSpeed);
-		Clr_6 = Color.Lerp (Clr_6, ClrScheme [((ActiveColorScheme - 1)*10) + 6], ClrChangeSpeed);
-		Clr_7 = Color.Lerp (Clr_7, ClrScheme [((ActiveColorScheme - 1)*10) + 7], ClrChangeSpeed);
-		Clr_8 = Color.Lerp (Clr_8, ClrScheme [((ActiveColorScheme - 1)*10) + 8], ClrChangeSpeed);
-		Clr_9 = Color.Lerp (Clr_9, ClrScheme [((ActiveColorScheme - 1)*10) + 9], ClrChangeSpeed);
-		Clr_10 = Color.Lerp (Clr_10, ClrScheme [((ActiveColorScheme - 1)*10) + 10], ClrChangeSpeed);
+		Clr_1 = Color.Lerp (Clr_1, ClrScheme [((ActiveColorScheme)*10) + 1], ClrChangeSpeed);
+		Clr_2 = Color.Lerp (Clr_2, ClrScheme [((ActiveColorScheme)*10) + 2], ClrChangeSpeed);
+		Clr_3 = Color.Lerp (Clr_3, ClrScheme [((ActiveColorScheme)*10) + 3], ClrChangeSpeed);
+		Clr_4 = Color.Lerp (Clr_4, ClrScheme [((ActiveColorScheme)*10) + 4], ClrChangeSpeed);
+		Clr_5 = Color.Lerp (Clr_5, ClrScheme [((ActiveColorScheme)*10) + 5], ClrChangeSpeed);
+		Clr_6 = Color.Lerp (Clr_6, ClrScheme [((ActiveColorScheme)*10) + 6], ClrChangeSpeed);
+		Clr_7 = Color.Lerp (Clr_7, ClrScheme [((ActiveColorScheme)*10) + 7], ClrChangeSpeed);
+		Clr_8 = Color.Lerp (Clr_8, ClrScheme [((ActiveColorScheme)*10) + 8], ClrChangeSpeed);
+		Clr_9 = Color.Lerp (Clr_9, ClrScheme [((ActiveColorScheme)*10) + 9], ClrChangeSpeed);
+		Clr_10 = Color.Lerp (Clr_10, ClrScheme [((ActiveColorScheme)*10) + 10], ClrChangeSpeed);
 	}
 }

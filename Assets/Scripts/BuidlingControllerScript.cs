@@ -22,13 +22,14 @@ public class BuidlingControllerScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -(Depth / 5 + 1));
+        //transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -(Depth / 5 + 1));
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		spriteRender = GetComponent<SpriteRenderer>();
 		UpdateAllColor();
+		transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -(Depth / 5 + 1));
 	}
 
    // public void SetColor(Color color)
@@ -76,7 +77,6 @@ public class BuidlingControllerScript : MonoBehaviour {
 				if (Valid == true) {
 					if (MyColorCode == 1) {
 						spriteRender.color = ColorManager.g_Clr_1_valid;
-						Debug.Log (ColorManager.g_Clr_1_valid);
 					}
 					if (MyColorCode == 2) {
 						spriteRender.color = ColorManager.g_Clr_2_valid;

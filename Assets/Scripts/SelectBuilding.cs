@@ -38,12 +38,14 @@ public class SelectBuilding : MonoBehaviour {
 		if (Selecting == false) {
 		Ray ray = MainCamera.ScreenPointToRay (Input.mousePosition);
 		RaycastHit hit;
-			if (Physics.Raycast (ray, out hit, 20)) {
+			if (Physics.Raycast (ray, out hit, 20)) 
+			{
 				//print ("I am hitting" + hit.collider.name);
 				//print ("I am hitting" + hit.transform.parent.name);
 				//print ("I am hitting" + hit.transform.root.name);
 				Target = hit.transform.parent.gameObject;
-				if (Input.GetMouseButtonDown (0)) {
+				if (Input.GetMouseButtonDown (0)) 
+				{
 					Counting = true;
 				}
 			}
@@ -57,13 +59,15 @@ public class SelectBuilding : MonoBehaviour {
 				Selecting = true;
 			}
 		}
-		if (Selecting == true) {
+		if (Selecting == true) 
+		{
 			this.GetComponent<CanvasGroup> ().blocksRaycasts = true;
 			LookingAtBuilding = true;
 			MainCamera.transform.position = Vector3.Lerp (MainCamera.transform.position, new Vector3 (Target.transform.position.x, Target.transform.position.y, MainCamera.transform.position.z), 0.1f);
 			MainCamera.orthographicSize = Mathf.Lerp (MainCamera.orthographicSize, SelectZoom, 0.1f);
 			OuterRing.transform.localScale = Vector3.Lerp (OuterRing.transform.localScale, Vector3.one * SelectSize, 0.1f);
-			if (ConfirmingDemolish == true) {
+			if (ConfirmingDemolish == true) 
+			{
 				Confirm.transform.localScale = Vector3.Lerp (Confirm.transform.localScale, Vector3.one * ConfirmSize, 0.25f);
 				AccentRing.color = Color.Lerp (AccentRing.color, AccentRing_demolish, 0.1f);
 			} 
@@ -72,7 +76,9 @@ public class SelectBuilding : MonoBehaviour {
 				Confirm.transform.localScale = Vector3.Lerp (Confirm.transform.localScale, Vector3.one * 0, 0.25f);
 				AccentRing.color = Color.Lerp (AccentRing.color, AccentRing_noselect, 0.1f);
 			}
-		} else {
+		} 
+		else 
+		{
 			MainCamera.orthographicSize = Mathf.Lerp (MainCamera.orthographicSize, NoSelectZoom, 0.1f);
 			OuterRing.transform.localScale = Vector3.Lerp (OuterRing.transform.localScale, Vector3.one * UnSelectSize, 0.25f);
 			Confirm.transform.localScale = Vector3.Lerp (Confirm.transform.localScale, Vector3.one * 0, 0.25f);
