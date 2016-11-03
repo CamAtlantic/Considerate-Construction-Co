@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class Block : MonoBehaviour {
     //This is the basic script that buildings and toppers derive from.
+    [HideInInspector]
+    public GameObject connection_Point = null;
+
     public int baseValue = 0;
 
     [HideInInspector]
@@ -363,9 +366,6 @@ public class Block : MonoBehaviour {
                             break;
                         }
                 }
-
-                //print(maybeNeighbor.shape.col[(int)tileCoord.x].row[(int)tileCoord.y]);
-
             }
         }
         return tileScore;

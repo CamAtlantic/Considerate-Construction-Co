@@ -1,10 +1,18 @@
 fileFormatVersion: 2
 guid: 40714376d38d74e4b922f75c18f860c5
-timeCreated: 1475826982
+timeCreated: 1478200193
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - connection_Point: {fileID: 1987589799989966, guid: 6864c50694fdf4a2387959e226a6c211,
+      type: 2}
+  - siteManagerRef: {instanceID: 0}
+  - siteDataRef: {instanceID: 0}
+  - image: {instanceID: 0}
+  - ghost: {instanceID: 0}
+  - center: {instanceID: 0}
+  - dropDown: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
