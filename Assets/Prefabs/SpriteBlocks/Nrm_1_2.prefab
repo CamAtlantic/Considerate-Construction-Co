@@ -1743,6 +1743,8 @@ MonoBehaviour:
   image: {fileID: 1259957903077710}
   ghost: {fileID: 0}
   center: {fileID: 1839674518112342}
+  dropDown: {fileID: 1931287446839260}
+  dropDownText: {fileID: 0}
   gridPositionOfOrigin: {x: 0, y: 0}
   ghostOrigin: {x: 0, y: 0}
   falling: 0

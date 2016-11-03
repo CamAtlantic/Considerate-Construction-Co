@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class Block : MonoBehaviour {
     //This is the basic script that buildings and toppers derive from.
@@ -19,6 +20,9 @@ public class Block : MonoBehaviour {
     [HideInInspector]
     public GameObject ghost = null;
     public GameObject center = null;
+    public GameObject dropDown = null;
+
+     Text dropDownText = null;    
 
     public Vector2 gridPositionOfOrigin;
     [HideInInspector]
@@ -55,11 +59,16 @@ public class Block : MonoBehaviour {
         }
     }
     float offset;
+
     void Awake()
     {
         camControllerRef = FindObjectOfType<CameraController>();
         siteManagerRef = FindObjectOfType<SiteManager>();
         siteDataRef = transform.parent.GetComponent<SiteData>();
+
+        dropDownText = dropDown.transform.GetComponentInChildren<Text>();
+        if (dropDownText)
+            dropDownText.text = baseValue.ToString();
     }
 
 
@@ -79,8 +88,7 @@ public class Block : MonoBehaviour {
 
     // Update is called once per frame
     void Update()
-    {
-        
+    {   
         if (falling)
         {
             transform.localPosition += (Vector3.down * fallSpeed);
@@ -105,9 +113,11 @@ public class Block : MonoBehaviour {
           
             image.transform.localScale  = new Vector3(1, 1, 1);
             if(ghost)
-            ghost.transform.localScale = new Vector3(1, 1, 1);
+                ghost.transform.localScale = new Vector3(1, 1, 1);
             center.transform.localRotation = normalRot;
         }
+
+        
     }
 
     public void MoveBlock(Vector2 moveDir)
@@ -156,9 +166,11 @@ public class Block : MonoBehaviour {
     public void SpawnGhost(bool valid)
     {
         ghost = Instantiate(image, ghostOrigin,Quaternion.identity, transform.parent);
-        ghost.name = "Ghost";
-        //TODO: depth sort the ghost so it's behind the block.
+        ghost.name = "Ghost of: " + gameObject.name;
         SetGhostColor(valid);
+        dropDown.transform.parent = ghost.transform;
+        //dropDown.transform.localPosition = new Vector3(0, (shape.yLength+1) * 0.5f, 0);
+        dropDown.transform.localPosition = Vector3.zero;
     }
 
     void SetGhostColor(bool validInvalid)
