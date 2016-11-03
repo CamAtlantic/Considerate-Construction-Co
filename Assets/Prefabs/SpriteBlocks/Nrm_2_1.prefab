@@ -1047,7 +1047,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40714376d38d74e4b922f75c18f860c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseValue: 0
+  connection_Point: {fileID: 1987589799989966, guid: 6864c50694fdf4a2387959e226a6c211,
+    type: 2}
+  baseValue: 10
   siteManagerRef: {fileID: 0}
   siteDataRef: {fileID: 0}
   shape:
@@ -1059,7 +1061,6 @@ MonoBehaviour:
   ghost: {fileID: 0}
   center: {fileID: 1359262413065474}
   dropDown: {fileID: 1048696375967034}
-  dropDownText: {fileID: 0}
   gridPositionOfOrigin: {x: 0, y: 0}
   ghostOrigin: {x: 0, y: 0}
   falling: 0

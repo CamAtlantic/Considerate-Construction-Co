@@ -208,6 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40714376d38d74e4b922f75c18f860c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  connection_Point: {fileID: 1311210981640134}
   baseValue: 0
   siteManagerRef: {fileID: 0}
   siteDataRef: {fileID: 0}

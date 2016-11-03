@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class Block : MonoBehaviour {
     //This is the basic script that buildings and toppers derive from.
-    [HideInInspector]
     public GameObject connection_Point = null;
 
     public int baseValue = 0;
@@ -62,6 +61,8 @@ public class Block : MonoBehaviour {
         }
     }
     float offset;
+
+    List<GameObject> connectionPoints = new List<GameObject>();
 
     void Awake()
     {
@@ -131,6 +132,7 @@ public class Block : MonoBehaviour {
             gridPositionOfOrigin = proposedDestination;
             transform.localPosition = gridPositionOfOrigin;
         }
+
         CheckGhostPos();
     }
 
@@ -161,8 +163,8 @@ public class Block : MonoBehaviour {
             }
         }
 
-        UpdateNeighbors();
-        CheckBlockScore();
+        //UpdateNeighbors();
+        //CheckBlockScore();
         Destroy(ghost);
     }
 
@@ -226,6 +228,8 @@ public class Block : MonoBehaviour {
                             ghost.transform.Translate(new Vector3(offset, 0, 0));
 
                     }
+                    CheckBlockScore();
+
                     return valid;
                 }
             }
@@ -242,6 +246,8 @@ public class Block : MonoBehaviour {
                 ghost.transform.Translate(new Vector3(offset, 0, 0));
             }
         }
+        CheckBlockScore();
+
         return true;
     }
 
@@ -279,7 +285,7 @@ public class Block : MonoBehaviour {
                         Vector2 foundTileCoord = tileGridPos - foundBlock.gridPositionOfOrigin;
                         Tile foundTile = foundBlock.shape.col[(int)foundTileCoord.x].row[(int)foundTileCoord.y];
                         
-                        //if one block is above a solid, move is valid
+                        //if one block is above a solid or noDown, move is valid
                         if (foundTile == Tile.Solid || foundTile == Tile.NoDown)
                         {
                             
@@ -304,10 +310,17 @@ public class Block : MonoBehaviour {
             new Vector2(-1,0),
             new Vector2(1,0)};
 
+        foreach (GameObject go in connectionPoints)
+        {
+            Destroy(go);
+        }
+        connectionPoints.Clear();
+        print("clear");
+
         foreach (Vector2 tileCoords in shape.AllTileCoords)
         {
             Tile currentTile = shape.col[(int)tileCoords.x].row[(int)tileCoords.y];
-            Vector2 tileCoordsOnGrid = tileCoords + gridPositionOfOrigin;
+            Vector2 tileCoordsOnGrid = tileCoords + ghostOrigin;
             switch (currentTile)
             {
                 case Tile.NoUp:
@@ -326,8 +339,10 @@ public class Block : MonoBehaviour {
         // print(siteDataRef.currentBlock.ToString()+ ": " + gameObject.name + ": " + tempScore);
     }
 
-    public int CheckTileScore(Tile tile, Vector2 tileCoords, Vector2[] dirs)
+    public int CheckTileScore(Tile currentTile, Vector2 tileCoords, Vector2[] dirs)
     {
+
+
         int tileScore = 0;
         foreach (Vector2 dir in dirs)
         {
@@ -339,11 +354,14 @@ public class Block : MonoBehaviour {
             Block maybeNeighbor = siteDataRef.grid[(int)neighborGridPos.x, (int)neighborGridPos.y];
             if (maybeNeighbor != null && maybeNeighbor != this)
             {
+                
+
                 Vector2 neighborTileCoords = neighborGridPos - maybeNeighbor.gridPositionOfOrigin;
+                Vector3 neighborTileCenter = new Vector3(neighborGridPos.x, neighborGridPos.y + 0.5f, -4);
 
                 Tile neighborTile = (maybeNeighbor.shape.col[(int)neighborTileCoords.x].row[(int)neighborTileCoords.y]);
 
-                switch (tile)
+                switch (currentTile)
                 {
                     case Tile.Solid:
                         {
@@ -351,7 +369,8 @@ public class Block : MonoBehaviour {
                             {
                                 tileScore += baseValue;
 
-                                //print("neighbor is valid");
+                                connectionPoints.Add( Instantiate(connection_Point, neighborTileCenter, Quaternion.identity, dropDown.transform));
+
                             }
                             break;
                         }
@@ -361,7 +380,9 @@ public class Block : MonoBehaviour {
                             {
                                 tileScore += baseValue;
 
-                                //print("neighbor is valid");
+                                connectionPoints.Add(Instantiate(connection_Point, neighborTileCenter, Quaternion.Euler(0,0,90), dropDown.transform));
+
+
                             }
                             break;
                         }
@@ -427,9 +448,10 @@ public class Block : MonoBehaviour {
             image.transform.Translate(-offset, 0, 0);
             ghost.transform.Translate(-offset, 0, 0);
         }
-        shape.FlipHorizontal();
 
+        shape.FlipHorizontal();
         CheckGhostPos();
+
     }
 
     int CheckTowerHeight()
