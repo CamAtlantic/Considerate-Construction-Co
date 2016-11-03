@@ -72,22 +72,23 @@ public class SiteManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!heldBlock)
-        {
-            newBlockTimer += Time.deltaTime;
-            if (newBlockTimer > newBlockDelay)
-            {
-                newBlockTimer = 0;
-                SpawnNewBlock();
-                inShadow = false;
-                camControllerRef.ChangeCamPosition_leftright(1);
-            }
-        }
-        else if(!gamePaused && SelectBuilding.Selecting == false)
-        {
+		if (Input.GetMouseButtonUp (0)) {
+			StartCoroutine (nullify ());
+		}
+		if (TutorialMode.TutorialStart == true) {
+			if (!heldBlock) {
+				newBlockTimer += Time.deltaTime;
+				if (newBlockTimer > newBlockDelay) {
+					newBlockTimer = 0;
+					SpawnNewBlock ();
+					inShadow = false;
+					camControllerRef.ChangeCamPosition_leftright (1);
+				}
+			} else if (!gamePaused && SelectBuilding.Selecting == false) {
             
-            GetInput();
-        }
+				GetInput ();
+			}
+		}
     }
 
 
@@ -180,6 +181,12 @@ public class SiteManager : MonoBehaviour
             }
         }
     }
+
+	IEnumerator nullify(){
+		yield return new WaitForSeconds(1f);
+		SwipedDirection = "null";
+		yield return null;
+	}
 
     #region swipes
     public static void SwipeLeft()

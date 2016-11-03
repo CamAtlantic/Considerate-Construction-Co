@@ -13,13 +13,14 @@ public class Intro_iconScript : MonoBehaviour {
 	public GameObject Icon_Outer;
 	public GameObject IconCenter_Destination;
 	public GameObject ParticleEffect;
+	public GameObject Delete_1;
+	public GameObject Delete_2;
 
-	private Animator a;
+	public Animator a;
 	public Animator b;
 
 	private float count;
 	public float ResetCount;
-	public AnimationCurve TweenCurve;
 	public float TestSpeed_rotate;
 
 	private bool SwipedFromLoad = false;
@@ -34,9 +35,10 @@ public class Intro_iconScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		SwipeDirection = "null";
-
-		a = GetComponent<Animator> ();
+	
 		ParticleEffect.SetActive (false);
+		Delete_1.SetActive (true);
+		Delete_2.SetActive (true);
 		
 	}
 
@@ -62,12 +64,13 @@ public class Intro_iconScript : MonoBehaviour {
 
 			if (MainCamera_start.activeSelf == true) 
 			{
-				if (MainCamera_start.transform.position.y - MainCamera_end.transform.position.y < 1.0) 
+				if (MainCamera_start.transform.position.y - MainCamera_end.transform.position.y < 0.1) 
 				{
-					MainCamera_start.transform.position = Vector3.Lerp (MainCamera_start.transform.position, MainCamera_end.transform.position, 0.1f);
+					TutorialMode.TutorialStart = true;
 					if (MainCamera_start.transform.position.y - MainCamera_end.transform.position.y < 0.01) 
 					{
 						MainCamera_start.SetActive (false);
+						Delete_1.SetActive (false);
 					}
 				}
 			}

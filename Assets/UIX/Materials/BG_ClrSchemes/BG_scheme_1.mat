@@ -18,11 +18,11 @@ Material:
     m_Floats:
     - first:
         name: _Ratio
-      second: 0.5
+      second: 0.47
     m_Colors:
     - first:
         name: _BottomColor
-      second: {r: 0.8308824, g: 0.6109429, b: 0.7065028, a: 0}
+      second: {r: 1, g: 0.44852942, b: 0.5023314, a: 1}
     - first:
         name: _TopColor
-      second: {r: 0.9852941, g: 0.9852941, b: 0.9852941, a: 0}
+      second: {r: 1, g: 0.7686275, b: 0.7176471, a: 0}
