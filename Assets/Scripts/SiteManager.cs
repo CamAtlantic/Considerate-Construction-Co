@@ -185,6 +185,7 @@ public class SiteManager : MonoBehaviour
 	IEnumerator nullify(){
 		yield return new WaitForSeconds(1f);
 		SwipedDirection = "null";
+		Debug.Log ("null");
 		yield return null;
 	}
 
