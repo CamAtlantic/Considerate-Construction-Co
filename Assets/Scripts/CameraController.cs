@@ -41,7 +41,7 @@ public class CameraController : MonoBehaviour {
 			if (mode == CameraMode.MoveWithBlock && siteManagerRef.heldBlock && siteManagerRef.heldBlock.ghost) 
 			{
 				LerpToHeight ((int)siteManagerRef.heldBlock.ghostOrigin.y);
-                print((int)siteManagerRef.heldBlock.ghostOrigin.y);
+
 			}
 
             else

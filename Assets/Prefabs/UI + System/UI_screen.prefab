@@ -1364,7 +1364,7 @@ GameObject:
   - component: {fileID: 222264697142914072}
   - component: {fileID: 114430423318512572}
   m_Layer: 0
-  m_Name: door_glass
+  m_Name: window_glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

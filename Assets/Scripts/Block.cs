@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class Block : MonoBehaviour {
     //This is the basic script that buildings and toppers derive from.
+    public GameObject connection_Point = null;
+
     public int baseValue = 0;
 
     [HideInInspector]
@@ -19,6 +22,9 @@ public class Block : MonoBehaviour {
     [HideInInspector]
     public GameObject ghost = null;
     public GameObject center = null;
+    public GameObject dropDown = null;
+
+     Text dropDownText = null;    
 
     public Vector2 gridPositionOfOrigin;
     [HideInInspector]
@@ -55,11 +61,18 @@ public class Block : MonoBehaviour {
         }
     }
     float offset;
+
+    List<GameObject> connectionPoints = new List<GameObject>();
+
     void Awake()
     {
         camControllerRef = FindObjectOfType<CameraController>();
         siteManagerRef = FindObjectOfType<SiteManager>();
         siteDataRef = transform.parent.GetComponent<SiteData>();
+
+        dropDownText = dropDown.transform.GetComponentInChildren<Text>();
+        if (dropDownText)
+            dropDownText.text = baseValue.ToString();
     }
 
 
@@ -79,8 +92,7 @@ public class Block : MonoBehaviour {
 
     // Update is called once per frame
     void Update()
-    {
-        
+    {   
         if (falling)
         {
             transform.localPosition += (Vector3.down * fallSpeed);
@@ -105,9 +117,11 @@ public class Block : MonoBehaviour {
           
             image.transform.localScale  = new Vector3(1, 1, 1);
             if(ghost)
-            ghost.transform.localScale = new Vector3(1, 1, 1);
+                ghost.transform.localScale = new Vector3(1, 1, 1);
             center.transform.localRotation = normalRot;
         }
+
+        
     }
 
     public void MoveBlock(Vector2 moveDir)
@@ -118,6 +132,7 @@ public class Block : MonoBehaviour {
             gridPositionOfOrigin = proposedDestination;
             transform.localPosition = gridPositionOfOrigin;
         }
+
         CheckGhostPos();
     }
 
@@ -148,17 +163,19 @@ public class Block : MonoBehaviour {
             }
         }
 
-        UpdateNeighbors();
-        CheckBlockScore();
+        //UpdateNeighbors();
+        //CheckBlockScore();
         Destroy(ghost);
     }
 
     public void SpawnGhost(bool valid)
     {
         ghost = Instantiate(image, ghostOrigin,Quaternion.identity, transform.parent);
-        ghost.name = "Ghost";
-        //TODO: depth sort the ghost so it's behind the block.
+        ghost.name = "Ghost of: " + gameObject.name;
         SetGhostColor(valid);
+        dropDown.transform.parent = ghost.transform;
+        //dropDown.transform.localPosition = new Vector3(0, (shape.yLength+1) * 0.5f, 0);
+        dropDown.transform.localPosition = Vector3.zero;
     }
 
     void SetGhostColor(bool validInvalid)
@@ -211,6 +228,8 @@ public class Block : MonoBehaviour {
                             ghost.transform.Translate(new Vector3(offset, 0, 0));
 
                     }
+                    CheckBlockScore();
+
                     return valid;
                 }
             }
@@ -227,6 +246,8 @@ public class Block : MonoBehaviour {
                 ghost.transform.Translate(new Vector3(offset, 0, 0));
             }
         }
+        CheckBlockScore();
+
         return true;
     }
 
@@ -264,7 +285,7 @@ public class Block : MonoBehaviour {
                         Vector2 foundTileCoord = tileGridPos - foundBlock.gridPositionOfOrigin;
                         Tile foundTile = foundBlock.shape.col[(int)foundTileCoord.x].row[(int)foundTileCoord.y];
                         
-                        //if one block is above a solid, move is valid
+                        //if one block is above a solid or noDown, move is valid
                         if (foundTile == Tile.Solid || foundTile == Tile.NoDown)
                         {
                             
@@ -289,10 +310,17 @@ public class Block : MonoBehaviour {
             new Vector2(-1,0),
             new Vector2(1,0)};
 
+        foreach (GameObject go in connectionPoints)
+        {
+            Destroy(go);
+        }
+        connectionPoints.Clear();
+        print("clear");
+
         foreach (Vector2 tileCoords in shape.AllTileCoords)
         {
             Tile currentTile = shape.col[(int)tileCoords.x].row[(int)tileCoords.y];
-            Vector2 tileCoordsOnGrid = tileCoords + gridPositionOfOrigin;
+            Vector2 tileCoordsOnGrid = tileCoords + ghostOrigin;
             switch (currentTile)
             {
                 case Tile.NoUp:
@@ -311,8 +339,10 @@ public class Block : MonoBehaviour {
         // print(siteDataRef.currentBlock.ToString()+ ": " + gameObject.name + ": " + tempScore);
     }
 
-    public int CheckTileScore(Tile tile, Vector2 tileCoords, Vector2[] dirs)
+    public int CheckTileScore(Tile currentTile, Vector2 tileCoords, Vector2[] dirs)
     {
+
+
         int tileScore = 0;
         foreach (Vector2 dir in dirs)
         {
@@ -324,11 +354,14 @@ public class Block : MonoBehaviour {
             Block maybeNeighbor = siteDataRef.grid[(int)neighborGridPos.x, (int)neighborGridPos.y];
             if (maybeNeighbor != null && maybeNeighbor != this)
             {
+                
+
                 Vector2 neighborTileCoords = neighborGridPos - maybeNeighbor.gridPositionOfOrigin;
+                Vector3 neighborTileCenter = new Vector3(neighborGridPos.x, neighborGridPos.y + 0.5f, -4);
 
                 Tile neighborTile = (maybeNeighbor.shape.col[(int)neighborTileCoords.x].row[(int)neighborTileCoords.y]);
 
-                switch (tile)
+                switch (currentTile)
                 {
                     case Tile.Solid:
                         {
@@ -336,7 +369,8 @@ public class Block : MonoBehaviour {
                             {
                                 tileScore += baseValue;
 
-                                //print("neighbor is valid");
+                                connectionPoints.Add( Instantiate(connection_Point, neighborTileCenter, Quaternion.identity, dropDown.transform));
+
                             }
                             break;
                         }
@@ -346,14 +380,13 @@ public class Block : MonoBehaviour {
                             {
                                 tileScore += baseValue;
 
-                                //print("neighbor is valid");
+                                connectionPoints.Add(Instantiate(connection_Point, neighborTileCenter, Quaternion.Euler(0,0,90), dropDown.transform));
+
+
                             }
                             break;
                         }
                 }
-
-                //print(maybeNeighbor.shape.col[(int)tileCoord.x].row[(int)tileCoord.y]);
-
             }
         }
         return tileScore;
@@ -415,9 +448,10 @@ public class Block : MonoBehaviour {
             image.transform.Translate(-offset, 0, 0);
             ghost.transform.Translate(-offset, 0, 0);
         }
-        shape.FlipHorizontal();
 
+        shape.FlipHorizontal();
         CheckGhostPos();
+
     }
 
     int CheckTowerHeight()
