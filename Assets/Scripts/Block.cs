@@ -315,7 +315,6 @@ public class Block : MonoBehaviour {
             Destroy(go);
         }
         connectionPoints.Clear();
-        print("clear");
 
         foreach (Vector2 tileCoords in shape.AllTileCoords)
         {

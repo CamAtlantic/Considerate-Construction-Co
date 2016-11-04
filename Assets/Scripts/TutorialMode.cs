@@ -17,6 +17,7 @@ public class TutorialMode : MonoBehaviour {
 	bool[] messageShown;
 
 	public float MessageSize;
+	private float MessageSmallSize = 6;
 
 	public int message_1_block = 1;
 	public int message_2_block = 3;
@@ -44,23 +45,23 @@ public class TutorialMode : MonoBehaviour {
 			if (Message_on_ [0] == true) {
 				Messages_ [0].gameObject.SetActive (true);
 				Message_base.SetActive (true);
-				Messages_ [0].transform.localScale = Vector3.Lerp (Messages_ [0].transform.localScale, Vector3.one * MessageSize, 0.1f);
+				Messages_ [0].transform.localScale = Vector3.Lerp (Messages_ [0].transform.localScale, Vector3.one * MessageSize, 0.05f);
 			} else if (Message_on_ [1] == true) {
 				Messages_ [1].gameObject.SetActive (true);
 				Message_base.SetActive (true);
-				Messages_ [1].transform.localScale = Vector3.Lerp (Messages_ [1].transform.localScale, Vector3.one * MessageSize, 0.1f);
+				Messages_ [1].transform.localScale = Vector3.Lerp (Messages_ [1].transform.localScale, Vector3.one * MessageSize, 0.05f);
 			} else if (Message_on_ [2] == true) {
 				Messages_ [2].gameObject.SetActive (true);
 				Message_base.SetActive (true);
-				Messages_ [2].transform.localScale = Vector3.Lerp (Messages_ [2].transform.localScale, Vector3.one * MessageSize, 0.1f);
+				Messages_ [2].transform.localScale = Vector3.Lerp (Messages_ [2].transform.localScale, Vector3.one * MessageSize, 0.05f);
 			} else if (Message_on_ [3] == true) {
 				Messages_ [3].gameObject.SetActive (true);
 				Message_base.SetActive (true);
-				Messages_ [3].transform.localScale = Vector3.Lerp (Messages_ [3].transform.localScale, Vector3.one * MessageSize, 0.1f);
+				Messages_ [3].transform.localScale = Vector3.Lerp (Messages_ [3].transform.localScale, Vector3.one * MessageSize, 0.05f);
 			} else if (Message_on_ [4] == true) {
 				Messages_ [4].gameObject.SetActive (true);
 				Message_base.SetActive (true);
-				Messages_ [4].transform.localScale = Vector3.Lerp (Messages_ [4].transform.localScale, Vector3.one * MessageSize, 0.1f);
+				Messages_ [4].transform.localScale = Vector3.Lerp (Messages_ [4].transform.localScale, Vector3.one * MessageSize, 0.05f);
 			} else {
 				Message_base.SetActive (false);
 				Messages_ [0].gameObject.SetActive (false);
@@ -68,11 +69,11 @@ public class TutorialMode : MonoBehaviour {
 				Messages_ [2].gameObject.SetActive (false);
 				Messages_ [3].gameObject.SetActive (false);
 				Messages_ [4].gameObject.SetActive (false);
-				Messages_ [0].transform.localScale = Vector3.Lerp (Messages_ [0].transform.localScale, Vector3.one * MessageSize / 2, 0.1f);
-				Messages_ [1].transform.localScale = Vector3.Lerp (Messages_ [1].transform.localScale, Vector3.one * MessageSize / 2, 0.1f);
-				Messages_ [2].transform.localScale = Vector3.Lerp (Messages_ [2].transform.localScale, Vector3.one * MessageSize / 2, 0.1f);
-				Messages_ [3].transform.localScale = Vector3.Lerp (Messages_ [3].transform.localScale, Vector3.one * MessageSize / 2, 0.1f);
-				Messages_ [4].transform.localScale = Vector3.Lerp (Messages_ [4].transform.localScale, Vector3.one * MessageSize / 2, 0.1f);
+				Messages_ [0].transform.localScale = Vector3.Lerp (Messages_ [0].transform.localScale, Vector3.one * MessageSmallSize, 0.1f);
+				Messages_ [1].transform.localScale = Vector3.Lerp (Messages_ [1].transform.localScale, Vector3.one * MessageSmallSize, 0.1f);
+				Messages_ [2].transform.localScale = Vector3.Lerp (Messages_ [2].transform.localScale, Vector3.one * MessageSmallSize, 0.1f);
+				Messages_ [3].transform.localScale = Vector3.Lerp (Messages_ [3].transform.localScale, Vector3.one * MessageSmallSize, 0.1f);
+				Messages_ [4].transform.localScale = Vector3.Lerp (Messages_ [4].transform.localScale, Vector3.one * MessageSmallSize, 0.1f);
 			}
 
 			if (!messageShown [0] && siteDataRef.currentBlock == message_1_block) {

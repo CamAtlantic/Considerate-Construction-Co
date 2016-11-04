@@ -47,6 +47,11 @@ public class SelectBuilding : MonoBehaviour {
 				if (Input.GetMouseButtonDown (0)) {
 					Counting = true;
 				}
+			} else {
+				Counting = false;
+				Selecting = false;
+				counter = 0;
+				LookingAtBuilding = false;
 			}
 		}
 
@@ -96,10 +101,10 @@ public class SelectBuilding : MonoBehaviour {
 
 		if (Input.GetMouseButtonUp (0) && Selecting == true || Input.GetMouseButtonUp (0) && Counting == true) 
 		{
-			Counting = false;
-			Selecting = false;
-			counter = 0;
-			LookingAtBuilding = false;
+			//Counting = false;
+			//Selecting = false;
+			//counter = 0;
+			//LookingAtBuilding = false;
 		}
 	}
 	public void ConfirmDemolish_on ()
