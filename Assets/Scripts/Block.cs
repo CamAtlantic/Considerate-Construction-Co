@@ -24,7 +24,7 @@ public class Block : MonoBehaviour {
     public GameObject center = null;
     public GameObject dropDown = null;
 
-     Text dropDownText = null;    
+    Text dropDownText = null;    
 
     public Vector2 gridPositionOfOrigin;
     [HideInInspector]
@@ -108,16 +108,22 @@ public class Block : MonoBehaviour {
             
             image.transform.localScale  = new Vector3(-1, 1, 1);
             if (ghost)
+            {
                 ghost.transform.localScale = new Vector3(-1, 1, 1);
-
+                dropDown.transform.localScale = new Vector3(-1, 1, 1);
+            }
             center.transform.localRotation =  flippedRot;
         }
         else
         {
           
             image.transform.localScale  = new Vector3(1, 1, 1);
-            if(ghost)
+            if (ghost)
+            {
                 ghost.transform.localScale = new Vector3(1, 1, 1);
+                dropDown.transform.localScale = new Vector3(1, 1, 1);
+
+            }
             center.transform.localRotation = normalRot;
         }
 
@@ -176,6 +182,7 @@ public class Block : MonoBehaviour {
         dropDown.transform.parent = ghost.transform;
         //dropDown.transform.localPosition = new Vector3(0, (shape.yLength+1) * 0.5f, 0);
         dropDown.transform.localPosition = Vector3.zero;
+        CheckGhostPos();
     }
 
     void SetGhostColor(bool validInvalid)
@@ -228,8 +235,7 @@ public class Block : MonoBehaviour {
                             ghost.transform.Translate(new Vector3(offset, 0, 0));
 
                     }
-                    CheckBlockScore();
-
+                    CheckBlockScore(valid);
                     return valid;
                 }
             }
@@ -246,7 +252,7 @@ public class Block : MonoBehaviour {
                 ghost.transform.Translate(new Vector3(offset, 0, 0));
             }
         }
-        CheckBlockScore();
+        CheckBlockScore(true);
 
         return true;
     }
@@ -255,6 +261,7 @@ public class Block : MonoBehaviour {
     {
         //if any part of the shape is above the max height
         //need to do this first as the other one only checks bottom row
+        //still probably not optimal
         foreach (Vector2 tileCoords in shape.AllTileCoords)
         {
             Vector2 tileGridPos = tileCoords + ghostOrigin;
@@ -300,7 +307,7 @@ public class Block : MonoBehaviour {
         return false;
     }
 
-    public void CheckBlockScore()
+    public void CheckBlockScore(bool valid)
     {
         int tempScore = baseValue;
 
@@ -315,24 +322,26 @@ public class Block : MonoBehaviour {
             Destroy(go);
         }
         connectionPoints.Clear();
-        print("clear");
 
-        foreach (Vector2 tileCoords in shape.AllTileCoords)
+        if (valid)
         {
-            Tile currentTile = shape.col[(int)tileCoords.x].row[(int)tileCoords.y];
-            Vector2 tileCoordsOnGrid = tileCoords + ghostOrigin;
-            switch (currentTile)
+            foreach (Vector2 tileCoords in shape.AllTileCoords)
             {
-                case Tile.NoUp:
-                    {
-                        tempScore += CheckTileScore(Tile.NoUp, tileCoordsOnGrid, noUpScores);
-                        break;
-                    }
-                case Tile.Solid:
-                    {
-                        tempScore += CheckTileScore(Tile.Solid, tileCoordsOnGrid, solidScores);
-                        break;
-                    }
+                Tile currentTile = shape.col[(int)tileCoords.x].row[(int)tileCoords.y];
+                Vector2 tileCoordsOnGrid = tileCoords + ghostOrigin;
+                switch (currentTile)
+                {
+                    case Tile.NoUp:
+                        {
+                            tempScore += CheckTileScore(Tile.NoUp, tileCoordsOnGrid, noUpScores);
+                            break;
+                        }
+                    case Tile.Solid:
+                        {
+                            tempScore += CheckTileScore(Tile.Solid, tileCoordsOnGrid, solidScores);
+                            break;
+                        }
+                }
             }
         }
         //here is the final score
@@ -341,8 +350,6 @@ public class Block : MonoBehaviour {
 
     public int CheckTileScore(Tile currentTile, Vector2 tileCoords, Vector2[] dirs)
     {
-
-
         int tileScore = 0;
         foreach (Vector2 dir in dirs)
         {
@@ -354,11 +361,9 @@ public class Block : MonoBehaviour {
             Block maybeNeighbor = siteDataRef.grid[(int)neighborGridPos.x, (int)neighborGridPos.y];
             if (maybeNeighbor != null && maybeNeighbor != this)
             {
-                
-
                 Vector2 neighborTileCoords = neighborGridPos - maybeNeighbor.gridPositionOfOrigin;
                 Vector3 neighborTileCenter = new Vector3(neighborGridPos.x, neighborGridPos.y + 0.5f, -4);
-
+                
                 Tile neighborTile = (maybeNeighbor.shape.col[(int)neighborTileCoords.x].row[(int)neighborTileCoords.y]);
 
                 switch (currentTile)
@@ -369,7 +374,14 @@ public class Block : MonoBehaviour {
                             {
                                 tileScore += baseValue;
 
-                                connectionPoints.Add( Instantiate(connection_Point, neighborTileCenter, Quaternion.identity, dropDown.transform));
+                                if (ghost)
+                                {
+                                    GameObject point = Instantiate(connection_Point, neighborTileCenter, Quaternion.identity);
+
+                                    connectionPoints.Add(point);
+                                    if (dir.x == 1)
+                                        point.transform.Rotate(0, 0, 180);
+                                }
 
                             }
                             break;
@@ -380,9 +392,8 @@ public class Block : MonoBehaviour {
                             {
                                 tileScore += baseValue;
 
-                                connectionPoints.Add(Instantiate(connection_Point, neighborTileCenter, Quaternion.Euler(0,0,90), dropDown.transform));
-
-
+                                if(ghost)
+                                    connectionPoints.Add(Instantiate(connection_Point, neighborTileCenter, Quaternion.Euler(0,0,90)));
                             }
                             break;
                         }
@@ -440,6 +451,7 @@ public class Block : MonoBehaviour {
             flipped = true;
             image.transform.Translate(offset, 0, 0);
             ghost.transform.Translate(offset, 0, 0);
+            dropDown.transform.Translate(offset, 0, 0);
         }
         else
         {
@@ -447,6 +459,8 @@ public class Block : MonoBehaviour {
             flipped = false;
             image.transform.Translate(-offset, 0, 0);
             ghost.transform.Translate(-offset, 0, 0);
+            dropDown.transform.Translate(-offset, 0, 0);
+
         }
 
         shape.FlipHorizontal();
